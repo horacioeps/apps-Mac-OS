@@ -13,3 +13,23 @@ ok quiero para mi ipad, una app simple de despeertador, pero que cuando la activ
 - `xcodegen generate` + build simulador: **BUILD SUCCEEDED**.
 - README raíz actualizado con la app en la tabla.
 - Requiere permiso de Alarmas la primera vez.
+
+## Usuario
+
+compila e instala en mi ipad
+
+## Agente
+
+- Primer intento: iPad bloqueado (`may need to be unlocked`).
+- Usuario desbloqueó.
+- Build Debug `generic/platform=iOS` → **BUILD SUCCEEDED**.
+- `devicectl device install app` + `process launch` en **iPad de Horacio** (iPad Pro 11", iPadOS 26.5.2, UDID `00008027-0006613A2622002E`).
+- Resultado: instalada y lanzada `com.horacioeps.alarma`.
+
+## Usuario
+
+desbloqueado
+
+## Agente
+
+- Confirmado: install + launch OK tras desbloqueo.
