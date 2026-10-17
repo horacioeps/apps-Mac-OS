@@ -11,4 +11,4 @@ Repositorio de Horacio Pérez-Sánchez (`horacioeps`) para apps y proyectos del 
 
 | App | Plataforma | Descripción |
 |-----|------------|-------------|
-| [apps/antidoom/](apps/antidoom/) | iPhone | Contra el scrolling: busca en vault de notas Markdown + podcasts (p. ej. Emilcar Daily) |
+| [apps/antidoom/](apps/antidoom/) | iPhone | Anti-doomscrolling: vault, grabadora, bookmarks, tweets, noticias, podcasts, blogs |

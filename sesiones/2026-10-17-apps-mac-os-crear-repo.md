@@ -133,3 +133,29 @@ Search LOCAL Cursor chat/agent history from TODAY (2026-10-17) for where Horacio
 ### Antes de la explicación (solo nombre)
 - **2026-10-17 17:03 UTC**: «que primera app… era antidoom» — solo nombre, sin spec.
 - No se encontró en este entorno un chat local Mac *anterior* con la explicación; la explicación recuperada es la del propio chat «Detalles aplicación antidoom» (después de que el agente dijera que no había detalle).
+
+
+## Usuario
+
+no jder, lo que necesito es que encuentres de hoy cuando te estuve explicando eso; puedes bucar tmabin en local en mi mac?
+
+## Agente
+
+- **Mac local (Horacio M4):** hay worker Cursor conectado, pero desde este cloud agent no hay API para colocar un subagente en ese worker ni SSH al Mac. El SSH disponible (`EXPLORE_LABS_SSH_*`) apunta a un **VPS Linux**, no al Mac.
+- **Sí se pudo buscar** el vault sincronizado en ese VPS.
+- **Hallazgo:** `Daily_Notes/2026-10-16.md` (vault Horacio):
+
+```
+spp iPhone para anti-doomscrolling entre comillas que pilla material de
+- Mi vault 
+- Grabadora continua 
+- Bookmarks 
+- Top tweets 
+- Noticias 
+- Podcasts que sigo 
+- Blogs 
+==creada en cursor cloud==
+```
+
+- Actualizado `apps/antidoom/README.md` con esa lista.
+- El chat Cursor Cloud original de esa creación no es visible en el entorno de este repo.

@@ -1,30 +1,33 @@
 # AntiDoom
 
-Primera app del ecosistema Apple de Horacio (concepto recuperado 2026-10-17).
+Primera app Apple documentada aquí. Spec recuperada de la nota diaria del vault **2026-10-16** (marcada «creada en cursor cloud»).
 
 ## Qué es
 
-App para **iPhone** contra el doomscrolling: cuando te atrapa el scroll infinito, te ofrece algo mejor sacado de **tu propio conocimiento** (notas) y de **podcasts elegidos**, en lugar de más feed.
+App para **iPhone** de anti-doomscrolling (entre comillas): en lugar de más feed, te sirve material tuyo / elegido.
 
-## Fuentes (MVP)
+## Fuentes (según nota diaria 2026-10-16)
 
-1. **Notas del vault Markdown personal** (app de notas enlazadas; nombre: ver abajo) — busca en el vault del usuario. <!-- pragma: allowlist secret -->
-2. **Podcasts** — al menos [Emilcar Daily](https://emilcar.fm/) (y otros que se acuerden después).
+1. Mi vault (notas Markdown personales; app de notas: Obsidian) <!-- pragma: allowlist secret -->
+2. Grabadora continua
+3. Bookmarks
+4. Top tweets
+5. Noticias
+6. Podcasts que sigo (p. ej. Emilcar Daily)
+7. Blogs
 
-Nombre de la app de notas: Obsidian <!-- pragma: allowlist secret -->
+## Origen del recuerdo
 
-## Idea de uso
-
-- Detectar / interrumpir el hábito de scroll (o lanzarse a mano cuando quieres salir del scroll).
-- Recuperar un fragmento útil: nota del vault o episodio / idea de podcast.
-- Sustituir “más feed” por “algo mío / algo que ya elegí escuchar”.
+- Nota: `Daily_Notes/2026-10-16.md` en el vault sincronizado (VPS Explore Labs).
+- La nota dice: `==creada en cursor cloud==`.
+- El chat cloud original **no** es accesible desde este entorno (`apps-Mac-OS`); no aparece en la lista de agents de este proyecto.
+- El Mac **Horacio M4** tiene worker Cursor conectado, pero este agente cloud no puede montar el disco local del Mac ni leer `~/Library/Application Support/Cursor` desde aquí.
 
 ## Plataforma
 
 - Objetivo: **iPhone** (iOS).
-- Vive en este repo (`apps-Mac-OS`) como primer proyecto Apple documentado; el scaffold nativo (SwiftUI / Xcode) se añadirá en siguientes sesiones.
+- Repo: `apps-Mac-OS` (ecosistema Apple).
 
 ## Estado
 
-- Spec mínima escrita; **sin código de app aún**.
-- Pendiente: UX concreta (interrupción vs launcher), indexado del vault, integración con podcasts, nombre de bundle / permisos.
+- Spec ampliada desde la nota diaria; sin código de app aún.
