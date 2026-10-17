@@ -1,0 +1,5 @@
+AntiDoom.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+.build/

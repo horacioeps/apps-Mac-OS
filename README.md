@@ -11,4 +11,4 @@ Repositorio de Horacio Pérez-Sánchez (`horacioeps`) para apps y proyectos del 
 
 | App | Plataforma | Descripción |
 |-----|------------|-------------|
-| [apps/antidoom/](apps/antidoom/) | iPhone | Anti-doomscrolling (v1 en tmp Origin `tmp-0fb6de09…`: PRODUCT.md + RationView; pendiente portar) |
+| [apps/antidoom/](apps/antidoom/) | iPhone | Anti-doomscrolling v1: RationView + RSS + tweets semilla (SwiftUI) |
