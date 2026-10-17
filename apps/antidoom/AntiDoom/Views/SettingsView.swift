@@ -14,11 +14,15 @@ struct SettingsView: View {
                 }
             }
 
-            Section("Feeds RSS (v1)") {
+            Section("Fuentes RSS") {
                 ForEach($store.feeds) { $feed in
                     Toggle(isOn: $feed.enabled) {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(feed.name)
+                            Text(feed.feedURL.absoluteString)
+                                .font(.caption2)
+                                .foregroundStyle(.tertiary)
+                                .lineLimit(1)
                             Text(feed.kind.label)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -27,8 +31,18 @@ struct SettingsView: View {
                 }
             }
 
+            Section("También en la ración") {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Noticias: resumen extractivo on-device antes de mostrar.")
+                    Text("Vault: trozos de Daily Notes (seed_notes.json, sync desde el Mac).")
+                    Text("Tweets: seed_tweets.json local.")
+                }
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            }
+
             Section("Próximo") {
-                Text("Vault de notas, grabadora, bookmarks y tweets en vivo → v1.1")
+                Text("Vault en vivo (carpeta Obsidian), grabadora, bookmarks y tweets API.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

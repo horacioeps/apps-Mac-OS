@@ -24,3 +24,23 @@ no las puedes enviar directamente al iphone ?
 - Team: `WMY552P2HR` (Apple Development: Horacio Pérez Sánchez).
 - Build Debug para dispositivo físico + `devicectl device install app` + `process launch`.
 - Resultado: instalada y lanzada `com.horacioeps.antidoom` en el iPhone.
+
+## Usuario
+
+funciona. pero, de las noticias, quiero que antes las proceses y me metas un trozo tipo resumen. y tambien, metes trozos relevanes de mi vault? cuales son las fuentes ?
+
+## Agente
+
+Fuentes actuales (defaults):
+- Emilcar Daily (podcast RSS)
+- Hacker News (noticias)
+- Swift.org Blog
+- Tweets: `seed_tweets.json`
+- Vault: `seed_notes.json` desde Daily Notes
+
+Hecho:
+- `SummaryProcessor`: noticias con prefijo `Resumen:` (extractivo on-device).
+- `VaultNoteLoader` + `scripts/sync_vault_notes.py` (trozos de `~/Library/Obsidian/Horacio/Daily_Notes`).
+- Ración mezcla hasta 2 notas de vault.
+- Reinstalada en iPhone 17 Pro Max.
+- Aclarado: resumen aún no es LLM; vault aún no lee Obsidian en vivo en el teléfono (semilla al desplegar desde Mac).

@@ -10,15 +10,17 @@ Una **ración** al día (o bajo demanda): un número pequeño de piezas de conte
 
 ## Fuentes
 
-| Fuente | v1 | v1.1+ |
-|--------|----|-------|
-| RSS blogs | sí | |
-| RSS / feed noticias | sí | |
-| Podcasts (RSS) | sí | |
-| Tweets (lista / bookmarks vía API o export) | sí (lista estática o JSON local) | API en vivo |
-| Vault de notas Markdown | | sí |
-| Grabadora continua | | sí |
-| Bookmarks genéricos | | sí |
+| Fuente | Ahora | Default |
+|--------|-------|---------|
+| Podcasts (RSS) | sí | Emilcar Daily (`feeds.feedburner.com/emilcar`) |
+| RSS / feed noticias | sí + resumen extractivo | Hacker News (`hnrss.org/frontpage`) |
+| RSS blogs | sí | Swift.org Blog (`swift.org/atom.xml`) |
+| Tweets | sí (JSON local) | `Resources/seed_tweets.json` |
+| Vault de notas Markdown | sí (semilla desde Daily Notes) | `Resources/seed_notes.json` vía `scripts/sync_vault_notes.py` |
+| Grabadora continua | | v1.2 |
+| Bookmarks / tweets API | | v1.2 |
+
+Los feeds se pueden activar/desactivar en Ajustes. Si ya guardaste feeds en el teléfono, hay que recargar o borrar datos de la app para ver defaults nuevos.
 
 ## UX central: RationView
 

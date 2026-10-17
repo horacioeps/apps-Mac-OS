@@ -5,6 +5,7 @@ enum RationSourceKind: String, Codable, CaseIterable, Identifiable {
     case news
     case podcast
     case tweet
+    case note
 
     var id: String { rawValue }
 
@@ -14,6 +15,7 @@ enum RationSourceKind: String, Codable, CaseIterable, Identifiable {
         case .news: "Noticia"
         case .podcast: "Podcast"
         case .tweet: "Tweet"
+        case .note: "Vault"
         }
     }
 }

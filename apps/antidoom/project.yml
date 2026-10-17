@@ -11,6 +11,8 @@ settings:
     TARGETED_DEVICE_FAMILY: "1"
     GENERATE_INFOPLIST_FILE: NO
     INFOPLIST_FILE: AntiDoom/Resources/Info.plist
+    DEVELOPMENT_TEAM: WMY552P2HR
+    CODE_SIGN_STYLE: Automatic
 targets:
   AntiDoom:
     type: application
@@ -21,6 +23,7 @@ targets:
           - Resources/Info.plist
     resources:
       - path: AntiDoom/Resources/seed_tweets.json
+      - path: AntiDoom/Resources/seed_notes.json
       - path: AntiDoom/Resources/Assets.xcassets
     settings:
       base:

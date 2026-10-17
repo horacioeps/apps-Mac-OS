@@ -104,13 +104,11 @@ final class RSSParser: NSObject, XMLParserDelegate {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTitle.isEmpty else { return }
         let url = URL(string: link.trimmingCharacters(in: .whitespacesAndNewlines))
-        let cleanSummary = summary
-            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let processed = SummaryProcessor.summarize(summary, kind: source.kind)
         items.append(
             RationItem(
                 title: trimmedTitle,
-                summary: String(cleanSummary.prefix(280)),
+                summary: processed,
                 url: url,
                 sourceName: source.name,
                 kind: source.kind,

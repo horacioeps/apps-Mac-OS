@@ -70,10 +70,25 @@ final class RationStore: ObservableObject {
         }
 
         collected.append(contentsOf: TweetSeedLoader.load())
-        collected.sort { ($0.publishedAt ?? .distantPast) > ($1.publishedAt ?? .distantPast) }
 
+        // Vault: asegurar 1–2 trozos en la ración (no solo por fecha).
+        let vaultNotes = VaultNoteLoader.load(limit: 3)
+        let vaultSlots = min(2, vaultNotes.count)
+
+        collected.sort { ($0.publishedAt ?? .distantPast) > ($1.publishedAt ?? .distantPast) }
         let unique = Self.dedupe(collected)
-        items = Array(unique.prefix(rationSize))
+
+        var ration: [RationItem] = Array(vaultNotes.prefix(vaultSlots))
+        for item in unique where ration.count < rationSize {
+            let key = (item.url?.absoluteString ?? item.title).lowercased()
+            let already = ration.contains {
+                ($0.url?.absoluteString ?? $0.title).lowercased() == key
+            }
+            if !already {
+                ration.append(item)
+            }
+        }
+        items = ration
 
         if items.isEmpty {
             lastError = "No hay ítems. Revisa feeds o la red."

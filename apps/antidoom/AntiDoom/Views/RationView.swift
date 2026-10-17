@@ -29,7 +29,7 @@ struct RationView: View {
 
                 if !item.summary.isEmpty {
                     Text(item.summary)
-                        .font(.body)
+                        .font(item.kind == .news || item.kind == .note ? .body.italic() : .body)
                         .foregroundStyle(.primary.opacity(0.9))
                         .fixedSize(horizontal: false, vertical: true)
                 }

@@ -28,7 +28,19 @@ En Xcode:
 | `AntiDoom/Resources/seed_tweets.json` | Tweets de ejemplo |
 | `AntiDoom.xcodeproj` | Proyecto Xcode listo |
 
+## Fuentes (defaults)
+
+- Emilcar Daily (podcast RSS)
+- Hacker News (noticias; la app genera un **Resumen:** extractivo)
+- Swift.org Blog
+- Tweets: `AntiDoom/Resources/seed_tweets.json`
+- Vault: `AntiDoom/Resources/seed_notes.json` (trozos de Daily Notes)
+
+```bash
+python3 apps/antidoom/scripts/sync_vault_notes.py   # regenera seed_notes desde ~/Library/Obsidian/Horacio
+```
+
 ## v1 / v1.1
 
 - **v1:** RSS + tweets JSON, tamaño de ración en Ajustes.
-- **v1.1:** vault de notas, grabadora, bookmarks, tweets en vivo.
+- **v1.1:** resumen de noticias + vault (semilla Daily Notes). Grabadora / bookmarks / tweets API → después.

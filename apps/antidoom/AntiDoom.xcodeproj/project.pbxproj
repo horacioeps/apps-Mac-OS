@@ -3,310 +3,401 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6847932BA5B84589ADF0ECA2 /* AntiDoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F32A56729641478563726A /* AntiDoomApp.swift */; };
-		93A12075B0F04FCE9BB16487 /* FeedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */; };
-		08B74709885C4C2C8AA15954 /* RationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6D9D5F547F4706B8C12235 /* RationItem.swift */; };
-		891290C68DDE4814B2794AD3 /* RSSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */; };
-		DFC14DE32B384E1285C288FB /* RationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6AA5E9C214BADB6C5393C /* RationStore.swift */; };
-		247AAC7A33BD4F73BD9E7665 /* TweetSeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */; };
-		549A15664831472993D42981 /* EmptyRationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */; };
-		1AAAD69120054604830B6044 /* FinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */; };
-		56ACB49FAF1E4DB7B1A42424 /* RationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258FDAD06760475996EF0E15 /* RationView.swift */; };
-		80371A7FEADB4A86BB403825 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179BAB3133745718DB52867 /* RootView.swift */; };
-		D0F4517023DE4CD888E1C04B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */; };
-		65B036BD7B1440DF8B1339FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44079BA4DC35422297E8CF5C /* Assets.xcassets */; };
-		491D71B47A4C4CA2BB0867A4 /* seed_tweets.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E98E29FD5C347E38E616848 /* seed_tweets.json */; };
+		08BA103E2D72D2772C0A7440 /* RationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD98FCBAB5892BB668EAB9 /* RationView.swift */; };
+		1DAE7DBCC532931809CF3D2C /* seed_tweets.json in Resources */ = {isa = PBXBuildFile; fileRef = 07614064A41824D543C43806 /* seed_tweets.json */; };
+		22BB5849CEC298E793459D8B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C69B0E694202531531155E8 /* RootView.swift */; };
+		279236DA0202467DD91F2A33 /* VaultNoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212B98F41D2D6B8D9DEF170 /* VaultNoteLoader.swift */; };
+		2E786A25D5DBD5BA916C24C0 /* RationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B1E9AB1F6F292047A894 /* RationItem.swift */; };
+		6C1DB90C3D8113E6AA52344B /* TweetSeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC28B77F47EB51E5CAEDC1 /* TweetSeedLoader.swift */; };
+		795308705104A7FA6449CE03 /* FinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620628EE0CF894447952C862 /* FinishedView.swift */; };
+		8968FAE969FD85F12B4AF68D /* AntiDoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE06BB51924A3472E995316 /* AntiDoomApp.swift */; };
+		90E54D7B1E1DFBA0303911F7 /* EmptyRationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA5CC4C3C09567F0BAC6C7 /* EmptyRationView.swift */; };
+		993A8A6251FA8249CA07CBA3 /* FeedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914ADAC79A6BEEFCB3FDFD0 /* FeedSource.swift */; };
+		9F52F6349BB38643C7F9699E /* RationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A4938EBFFEB2912ACD4B8 /* RationStore.swift */; };
+		A0463485D33DCECBDAD26447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA622BBCBC85C71E8B8A971 /* Assets.xcassets */; };
+		DC028C19E29592218AAA0B68 /* RSSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74847EA90C28E017418DF3D /* RSSClient.swift */; };
+		ED3CA716EDA577C9711772E4 /* SummaryProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30ABD5CDFFE9DCA462E937 /* SummaryProcessor.swift */; };
+		F2C3FF1BE610F97540855A11 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC68ABE6640D976ED1BAC4 /* SettingsView.swift */; };
+		F95826C61C0D58B6BA6DAA43 /* seed_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 396F70C74BB992480E1FC2F1 /* seed_notes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		139B3B212D9A435CA6AEB9AE /* AntiDoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntiDoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4F32A56729641478563726A /* AntiDoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntiDoomApp.swift; sourceTree = "<group>"; };
-		F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSource.swift; sourceTree = "<group>"; };
-		AE6D9D5F547F4706B8C12235 /* RationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationItem.swift; sourceTree = "<group>"; };
-		6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSClient.swift; sourceTree = "<group>"; };
-		5CE6AA5E9C214BADB6C5393C /* RationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationStore.swift; sourceTree = "<group>"; };
-		6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSeedLoader.swift; sourceTree = "<group>"; };
-		1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRationView.swift; sourceTree = "<group>"; };
-		D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedView.swift; sourceTree = "<group>"; };
-		258FDAD06760475996EF0E15 /* RationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationView.swift; sourceTree = "<group>"; };
-		9179BAB3133745718DB52867 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		44079BA4DC35422297E8CF5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2E98E29FD5C347E38E616848 /* seed_tweets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed_tweets.json; sourceTree = "<group>"; };
-		31668E4D20DE476EA02E262A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		022A4938EBFFEB2912ACD4B8 /* RationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationStore.swift; sourceTree = "<group>"; };
+		06DA5CC4C3C09567F0BAC6C7 /* EmptyRationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRationView.swift; sourceTree = "<group>"; };
+		07614064A41824D543C43806 /* seed_tweets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed_tweets.json; sourceTree = "<group>"; };
+		1B30ABD5CDFFE9DCA462E937 /* SummaryProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProcessor.swift; sourceTree = "<group>"; };
+		22AC68ABE6640D976ED1BAC4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		396F70C74BB992480E1FC2F1 /* seed_notes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed_notes.json; sourceTree = "<group>"; };
+		3C69B0E694202531531155E8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		53D4B1E9AB1F6F292047A894 /* RationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationItem.swift; sourceTree = "<group>"; };
+		5AB00291F54502C3DC7D891D /* AntiDoom.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AntiDoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDC28B77F47EB51E5CAEDC1 /* TweetSeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSeedLoader.swift; sourceTree = "<group>"; };
+		620628EE0CF894447952C862 /* FinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedView.swift; sourceTree = "<group>"; };
+		7DA622BBCBC85C71E8B8A971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9212B98F41D2D6B8D9DEF170 /* VaultNoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultNoteLoader.swift; sourceTree = "<group>"; };
+		9914ADAC79A6BEEFCB3FDFD0 /* FeedSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSource.swift; sourceTree = "<group>"; };
+		BDE06BB51924A3472E995316 /* AntiDoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntiDoomApp.swift; sourceTree = "<group>"; };
+		C1CD98FCBAB5892BB668EAB9 /* RationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationView.swift; sourceTree = "<group>"; };
+		C74847EA90C28E017418DF3D /* RSSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		107EDEC881BF4951B865F442 = {
+		1A48C606F82F114C566DE9E9 /* AntiDoom */ = {
 			isa = PBXGroup;
 			children = (
-				8CDEC406311C4B96A7AB54AD /* AntiDoom */,
-				04576686048A4A80915D9A93 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		04576686048A4A80915D9A93 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139B3B212D9A435CA6AEB9AE /* AntiDoom.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8CDEC406311C4B96A7AB54AD /* AntiDoom */ = {
-			isa = PBXGroup;
-			children = (
-				E4F32A56729641478563726A /* AntiDoomApp.swift */,
-				51210A2DF54A4416A57ACB65 /* Models */,
-				7AB6593AD5F248289616FE60 /* Services */,
-				94FB1306771540B6BA0716F8 /* Views */,
-				F2A3F2B3D4764C4A935E8F89 /* Resources */,
+				BDE06BB51924A3472E995316 /* AntiDoomApp.swift */,
+				6E9895EB708447A0343FA2F5 /* Models */,
+				6D11BCD07EB2AC41FD2A780D /* Resources */,
+				8B787DE69DF11A41595407D7 /* Services */,
+				FFE2082EAC119AC9970B1959 /* Views */,
 			);
 			path = AntiDoom;
 			sourceTree = "<group>";
 		};
-		51210A2DF54A4416A57ACB65 /* Models */ = {
+		41A7F52B575E0B8664EF5FE3 = {
 			isa = PBXGroup;
 			children = (
-				F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */,
-				AE6D9D5F547F4706B8C12235 /* RationItem.swift */,
+				1A48C606F82F114C566DE9E9 /* AntiDoom */,
+				8C6D6AF39AD1131FB25F5186 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6D11BCD07EB2AC41FD2A780D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7DA622BBCBC85C71E8B8A971 /* Assets.xcassets */,
+				396F70C74BB992480E1FC2F1 /* seed_notes.json */,
+				07614064A41824D543C43806 /* seed_tweets.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6E9895EB708447A0343FA2F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9914ADAC79A6BEEFCB3FDFD0 /* FeedSource.swift */,
+				53D4B1E9AB1F6F292047A894 /* RationItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7AB6593AD5F248289616FE60 /* Services */ = {
+		8B787DE69DF11A41595407D7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */,
-				5CE6AA5E9C214BADB6C5393C /* RationStore.swift */,
-				6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */,
+				022A4938EBFFEB2912ACD4B8 /* RationStore.swift */,
+				C74847EA90C28E017418DF3D /* RSSClient.swift */,
+				1B30ABD5CDFFE9DCA462E937 /* SummaryProcessor.swift */,
+				5CDC28B77F47EB51E5CAEDC1 /* TweetSeedLoader.swift */,
+				9212B98F41D2D6B8D9DEF170 /* VaultNoteLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		94FB1306771540B6BA0716F8 /* Views */ = {
+		8C6D6AF39AD1131FB25F5186 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */,
-				D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */,
-				258FDAD06760475996EF0E15 /* RationView.swift */,
-				9179BAB3133745718DB52867 /* RootView.swift */,
-				3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */,
+				5AB00291F54502C3DC7D891D /* AntiDoom.app */,
 			);
-			path = Views;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		F2A3F2B3D4764C4A935E8F89 /* Resources */ = {
+		FFE2082EAC119AC9970B1959 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				44079BA4DC35422297E8CF5C /* Assets.xcassets */,
-				2E98E29FD5C347E38E616848 /* seed_tweets.json */,
-				31668E4D20DE476EA02E262A /* Info.plist */,
+				06DA5CC4C3C09567F0BAC6C7 /* EmptyRationView.swift */,
+				620628EE0CF894447952C862 /* FinishedView.swift */,
+				C1CD98FCBAB5892BB668EAB9 /* RationView.swift */,
+				3C69B0E694202531531155E8 /* RootView.swift */,
+				22AC68ABE6640D976ED1BAC4 /* SettingsView.swift */,
 			);
-			path = Resources;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA545411ECCD48A3A7E8A575 /* AntiDoom */ = {
+		20D6354900F01847A4BEAE25 /* AntiDoom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C261B892A2E94128BF4C0041 /* Build configuration list for PBXNativeTarget "AntiDoom" */;
+			buildConfigurationList = 959B643E04052775BDBA8A89 /* Build configuration list for PBXNativeTarget "AntiDoom" */;
 			buildPhases = (
-				77E25F90A3684CE89C9124E5 /* Sources */,
-				DC12A2533A2945B7B5276423 /* Frameworks */,
-				E9DA06AFE5BA454DB23AE80A /* Resources */,
+				EC1A92F6293E80724651D4CB /* Sources */,
+				47C25B9DF1D5A55057D996DB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AntiDoom;
+			packageProductDependencies = (
+			);
 			productName = AntiDoom;
-			productReference = 139B3B212D9A435CA6AEB9AE /* AntiDoom.app */;
+			productReference = 5AB00291F54502C3DC7D891D /* AntiDoom.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		720CF73F2D3C4658879AB753 /* Project object */ = {
+		9868D05B836BC86519B13836 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					20D6354900F01847A4BEAE25 = {
+						DevelopmentTeam = WMY552P2HR;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
-			buildConfigurationList = 84F6A89FE4EC47C3A3043A7C /* Build configuration list for PBXProject "AntiDoom" */;
-			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = es;
+			buildConfigurationList = EB80662CC72E0041C4F8DFEE /* Build configuration list for PBXProject "AntiDoom" */;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
-				es,
+				en,
 			);
-			mainGroup = 107EDEC881BF4951B865F442;
-			productRefGroup = 04576686048A4A80915D9A93 /* Products */;
+			mainGroup = 41A7F52B575E0B8664EF5FE3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8C6D6AF39AD1131FB25F5186 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA545411ECCD48A3A7E8A575 /* AntiDoom */,
+				20D6354900F01847A4BEAE25 /* AntiDoom */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXSourcesBuildPhase section */
-		77E25F90A3684CE89C9124E5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6847932BA5B84589ADF0ECA2 /* AntiDoomApp.swift in Sources */,
-				93A12075B0F04FCE9BB16487 /* FeedSource.swift in Sources */,
-				08B74709885C4C2C8AA15954 /* RationItem.swift in Sources */,
-				891290C68DDE4814B2794AD3 /* RSSClient.swift in Sources */,
-				DFC14DE32B384E1285C288FB /* RationStore.swift in Sources */,
-				247AAC7A33BD4F73BD9E7665 /* TweetSeedLoader.swift in Sources */,
-				549A15664831472993D42981 /* EmptyRationView.swift in Sources */,
-				1AAAD69120054604830B6044 /* FinishedView.swift in Sources */,
-				56ACB49FAF1E4DB7B1A42424 /* RationView.swift in Sources */,
-				80371A7FEADB4A86BB403825 /* RootView.swift in Sources */,
-				D0F4517023DE4CD888E1C04B /* SettingsView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		DC12A2533A2945B7B5276423 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXResourcesBuildPhase section */
-		E9DA06AFE5BA454DB23AE80A /* Resources */ = {
+		47C25B9DF1D5A55057D996DB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B036BD7B1440DF8B1339FD /* Assets.xcassets in Resources */,
-				491D71B47A4C4CA2BB0867A4 /* seed_tweets.json in Resources */,
+				A0463485D33DCECBDAD26447 /* Assets.xcassets in Resources */,
+				F95826C61C0D58B6BA6DAA43 /* seed_notes.json in Resources */,
+				1DAE7DBCC532931809CF3D2C /* seed_tweets.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXSourcesBuildPhase section */
+		EC1A92F6293E80724651D4CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8968FAE969FD85F12B4AF68D /* AntiDoomApp.swift in Sources */,
+				90E54D7B1E1DFBA0303911F7 /* EmptyRationView.swift in Sources */,
+				993A8A6251FA8249CA07CBA3 /* FeedSource.swift in Sources */,
+				795308705104A7FA6449CE03 /* FinishedView.swift in Sources */,
+				DC028C19E29592218AAA0B68 /* RSSClient.swift in Sources */,
+				2E786A25D5DBD5BA916C24C0 /* RationItem.swift in Sources */,
+				9F52F6349BB38643C7F9699E /* RationStore.swift in Sources */,
+				08BA103E2D72D2772C0A7440 /* RationView.swift in Sources */,
+				22BB5849CEC298E793459D8B /* RootView.swift in Sources */,
+				F2C3FF1BE610F97540855A11 /* SettingsView.swift in Sources */,
+				ED3CA716EDA577C9711772E4 /* SummaryProcessor.swift in Sources */,
+				6C1DB90C3D8113E6AA52344B /* TweetSeedLoader.swift in Sources */,
+				279236DA0202467DD91F2A33 /* VaultNoteLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
-		E63350E1FDE2431DB2DB0F58 /* Debug */ = {
+		0CA773C9967E4BBE81D441A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WMY552P2HR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		4F9CDCA700FFAF2E14F63A21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = AntiDoom;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		726FFE9590E82C1BAE4DB012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = AntiDoom;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF5CFC8024714CEE2B8403F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WMY552P2HR;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		B7881B4BD0FE4BDE9D00489D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7E68312B37E841138D3FC237 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
-		};
-		64AAA90BD6B14CB5A032B332 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84F6A89FE4EC47C3A3043A7C /* Build configuration list for PBXProject "AntiDoom" */ = {
+		959B643E04052775BDBA8A89 /* Build configuration list for PBXNativeTarget "AntiDoom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E63350E1FDE2431DB2DB0F58 /* Debug */,
-				B7881B4BD0FE4BDE9D00489D /* Release */,
+				726FFE9590E82C1BAE4DB012 /* Debug */,
+				4F9CDCA700FFAF2E14F63A21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C261B892A2E94128BF4C0041 /* Build configuration list for PBXNativeTarget "AntiDoom" */ = {
+		EB80662CC72E0041C4F8DFEE /* Build configuration list for PBXProject "AntiDoom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E68312B37E841138D3FC237 /* Debug */,
-				64AAA90BD6B14CB5A032B332 /* Release */,
+				AF5CFC8024714CEE2B8403F8 /* Debug */,
+				0CA773C9967E4BBE81D441A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 720CF73F2D3C4658879AB753 /* Project object */;
+	rootObject = 9868D05B836BC86519B13836 /* Project object */;
 }
