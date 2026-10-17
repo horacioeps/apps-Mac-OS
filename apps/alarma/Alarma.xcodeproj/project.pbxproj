@@ -17,6 +17,7 @@
 		DF77A7254606A2BBFAF669AC /* AlarmHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */; };
 		FAD1629FA765779269F2C456 /* WakeAlarmMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */; };
 		FCA8ED8C775A351DA64F34C1 /* arpa.caf in Resources */ = {isa = PBXBuildFile; fileRef = 862A4FE4D518C88A57840161 /* arpa.caf */; };
+		FDF8735F2CCF2D6876CCB735 /* SOUND_LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99CE518D4A97DFC1BD384B4 /* SOUND_LICENSE.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		71EBD6989AB4C5D1484FB102 /* Alarma.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Alarma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862A4FE4D518C88A57840161 /* arpa.caf */ = {isa = PBXFileReference; path = arpa.caf; sourceTree = "<group>"; };
 		98687CED6B6969DF12CDE0A2 /* AlarmaWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmaWidgetsBundle.swift; sourceTree = "<group>"; };
+		A99CE518D4A97DFC1BD384B4 /* SOUND_LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SOUND_LICENSE.txt; sourceTree = "<group>"; };
 		B21EBD82F3E54E445D839505 /* AlarmStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStore.swift; sourceTree = "<group>"; };
 		C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AlarmaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				862A4FE4D518C88A57840161 /* arpa.caf */,
 				DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */,
+				A99CE518D4A97DFC1BD384B4 /* SOUND_LICENSE.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2BA00ACCC9D478FD22C6C38 /* Assets.xcassets in Resources */,
+				FDF8735F2CCF2D6876CCB735 /* SOUND_LICENSE.txt in Resources */,
 				FCA8ED8C775A351DA64F34C1 /* arpa.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +262,7 @@
 		348D4A865C49C47605DD8920 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = AlarmaWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0;
@@ -275,7 +279,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Alarma/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -294,7 +298,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Alarma/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,7 +375,7 @@
 		E75B4534089B518B1A2F59B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = AlarmaWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0;

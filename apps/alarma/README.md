@@ -25,7 +25,17 @@ En Xcode: elige tu **iPad** (o simulador iPad), Team `WMY552P2HR`, Run ▶.
 3. Ajusta minutos de snooze (+ / −).
 4. **Probar en 10 s**: bloquea el iPad; verás Parar y Snooze en la pantalla bloqueada.
 
-Sonido: **arpa** (`Alarma/Resources/arpa.caf`, tono Harp del sistema convertido a CAF).
+Sonido: **arpa** original sintetizado (`Alarma/Resources/arpa.caf`).
+
+## App Store
+
+Borrador en [`store/`](store/): metadata, `privacy.html`, `upload.sh`, archive Release ya generado en `build/Archive.xcarchive`.
+
+Bloqueos actuales al exportar:
+
+1. Aceptar el **Program License Agreement** (PLA) en [developer.apple.com/account](https://developer.apple.com/account).
+2. Crear la app en App Store Connect (`com.horacioeps.alarma`) y publicar URL de privacidad.
+3. Volver a ejecutar `store/upload.sh` (renueva certificado Distribution caducado y sube el build).
 
 ## Piezas
 

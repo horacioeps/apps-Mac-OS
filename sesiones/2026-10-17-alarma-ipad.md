@@ -88,3 +88,18 @@ ha quedao guay. la podemos subir a la app store ?
 - Sustituir `arpa.caf` (viene de Harp.m4r del sistema → copyright).
 - Solo iPadOS 26+; metadatos, capturas, privacidad.
 - Preguntado si quiere que prepare el envío.
+
+## Usuario
+
+puedes hacer tú todo eso ?
+
+## Agente
+
+Hecho / en curso:
+- Sonido arpa **original** (síntesis) + `SOUND_LICENSE.txt`.
+- Archive Release OK (`build/Archive.xcarchive`).
+- Carpeta `store/` con metadata, privacy.html, upload.sh.
+- Export App Store **FALLÓ**: «PLA Update available» (hay que aceptar el acuerdo en developer.apple.com) + perfiles aún no creados.
+- Certificados Distribution caducados (junio 2026); se renuevan tras aceptar PLA + `-allowProvisioningUpdates`.
+- Reinstall iPad del sonido nuevo: tunnel timeout (iPad paired pero sin túnel).
+- Navegador abierto en login Apple para que Horacio acepte el PLA.

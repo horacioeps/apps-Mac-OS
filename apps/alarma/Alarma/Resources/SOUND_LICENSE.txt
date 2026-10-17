@@ -1,0 +1,3 @@
+arpa.caf — sonido original sintetizado para Alarma (arpegio estilo arpa).
+Generado programáticamente; no deriva de tonos del sistema Apple ni de terceros.
+Dominio: uso libre dentro de esta app.
