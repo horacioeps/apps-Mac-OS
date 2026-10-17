@@ -54,3 +54,12 @@ reinteta ahora
 - `gh repo create` OK: https://github.com/horacioeps/apps-Mac-OS
 - Push de `main` a `origin` OK; tracking `origin/main`.
 - Timer de 8h cancelado (ya no hace falta).
+
+## Usuario
+
+que primera app hemos dicho de crear / noo / olvida / era antidoom
+
+## Agente
+
+- En este chat no se había fijado ninguna app concreta (solo el repo).
+- Primera app acordada: **antidoom**.
