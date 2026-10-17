@@ -103,3 +103,33 @@ a ver era un app para iphone que es para luchar contra el scrolling y que para e
 - README del repo actualizado con tabla de apps.
 - Nota: el repo se llama apps-Mac-OS pero AntiDoom es iOS; queda como primer proyecto Apple aquí.
 - El hook de secretos bloquea la palabra literal del vault (coincide con un secret del entorno); en docs se usa circumloquio + una mención allowlist.
+
+## Usuario (subagente / cloud)
+
+Search LOCAL Cursor chat/agent history from TODAY (2026-10-17) for where Horacio explained AntiDoom… If you cannot access the Mac filesystem, say so clearly.
+
+## Agente
+
+- **No se puede acceder al filesystem del Mac** (Horacio M4): este entorno es Linux cloud (`hostname=cursor`, `HOME=/home/ubuntu`). No existen `~/Library/Application Support/Cursor/`, `~/work/Projects/*/sesiones/` locales del Mac, ni montajes `/Volumes`.
+- Sí hay evidencia en este repo + transcript cloud del chat desktop de hoy:
+
+### Chat Cursor (cloud, source=desktop)
+- Título: **Detalles aplicación antidoom**
+- URL: https://cursor.com/agents/bc-f7e939c6-7806-4737-8d5c-904dd50cc11f
+- bcId: `bc-f7e939c6-7806-4737-8d5c-904dd50cc11f`
+- Creado: **2026-10-17 17:04:13 UTC**
+- Transcript local del agente: `/tmp/cursor/cloud-agent-transcripts/2026-10-17T17-10-36Z-b9b4/bc-f7e939c6-7806-4737-8d5c-904dd50cc11f/transcript.json`
+
+### Cita exacta (usuario, mensaje ~160 del transcript)
+> a ver era un app para iphone que es para luchar contra el scrolling y que para ello busca enre mis notas de [REDACTED] y alginos podcats como emilcar daily
+
+(En el transcript cloud el nombre de la app de notas del vault aparece como `[REDACTED]` por el escáner de secretos; en `apps/antidoom/README.md` está documentado con allowlist.)
+
+### Volcados en repo (misma explicación)
+- `/workspace/sesiones/2026-10-17-apps-mac-os-crear-repo.md` (bloque Usuario ~17:07 UTC)
+- `/workspace/HISTORICO.md` fila `2026-10-17 17:07`
+- `/workspace/apps/antidoom/README.md` (spec escrita a partir de esa cita)
+
+### Antes de la explicación (solo nombre)
+- **2026-10-17 17:03 UTC**: «que primera app… era antidoom» — solo nombre, sin spec.
+- No se encontró en este entorno un chat local Mac *anterior* con la explicación; la explicación recuperada es la del propio chat «Detalles aplicación antidoom» (después de que el agente dijera que no había detalle).
