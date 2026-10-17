@@ -14,3 +14,33 @@ crea el repo https://github.com/horacioeps/apps-Mac-OS
   - `.cursor/rules/horacio-sesiones-historico.mdc`
   - `CLAUDE.md`, `README.md`, `HISTORICO.md`, `sesiones/`
 - `gh repo create` falló por rate limit de GitHub («too many repositories, too quickly»). Se reintentará hasta crear el remoto y hacer push a `origin/main`.
+
+## Usuario
+
+ok
+
+## Agente
+
+- Reintento inmediato de `gh repo create`: sigue el rate limit.
+- Remoto aún no existe; copia local intacta en `~/work/Projects/apps-Mac-OS`.
+
+## Usuario
+
+sin prisitas
+
+## Agente
+
+- Sin más reintentos por ahora.
+- Estado: bootstrap local completo en `main`; creación de https://github.com/horacioeps/apps-Mac-OS pendiente hasta que GitHub levante el límite (~40 repos creados hoy).
+- Cuando diga, se crea el remoto y se hace push de `main`.
+
+## Usuario
+
+reintentalo en 8 hours y me mandas un email a horacio ps , con el resultado / ok?
+
+## Agente
+
+- Confirmado: wake one-shot a ~02:00 CEST (2026-10-18) para `gh repo create` + push.
+- Email previsto a `hperez@ucam.edu` (Horacio PS) con el resultado.
+- Gmail MCP: auth en curso / pendiente de completar en Cursor.
+- Timer local armado (PID sleep 8h); Cursor/Mac deben seguir activos para el wake.
