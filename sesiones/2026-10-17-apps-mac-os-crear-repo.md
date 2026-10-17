@@ -73,3 +73,18 @@ que app era antidoom
 - Buscado en este repo, sesiones, HISTORICO, otros repos de `horacioeps` (Apps-SAMSUNG, hudson, screencast-to-guide) y Gmail: **no hay descripción de producto**.
 - Lo único registrado (sesión anterior, 17:03 UTC): Horacio dijo que la primera app a crear era **antidoom**; el agente lo anotó como nombre acordado, sin especificar qué hacía.
 - No existe código ni carpeta `antidoom` en el repo todavía.
+
+## Usuario
+
+es algo que seguro hemos comentado hoy en cursor
+
+## Agente
+
+- Repasado todo lo accesible de hoy:
+  - Sesiones `apps-Mac-OS` y `Apps-SAMSUNG` en GitHub
+  - Cloud agents visibles en este entorno (solo este chat)
+  - Gmail (Grabadora 16/10 incluida): sin «antidoom»
+  - Bookmarks X de @horacio_ps: sin antidoom
+- Única mención Cursor registrada: a las 17:03 UTC Horacio nombra **antidoom** como 1ª app Mac, sin descripción.
+- Lo detallado hoy como «primera app» en Cursor fue **Bloqueo Mates** (TV Samsung), no antidoom.
+- Los chats locales de Cursor en el Mac que no se volcaron a `sesiones/` no son visibles desde este agente cloud.
