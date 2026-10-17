@@ -121,3 +121,13 @@ listo
 - PLA OK: export local **SUCCEEDED** → `build/export/Alarma.ipa` (~1.9 MB).
 - Upload falla: `missingApp(bundleId: com.horacioeps.alarma)` — hay que crear la app en ASC.
 - Navegador ASC login FAILED (sesión); pedir a Horacio crear app con datos fijos.
+
+## Usuario
+
+(captura App Store Connect Apps: solo SegmentPod; banner amarillo PLA aún pendiente; Alarma no creada)
+
+## Agente
+
+- El PLA en ASC sigue sin aceptar (titular de cuenta).
+- URL acuerdos: https://appstoreconnect.apple.com/agreements
+- Luego crear Alarma; aún no aparece en la lista.
