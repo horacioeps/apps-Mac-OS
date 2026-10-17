@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Haz una cosa y termina.",
+    "summary": "Placeholder: sustituye seed_tweets.json por tus top tweets / bookmarks exportados.",
+    "url": "https://x.com",
+    "author": "tu-lista"
+  },
+  {
+    "title": "El feed no te debe nada.",
+    "summary": "AntiDoom te da una ración, no un pozo. Añade aquí los tweets que sí quieres releer.",
+    "url": "https://x.com",
+    "author": "tu-lista"
+  }
+]

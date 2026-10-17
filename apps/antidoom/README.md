@@ -1,24 +1,34 @@
 # AntiDoom
 
-App **iPhone** anti-doomscrolling. Trabajo original de hoy en Cursor Cloud (no en este repo GitHub).
+App **iPhone** anti-doomscrolling: te da una **ración finita** de contenido (RSS + tweets semilla). Cuando se acaba, se acabó.
 
-## Dónde está el trabajo real (2026-10-17)
+## Abrir en el Mac (Xcode)
 
-| Campo | Valor |
-|-------|--------|
-| Sesión Cloud | **Mac OS cloud apps** (`bc-285f4153…`) |
-| Horario | abierta ~11:18, activa hasta ~17:32 |
-| Repo | temporal Origin: `origin.cursor.com/git/horacio-ps/tmp-0fb6de09ea4f32da` (**no** GitHub) |
-| Prompt (~11:56) | primera app iPhone anti-doomscrolling → v1 lo antes posible |
-| Artefactos | `apps/antidoom/PRODUCT.md`, esqueleto SwiftUI con **RationView**, `sesiones/2026-10-17-apps-macos-inicio.md` |
-| v1 | RSS (blogs, noticias, podcasts) + tweets; resto → v1.1 |
+```bash
+cd apps/antidoom
+brew install xcodegen   # si no lo tienes
+xcodegen generate
+open AntiDoom.xcodeproj
+```
 
-Idea en nota vault `Daily_Notes/2026-10-16.md` (`==creada en cursor cloud==`):
-vault, grabadora continua, bookmarks, top tweets, noticias, podcasts que sigo, blogs.
+Elige un simulador iPhone o tu dispositivo → Run.
 
-Este chat («Detalles aplicación antidoom») arrancó sobre GitHub `apps-Mac-OS` **sin** ese contexto porque el código se quedó en el repo temporal.
+## Qué hay
 
-## Estado aquí (GitHub)
+| Pieza | Rol |
+|-------|-----|
+| [PRODUCT.md](PRODUCT.md) | Definición de producto |
+| `AntiDoom/Views/RationView.swift` | Un ítem de la ración (sin scroll infinito) |
+| `AntiDoom/Services/RSSClient.swift` | RSS/Atom mínimo |
+| `AntiDoom/Resources/seed_tweets.json` | Tweets de ejemplo (edítalos) |
+| `project.yml` | Genera el `.xcodeproj` con XcodeGen |
 
-- Spec resumida; **falta portar** `PRODUCT.md` + SwiftUI desde el tmp Origin.
-- Para recuperar: URL completa del agent `bc-285f4153-…` y/o `CURSOR_API_KEY` / auth Origin para clonar el tmp.
+## v1
+
+- Feeds RSS (blogs, noticias, podcasts) configurables en Ajustes.
+- Tweets desde JSON local.
+- Tamaño de ración (3–15).
+
+## v1.1 (pendiente)
+
+Vault de notas, grabadora continua, bookmarks, tweets en vivo.

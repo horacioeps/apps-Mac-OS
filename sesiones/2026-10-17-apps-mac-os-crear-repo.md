@@ -172,3 +172,16 @@ no te enteras. lee esto
 - Intentos: `batch-fetch-details` con prefijo bc falla; `origin` CLI sin `CURSOR_AUTH_TOKEN` en esta VM; workers Horacio M4 online pero sin placement desde aquí.
 - Pedido setup: secret `CURSOR_API_KEY` + URL completa del agent para portar PRODUCT.md y SwiftUI a este repo.
 - Actualizado `apps/antidoom/README.md` con el mapa correcto.
+
+## Usuario
+
+bueno da igual vuelve a escribir aqui el codigo para iphone
+
+## Agente
+
+- Reescrito AntiDoom v1 en este repo GitHub (`apps/antidoom/`):
+  - `PRODUCT.md`
+  - App SwiftUI: `RationView`, `RationStore`, `RSSClient`, tweets semilla
+  - `project.yml` (XcodeGen) + README con pasos para abrir en Mac
+- v1: RSS (blogs/noticias/podcasts) + JSON de tweets; ración finita.
+- Push a `main`.
