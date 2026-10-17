@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 19:33 | compila | AntiDoom BUILD SUCCEEDED (iOS Simulator); `build/` en .gitignore | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
 | 2026-10-17 18:48 | Instala AntiDoom | xcodeproj generado en repo; instalar/run solo en Mac+Xcode (worker offline) | [2026-10-17-apps-mac-os-crear-repo](sesiones/2026-10-17-apps-mac-os-crear-repo.md) |
 | 2026-10-17 17:37 | vuelve a escribir el código iPhone AntiDoom | SwiftUI v1: PRODUCT.md, RationView, RSS, seed tweets, project.yml | [2026-10-17-apps-mac-os-crear-repo](sesiones/2026-10-17-apps-mac-os-crear-repo.md) |
 | 2026-10-17 17:20 | recover AntiDoom de sesión Mac OS cloud apps (bc-285f4153 / tmp-0fb6…) en Horacio M4 | No: agent en Linux managed, no en worker Mac; bc completo desconocido; tmp repo pide auth Cursor; PRODUCT.md/RationView no hallados | [2026-10-17-recover-antidoom-mac](sesiones/2026-10-17-recover-antidoom-mac.md) |
