@@ -1,34 +1,34 @@
 # AntiDoom
 
-App **iPhone** anti-doomscrolling: te da una **ración finita** de contenido (RSS + tweets semilla). Cuando se acaba, se acabó.
+App **iPhone** anti-doomscrolling: una **ración finita** de contenido (RSS + tweets). Cuando se acaba, se acabó.
 
-## Abrir en el Mac (Xcode)
+## Instalar / abrir en el Mac
+
+Hace falta **Xcode** (Mac). Desde este cloud no se puede instalar en el iPhone.
 
 ```bash
-cd apps/antidoom
-brew install xcodegen   # si no lo tienes
-xcodegen generate
-open AntiDoom.xcodeproj
+cd ~/work/Projects/apps-Mac-OS   # o donde tengas el clone
+git pull origin main
+open apps/antidoom/AntiDoom.xcodeproj
 ```
 
-Elige un simulador iPhone o tu dispositivo → Run.
+En Xcode:
+
+1. Elige un **simulador iPhone** (o tu iPhone con Developer Mode).
+2. Si pide Team: pon tu Apple ID en Signing & Capabilities.
+3. Pulsa **Run** (▶).
 
 ## Qué hay
 
 | Pieza | Rol |
 |-------|-----|
-| [PRODUCT.md](PRODUCT.md) | Definición de producto |
-| `AntiDoom/Views/RationView.swift` | Un ítem de la ración (sin scroll infinito) |
-| `AntiDoom/Services/RSSClient.swift` | RSS/Atom mínimo |
-| `AntiDoom/Resources/seed_tweets.json` | Tweets de ejemplo (edítalos) |
-| `project.yml` | Genera el `.xcodeproj` con XcodeGen |
+| [PRODUCT.md](PRODUCT.md) | Producto |
+| `AntiDoom/Views/RationView.swift` | Un ítem de la ración |
+| `AntiDoom/Services/RSSClient.swift` | RSS/Atom |
+| `AntiDoom/Resources/seed_tweets.json` | Tweets de ejemplo |
+| `AntiDoom.xcodeproj` | Proyecto Xcode listo |
 
-## v1
+## v1 / v1.1
 
-- Feeds RSS (blogs, noticias, podcasts) configurables en Ajustes.
-- Tweets desde JSON local.
-- Tamaño de ración (3–15).
-
-## v1.1 (pendiente)
-
-Vault de notas, grabadora continua, bookmarks, tweets en vivo.
+- **v1:** RSS + tweets JSON, tamaño de ración en Ajustes.
+- **v1.1:** vault de notas, grabadora, bookmarks, tweets en vivo.

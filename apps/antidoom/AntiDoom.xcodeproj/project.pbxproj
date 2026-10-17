@@ -1,0 +1,312 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6847932BA5B84589ADF0ECA2 /* AntiDoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F32A56729641478563726A /* AntiDoomApp.swift */; };
+		93A12075B0F04FCE9BB16487 /* FeedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */; };
+		08B74709885C4C2C8AA15954 /* RationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6D9D5F547F4706B8C12235 /* RationItem.swift */; };
+		891290C68DDE4814B2794AD3 /* RSSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */; };
+		DFC14DE32B384E1285C288FB /* RationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6AA5E9C214BADB6C5393C /* RationStore.swift */; };
+		247AAC7A33BD4F73BD9E7665 /* TweetSeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */; };
+		549A15664831472993D42981 /* EmptyRationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */; };
+		1AAAD69120054604830B6044 /* FinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */; };
+		56ACB49FAF1E4DB7B1A42424 /* RationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258FDAD06760475996EF0E15 /* RationView.swift */; };
+		80371A7FEADB4A86BB403825 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179BAB3133745718DB52867 /* RootView.swift */; };
+		D0F4517023DE4CD888E1C04B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */; };
+		65B036BD7B1440DF8B1339FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44079BA4DC35422297E8CF5C /* Assets.xcassets */; };
+		491D71B47A4C4CA2BB0867A4 /* seed_tweets.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E98E29FD5C347E38E616848 /* seed_tweets.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		139B3B212D9A435CA6AEB9AE /* AntiDoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntiDoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4F32A56729641478563726A /* AntiDoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntiDoomApp.swift; sourceTree = "<group>"; };
+		F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSource.swift; sourceTree = "<group>"; };
+		AE6D9D5F547F4706B8C12235 /* RationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationItem.swift; sourceTree = "<group>"; };
+		6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSClient.swift; sourceTree = "<group>"; };
+		5CE6AA5E9C214BADB6C5393C /* RationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationStore.swift; sourceTree = "<group>"; };
+		6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSeedLoader.swift; sourceTree = "<group>"; };
+		1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRationView.swift; sourceTree = "<group>"; };
+		D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedView.swift; sourceTree = "<group>"; };
+		258FDAD06760475996EF0E15 /* RationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationView.swift; sourceTree = "<group>"; };
+		9179BAB3133745718DB52867 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		44079BA4DC35422297E8CF5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E98E29FD5C347E38E616848 /* seed_tweets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed_tweets.json; sourceTree = "<group>"; };
+		31668E4D20DE476EA02E262A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		107EDEC881BF4951B865F442 = {
+			isa = PBXGroup;
+			children = (
+				8CDEC406311C4B96A7AB54AD /* AntiDoom */,
+				04576686048A4A80915D9A93 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04576686048A4A80915D9A93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				139B3B212D9A435CA6AEB9AE /* AntiDoom.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CDEC406311C4B96A7AB54AD /* AntiDoom */ = {
+			isa = PBXGroup;
+			children = (
+				E4F32A56729641478563726A /* AntiDoomApp.swift */,
+				51210A2DF54A4416A57ACB65 /* Models */,
+				7AB6593AD5F248289616FE60 /* Services */,
+				94FB1306771540B6BA0716F8 /* Views */,
+				F2A3F2B3D4764C4A935E8F89 /* Resources */,
+			);
+			path = AntiDoom;
+			sourceTree = "<group>";
+		};
+		51210A2DF54A4416A57ACB65 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F7EB7FB2B30B425F87D43EF7 /* FeedSource.swift */,
+				AE6D9D5F547F4706B8C12235 /* RationItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7AB6593AD5F248289616FE60 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6482B7D7FD4D43CC864D3D39 /* RSSClient.swift */,
+				5CE6AA5E9C214BADB6C5393C /* RationStore.swift */,
+				6A94ABF8E359469791444FBD /* TweetSeedLoader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		94FB1306771540B6BA0716F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C116A405E9446E9B24AFD60 /* EmptyRationView.swift */,
+				D3F8BDB2A6E340CFA12E8A2D /* FinishedView.swift */,
+				258FDAD06760475996EF0E15 /* RationView.swift */,
+				9179BAB3133745718DB52867 /* RootView.swift */,
+				3A9353BE537F4CD4A4B06CCE /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F2A3F2B3D4764C4A935E8F89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				44079BA4DC35422297E8CF5C /* Assets.xcassets */,
+				2E98E29FD5C347E38E616848 /* seed_tweets.json */,
+				31668E4D20DE476EA02E262A /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA545411ECCD48A3A7E8A575 /* AntiDoom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C261B892A2E94128BF4C0041 /* Build configuration list for PBXNativeTarget "AntiDoom" */;
+			buildPhases = (
+				77E25F90A3684CE89C9124E5 /* Sources */,
+				DC12A2533A2945B7B5276423 /* Frameworks */,
+				E9DA06AFE5BA454DB23AE80A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AntiDoom;
+			productName = AntiDoom;
+			productReference = 139B3B212D9A435CA6AEB9AE /* AntiDoom.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		720CF73F2D3C4658879AB753 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 84F6A89FE4EC47C3A3043A7C /* Build configuration list for PBXProject "AntiDoom" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			Base,
+				es,
+			);
+			mainGroup = 107EDEC881BF4951B865F442;
+			productRefGroup = 04576686048A4A80915D9A93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA545411ECCD48A3A7E8A575 /* AntiDoom */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77E25F90A3684CE89C9124E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6847932BA5B84589ADF0ECA2 /* AntiDoomApp.swift in Sources */,
+				93A12075B0F04FCE9BB16487 /* FeedSource.swift in Sources */,
+				08B74709885C4C2C8AA15954 /* RationItem.swift in Sources */,
+				891290C68DDE4814B2794AD3 /* RSSClient.swift in Sources */,
+				DFC14DE32B384E1285C288FB /* RationStore.swift in Sources */,
+				247AAC7A33BD4F73BD9E7665 /* TweetSeedLoader.swift in Sources */,
+				549A15664831472993D42981 /* EmptyRationView.swift in Sources */,
+				1AAAD69120054604830B6044 /* FinishedView.swift in Sources */,
+				56ACB49FAF1E4DB7B1A42424 /* RationView.swift in Sources */,
+				80371A7FEADB4A86BB403825 /* RootView.swift in Sources */,
+				D0F4517023DE4CD888E1C04B /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC12A2533A2945B7B5276423 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9DA06AFE5BA454DB23AE80A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B036BD7B1440DF8B1339FD /* Assets.xcassets in Resources */,
+				491D71B47A4C4CA2BB0867A4 /* seed_tweets.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E63350E1FDE2431DB2DB0F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B7881B4BD0FE4BDE9D00489D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E68312B37E841138D3FC237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		64AAA90BD6B14CB5A032B332 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AntiDoom/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.antidoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84F6A89FE4EC47C3A3043A7C /* Build configuration list for PBXProject "AntiDoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63350E1FDE2431DB2DB0F58 /* Debug */,
+				B7881B4BD0FE4BDE9D00489D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C261B892A2E94128BF4C0041 /* Build configuration list for PBXNativeTarget "AntiDoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E68312B37E841138D3FC237 /* Debug */,
+				64AAA90BD6B14CB5A032B332 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 720CF73F2D3C4658879AB753 /* Project object */;
+}

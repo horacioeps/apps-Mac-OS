@@ -185,3 +185,13 @@ bueno da igual vuelve a escribir aqui el codigo para iphone
   - `project.yml` (XcodeGen) + README con pasos para abrir en Mac
 - v1: RSS (blogs/noticias/podcasts) + JSON de tweets; ración finita.
 - Push a `main`.
+
+
+## Usuario
+
+Instala
+
+## Agente
+
+- No se puede instalar la app iPhone desde este cloud (Linux, sin Xcode; worker Mac desconectado).
+- Generado y subido `apps/antidoom/AntiDoom.xcodeproj` para abrir directo en el Mac: `open apps/antidoom/AntiDoom.xcodeproj` → Run.
