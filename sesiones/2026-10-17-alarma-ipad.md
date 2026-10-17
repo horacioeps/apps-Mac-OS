@@ -59,3 +59,20 @@ como se llama la pp
 ## Agente
 
 - Se llama **Alarma** (`com.horacioeps.alarma`).
+
+## Usuario
+
+vale , solo falta que le pongas un icono mas bonico del tó
+
+## Agente
+
+- Generó icono arpa+reloj; usuario pidió cambio antes de cerrar.
+
+## Usuario
+
+con alguni simbolo simple esteticaente de levantarse feliz
+
+## Agente
+
+- Icono simple: sol sonriente / amanecer.
+- AppIcon.png 1024; reinstalada en iPad.
