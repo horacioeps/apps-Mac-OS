@@ -44,3 +44,13 @@ reintentalo en 8 hours y me mandas un email a horacio ps , con el resultado / ok
 - Email previsto a `hperez@ucam.edu` (Horacio PS) con el resultado.
 - Gmail MCP: auth en curso / pendiente de completar en Cursor.
 - Timer local armado (PID sleep 8h); Cursor/Mac deben seguir activos para el wake.
+
+## Usuario
+
+reinteta ahora
+
+## Agente
+
+- `gh repo create` OK: https://github.com/horacioeps/apps-Mac-OS
+- Push de `main` a `origin` OK; tracking `origin/main`.
+- Timer de 8h cancelado (ya no hace falta).
