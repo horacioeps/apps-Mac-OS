@@ -159,3 +159,16 @@ spp iPhone para anti-doomscrolling entre comillas que pilla material de
 
 - Actualizado `apps/antidoom/README.md` con esa lista.
 - El chat Cursor Cloud original de esa creación no es visible en el entorno de este repo.
+
+
+## Usuario
+
+no te enteras. lee esto
+(adjunta captura: resumen Claude — sesión Cloud «Mac OS cloud apps» bc-285f4153…; repo tmp Origin tmp-0fb6de09ea4f32da con PRODUCT.md + RationView)
+
+## Agente
+
+- Entendido: el trabajo de AntiDoom de hoy está en Cursor Cloud sesión **Mac OS cloud apps**, repo temporal Origin, no en GitHub ni en chats locales del Mac.
+- Intentos: `batch-fetch-details` con prefijo bc falla; `origin` CLI sin `CURSOR_AUTH_TOKEN` en esta VM; workers Horacio M4 online pero sin placement desde aquí.
+- Pedido setup: secret `CURSOR_API_KEY` + URL completa del agent para portar PRODUCT.md y SwiftUI a este repo.
+- Actualizado `apps/antidoom/README.md` con el mapa correcto.

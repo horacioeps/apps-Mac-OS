@@ -1,33 +1,24 @@
 # AntiDoom
 
-Primera app Apple documentada aquí. Spec recuperada de la nota diaria del vault **2026-10-16** (marcada «creada en cursor cloud»).
+App **iPhone** anti-doomscrolling. Trabajo original de hoy en Cursor Cloud (no en este repo GitHub).
 
-## Qué es
+## Dónde está el trabajo real (2026-10-17)
 
-App para **iPhone** de anti-doomscrolling (entre comillas): en lugar de más feed, te sirve material tuyo / elegido.
+| Campo | Valor |
+|-------|--------|
+| Sesión Cloud | **Mac OS cloud apps** (`bc-285f4153…`) |
+| Horario | abierta ~11:18, activa hasta ~17:32 |
+| Repo | temporal Origin: `origin.cursor.com/git/horacio-ps/tmp-0fb6de09ea4f32da` (**no** GitHub) |
+| Prompt (~11:56) | primera app iPhone anti-doomscrolling → v1 lo antes posible |
+| Artefactos | `apps/antidoom/PRODUCT.md`, esqueleto SwiftUI con **RationView**, `sesiones/2026-10-17-apps-macos-inicio.md` |
+| v1 | RSS (blogs, noticias, podcasts) + tweets; resto → v1.1 |
 
-## Fuentes (según nota diaria 2026-10-16)
+Idea en nota vault `Daily_Notes/2026-10-16.md` (`==creada en cursor cloud==`):
+vault, grabadora continua, bookmarks, top tweets, noticias, podcasts que sigo, blogs.
 
-1. Mi vault (notas Markdown personales; app de notas: Obsidian) <!-- pragma: allowlist secret -->
-2. Grabadora continua
-3. Bookmarks
-4. Top tweets
-5. Noticias
-6. Podcasts que sigo (p. ej. Emilcar Daily)
-7. Blogs
+Este chat («Detalles aplicación antidoom») arrancó sobre GitHub `apps-Mac-OS` **sin** ese contexto porque el código se quedó en el repo temporal.
 
-## Origen del recuerdo
+## Estado aquí (GitHub)
 
-- Nota: `Daily_Notes/2026-10-16.md` en el vault sincronizado (VPS Explore Labs).
-- La nota dice: `==creada en cursor cloud==`.
-- El chat cloud original **no** es accesible desde este entorno (`apps-Mac-OS`); no aparece en la lista de agents de este proyecto.
-- El Mac **Horacio M4** tiene worker Cursor conectado, pero este agente cloud no puede montar el disco local del Mac ni leer `~/Library/Application Support/Cursor` desde aquí.
-
-## Plataforma
-
-- Objetivo: **iPhone** (iOS).
-- Repo: `apps-Mac-OS` (ecosistema Apple).
-
-## Estado
-
-- Spec ampliada desde la nota diaria; sin código de app aún.
+- Spec resumida; **falta portar** `PRODUCT.md` + SwiftUI desde el tmp Origin.
+- Para recuperar: URL completa del agent `bc-285f4153-…` y/o `CURSOR_API_KEY` / auth Origin para clonar el tmp.
