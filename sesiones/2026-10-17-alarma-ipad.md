@@ -103,3 +103,11 @@ Hecho / en curso:
 - Certificados Distribution caducados (junio 2026); se renuevan tras aceptar PLA + `-allowProvisioningUpdates`.
 - Reinstall iPad del sonido nuevo: tunnel timeout (iPad paired pero sin túnel).
 - Navegador abierto en login Apple para que Horacio acepte el PLA.
+
+## Usuario
+
+dame la url
+
+## Agente
+
+- Enlaces PLA / cuenta: https://developer.apple.com/account y https://appstoreconnect.apple.com/agreements
