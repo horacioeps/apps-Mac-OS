@@ -111,3 +111,13 @@ dame la url
 ## Agente
 
 - Enlaces PLA / cuenta: https://developer.apple.com/account y https://appstoreconnect.apple.com/agreements
+
+## Usuario
+
+listo
+
+## Agente
+
+- PLA OK: export local **SUCCEEDED** → `build/export/Alarma.ipa` (~1.9 MB).
+- Upload falla: `missingApp(bundleId: com.horacioeps.alarma)` — hay que crear la app en ASC.
+- Navegador ASC login FAILED (sesión); pedir a Horacio crear app con datos fijos.

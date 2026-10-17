@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 21:21 | listo (PLA aceptado) | IPA export OK; falta crear app en ASC `com.horacioeps.alarma` | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:17 | dame la url (PLA) | Enlaces developer.apple.com/account y ASC agreements | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:10 | preparar todo para App Store | Sonido propio + archive OK + store/; bloqueado por PLA Apple (login) y túnel iPad | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:06 | ¿subir Alarma a App Store? | Sí viable; checklist (AlarmKit entitlement, sonido propio, ASC, Distribution) | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
