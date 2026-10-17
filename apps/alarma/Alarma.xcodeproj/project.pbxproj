@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11A709865498C2C68098931F /* WakeAlarmMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */; };
+		310D9544B07122C343821CC1 /* AlarmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EBD82F3E54E445D839505 /* AlarmStore.swift */; };
+		3583A47B97C4897FEFDDE9E9 /* AlarmaWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98687CED6B6969DF12CDE0A2 /* AlarmaWidgetsBundle.swift */; };
+		7065071E11BAE656D2126FA4 /* AlarmaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23DD5FB99127734BA533E1 /* AlarmaApp.swift */; };
+		8C6C5212481B4617B813303B /* AlarmLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB85223361505E388961911 /* AlarmLiveActivityWidget.swift */; };
+		A2BA00ACCC9D478FD22C6C38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */; };
+		B57AE16E16BF58A1F526CB9F /* AlarmaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DF77A7254606A2BBFAF669AC /* AlarmHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */; };
+		FAD1629FA765779269F2C456 /* WakeAlarmMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7C9DB4D83D7F6FF0AD0F6D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37BFE83F1F87565645AB38EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89634B12153FFE5414270D8D;
+			remoteInfo = AlarmaWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A39828ECFDA0B3595696D397 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B57AE16E16BF58A1F526CB9F /* AlarmaWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2D23DD5FB99127734BA533E1 /* AlarmaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmaApp.swift; sourceTree = "<group>"; };
+		347F317077BD19258B357244 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeAlarmMetadata.swift; sourceTree = "<group>"; };
+		6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmHomeView.swift; sourceTree = "<group>"; };
+		71EBD6989AB4C5D1484FB102 /* Alarma.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Alarma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98687CED6B6969DF12CDE0A2 /* AlarmaWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmaWidgetsBundle.swift; sourceTree = "<group>"; };
+		B21EBD82F3E54E445D839505 /* AlarmStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStore.swift; sourceTree = "<group>"; };
+		C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AlarmaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBB85223361505E388961911 /* AlarmLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmLiveActivityWidget.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		026C609F2906D72484156BBA = {
+			isa = PBXGroup;
+			children = (
+				D02A859F669D2FF6D39D8DBE /* Alarma */,
+				AD2D7BA941CF64041802B6FD /* AlarmaWidgets */,
+				BB4880F85C97BEF59B53F78A /* Shared */,
+				F23728D1F0A0F9D8999BC3DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84F8C804CBBB875BBE4835B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B21EBD82F3E54E445D839505 /* AlarmStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		874C56628DE4985920D6200C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD2D7BA941CF64041802B6FD /* AlarmaWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				98687CED6B6969DF12CDE0A2 /* AlarmaWidgetsBundle.swift */,
+				FBB85223361505E388961911 /* AlarmLiveActivityWidget.swift */,
+				347F317077BD19258B357244 /* Info.plist */,
+			);
+			path = AlarmaWidgets;
+			sourceTree = "<group>";
+		};
+		BB4880F85C97BEF59B53F78A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		CE7C5839A8F3CFD8996FDD4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D02A859F669D2FF6D39D8DBE /* Alarma */ = {
+			isa = PBXGroup;
+			children = (
+				2D23DD5FB99127734BA533E1 /* AlarmaApp.swift */,
+				CE7C5839A8F3CFD8996FDD4D /* Resources */,
+				84F8C804CBBB875BBE4835B5 /* Services */,
+				874C56628DE4985920D6200C /* Views */,
+			);
+			path = Alarma;
+			sourceTree = "<group>";
+		};
+		F23728D1F0A0F9D8999BC3DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71EBD6989AB4C5D1484FB102 /* Alarma.app */,
+				C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89634B12153FFE5414270D8D /* AlarmaWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74F9B21BBB8788E8EF159548 /* Build configuration list for PBXNativeTarget "AlarmaWidgets" */;
+			buildPhases = (
+				E62692D192A6AE7731B0ECC2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlarmaWidgets;
+			packageProductDependencies = (
+			);
+			productName = AlarmaWidgets;
+			productReference = C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A1CDD6B12E89FE4634131057 /* Alarma */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4443627FAC0400D8365E0523 /* Build configuration list for PBXNativeTarget "Alarma" */;
+			buildPhases = (
+				77C0F1191466B4D31EFB7E71 /* Sources */,
+				8BD28D799F062D931B5BCADB /* Resources */,
+				A39828ECFDA0B3595696D397 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				501E9ECAB879D58E1F14303C /* PBXTargetDependency */,
+			);
+			name = Alarma;
+			packageProductDependencies = (
+			);
+			productName = Alarma;
+			productReference = 71EBD6989AB4C5D1484FB102 /* Alarma.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37BFE83F1F87565645AB38EC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					89634B12153FFE5414270D8D = {
+						DevelopmentTeam = WMY552P2HR;
+						ProvisioningStyle = Automatic;
+					};
+					A1CDD6B12E89FE4634131057 = {
+						DevelopmentTeam = WMY552P2HR;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1D1A633B3EF0D726F45099DD /* Build configuration list for PBXProject "Alarma" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 026C609F2906D72484156BBA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F23728D1F0A0F9D8999BC3DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1CDD6B12E89FE4634131057 /* Alarma */,
+				89634B12153FFE5414270D8D /* AlarmaWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8BD28D799F062D931B5BCADB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2BA00ACCC9D478FD22C6C38 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77C0F1191466B4D31EFB7E71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF77A7254606A2BBFAF669AC /* AlarmHomeView.swift in Sources */,
+				310D9544B07122C343821CC1 /* AlarmStore.swift in Sources */,
+				7065071E11BAE656D2126FA4 /* AlarmaApp.swift in Sources */,
+				FAD1629FA765779269F2C456 /* WakeAlarmMetadata.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E62692D192A6AE7731B0ECC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6C5212481B4617B813303B /* AlarmLiveActivityWidget.swift in Sources */,
+				3583A47B97C4897FEFDDE9E9 /* AlarmaWidgetsBundle.swift in Sources */,
+				11A709865498C2C68098931F /* WakeAlarmMetadata.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		501E9ECAB879D58E1F14303C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89634B12153FFE5414270D8D /* AlarmaWidgets */;
+			targetProxy = A7C9DB4D83D7F6FF0AD0F6D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		348D4A865C49C47605DD8920 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AlarmaWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.alarma.widgets;
+				PRODUCT_NAME = AlarmaWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3645136025E7DF41E52E1691 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = Alarma/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.alarma;
+				PRODUCT_NAME = Alarma;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E586571DF51F565929D27268 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = Alarma/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.alarma;
+				PRODUCT_NAME = Alarma;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7225DB6D1CA5DE8190EFC3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WMY552P2HR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		E75B4534089B518B1A2F59B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AlarmaWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.horacioeps.alarma.widgets;
+				PRODUCT_NAME = AlarmaWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EFB88C1EEEB5AAE674AF4D91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WMY552P2HR;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D1A633B3EF0D726F45099DD /* Build configuration list for PBXProject "Alarma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFB88C1EEEB5AAE674AF4D91 /* Debug */,
+				E7225DB6D1CA5DE8190EFC3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4443627FAC0400D8365E0523 /* Build configuration list for PBXNativeTarget "Alarma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3645136025E7DF41E52E1691 /* Debug */,
+				E586571DF51F565929D27268 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		74F9B21BBB8788E8EF159548 /* Build configuration list for PBXNativeTarget "AlarmaWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348D4A865C49C47605DD8920 /* Debug */,
+				E75B4534089B518B1A2F59B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 37BFE83F1F87565645AB38EC /* Project object */;
+}

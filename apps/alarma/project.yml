@@ -1,0 +1,67 @@
+name: Alarma
+options:
+  bundleIdPrefix: com.horacioeps
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "2"
+    GENERATE_INFOPLIST_FILE: NO
+    DEVELOPMENT_TEAM: WMY552P2HR
+    CODE_SIGN_STYLE: Automatic
+targets:
+  Alarma:
+    type: application
+    platform: iOS
+    sources:
+      - path: Alarma
+        excludes:
+          - Resources/Info.plist
+      - path: Shared
+    resources:
+      - path: Alarma/Resources/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_NAME: Alarma
+        PRODUCT_BUNDLE_IDENTIFIER: com.horacioeps.alarma
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_FILE: Alarma/Resources/Info.plist
+    info:
+      path: Alarma/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Alarma
+        UILaunchScreen: {}
+        NSAlarmKitUsageDescription: Alarma programa despertadores que suenan en la pantalla bloqueada con Parar y Snooze.
+        NSSupportsLiveActivities: true
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    dependencies:
+      - target: AlarmaWidgets
+        embed: true
+  AlarmaWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: AlarmaWidgets
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_NAME: AlarmaWidgets
+        PRODUCT_BUNDLE_IDENTIFIER: com.horacioeps.alarma.widgets
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_FILE: AlarmaWidgets/Info.plist
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks"
+        SKIP_INSTALL: YES
+    info:
+      path: AlarmaWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Alarma
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension

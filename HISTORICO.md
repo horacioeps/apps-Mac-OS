@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 20:47 | despertador iPad con Parar/Snooze en pantalla bloqueada | App Alarma (AlarmKit iPadOS 26+): UI simple + Live Activity snooze; build OK | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 19:37 | resúmenes noticias + vault + ¿fuentes? | SummaryProcessor + seed_notes Daily Notes; fuentes: Emilcar/HN/Swift/tweets/vault; reinstall iPhone | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
 | 2026-10-17 19:35 | BUILD+INSTALL AntiDoom en iPhone físico via worker Horacio M4 `9a40fb81…` | Este subagente: FAILURE (Linux managed, sin placement). En paralelo (19:34) otro agent en Mac ya instaló+lanzó en iPhone 17 Pro Max | [2026-10-17-install-antidoom-iphone](sesiones/2026-10-17-install-antidoom-iphone.md) |
 | 2026-10-17 19:34 | no las puedes enviar directamente al iphone? | Sí: build+install+launch AntiDoom en iPhone 17 Pro Max (team WMY552P2HR) | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
