@@ -195,3 +195,17 @@ Instala
 
 - No se puede instalar la app iPhone desde este cloud (Linux, sin Xcode; worker Mac desconectado).
 - Generado y subido `apps/antidoom/AntiDoom.xcodeproj` para abrir directo en el Mac: `open apps/antidoom/AntiDoom.xcodeproj` → Run.
+
+
+## Usuario
+
+instala en el iphone
+
+## Agente
+
+- Worker Mac online (`apps-Mac-OS @ Horacio M4`) pero este chat cloud no puede colocarse ahí (Task ignora workerId).
+- En el repo ya consta instalación hecha desde el Mac (sesión `2026-10-17-compilar-antidoom.md` / commit `1c162e9`):
+  - Dispositivo: **iPhone Horacio** (iPhone 17 Pro Max)
+  - Bundle: `com.horacioeps.antidoom`
+  - Instalada y lanzada con xcodebuild + devicectl
+- Si no la ve: Ajustes → General → VPN y gestión de dispositivos → confiar en el desarrollador.

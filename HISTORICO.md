@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 19:32 | instala en el iphone | Ya instalada en iPhone Horacio (Mac local); este cloud no puede re-colocar en el worker | [2026-10-17-apps-mac-os-crear-repo](sesiones/2026-10-17-apps-mac-os-crear-repo.md) |
 | 2026-10-17 19:35 | BUILD+INSTALL AntiDoom en iPhone físico via worker Horacio M4 `9a40fb81…` | Este subagente: FAILURE (Linux managed, sin placement). En paralelo (19:34) otro agent en Mac ya instaló+lanzó en iPhone 17 Pro Max | [2026-10-17-install-antidoom-iphone](sesiones/2026-10-17-install-antidoom-iphone.md) |
 | 2026-10-17 19:34 | no las puedes enviar directamente al iphone? | Sí: build+install+launch AntiDoom en iPhone 17 Pro Max (team WMY552P2HR) | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
 | 2026-10-17 19:33 | compila | AntiDoom BUILD SUCCEEDED (iOS Simulator); `build/` en .gitignore | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
