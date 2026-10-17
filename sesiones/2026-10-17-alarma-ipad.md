@@ -43,3 +43,11 @@ genial pero que el sonido sea arpa
 - Convertido tono sistema `Harp.m4r` → `Alarma/Resources/arpa.caf` (~9.8 s).
 - AlarmKit: `sound: .named("arpa.caf")`.
 - Reinstalada y lanzada en iPad de Horacio.
+
+## Usuario
+
+para que es el boton de activar?
+
+## Agente
+
+- Explicado: el interruptor programa/cancela la alarma diaria a la hora elegida (ON = suena cada día; OFF = apagada). Distinto de «Probar en 10 s».
