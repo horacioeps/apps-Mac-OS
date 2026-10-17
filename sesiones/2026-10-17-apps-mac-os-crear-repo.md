@@ -63,3 +63,13 @@ que primera app hemos dicho de crear / noo / olvida / era antidoom
 
 - En este chat no se había fijado ninguna app concreta (solo el repo).
 - Primera app acordada: **antidoom**.
+
+## Usuario
+
+que app era antidoom
+
+## Agente
+
+- Buscado en este repo, sesiones, HISTORICO, otros repos de `horacioeps` (Apps-SAMSUNG, hudson, screencast-to-guide) y Gmail: **no hay descripción de producto**.
+- Lo único registrado (sesión anterior, 17:03 UTC): Horacio dijo que la primera app a crear era **antidoom**; el agente lo anotó como nombre acordado, sin especificar qué hacía.
+- No existe código ni carpeta `antidoom` en el repo todavía.
