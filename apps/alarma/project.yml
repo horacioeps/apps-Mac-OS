@@ -22,6 +22,7 @@ targets:
       - path: Shared
     resources:
       - path: Alarma/Resources/Assets.xcassets
+      - path: Alarma/Resources/arpa.caf
     settings:
       base:
         PRODUCT_NAME: Alarma

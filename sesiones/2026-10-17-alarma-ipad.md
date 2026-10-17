@@ -33,3 +33,13 @@ desbloqueado
 ## Agente
 
 - Confirmado: install + launch OK tras desbloqueo.
+
+## Usuario
+
+genial pero que el sonido sea arpa
+
+## Agente
+
+- Convertido tono sistema `Harp.m4r` → `Alarma/Resources/arpa.caf` (~9.8 s).
+- AlarmKit: `sound: .named("arpa.caf")`.
+- Reinstalada y lanzada en iPad de Horacio.

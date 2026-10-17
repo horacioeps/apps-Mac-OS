@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 20:56 | sonido de Alarma = arpa | arpa.caf (Harp.m4r→CAF) + AlarmKit `.named`; reinstalada en iPad | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:53 | compila e instala Alarma en iPad | Build device OK; instalada+lanzada en iPad de Horacio (26.5.2) tras desbloqueo | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:47 | despertador iPad con Parar/Snooze en pantalla bloqueada | App Alarma (AlarmKit iPadOS 26+): UI simple + Live Activity snooze; build OK | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 19:37 | resúmenes noticias + vault + ¿fuentes? | SummaryProcessor + seed_notes Daily Notes; fuentes: Emilcar/HN/Swift/tweets/vault; reinstall iPhone | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |

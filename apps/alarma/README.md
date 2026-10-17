@@ -25,6 +25,8 @@ En Xcode: elige tu **iPad** (o simulador iPad), Team `WMY552P2HR`, Run ▶.
 3. Ajusta minutos de snooze (+ / −).
 4. **Probar en 10 s**: bloquea el iPad; verás Parar y Snooze en la pantalla bloqueada.
 
+Sonido: **arpa** (`Alarma/Resources/arpa.caf`, tono Harp del sistema convertido a CAF).
+
 ## Piezas
 
 | Pieza | Rol |

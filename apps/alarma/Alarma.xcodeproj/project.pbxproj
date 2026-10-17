@@ -16,6 +16,7 @@
 		B57AE16E16BF58A1F526CB9F /* AlarmaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF77A7254606A2BBFAF669AC /* AlarmHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */; };
 		FAD1629FA765779269F2C456 /* WakeAlarmMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */; };
+		FCA8ED8C775A351DA64F34C1 /* arpa.caf in Resources */ = {isa = PBXBuildFile; fileRef = 862A4FE4D518C88A57840161 /* arpa.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		51F202C34DE3F5C03C1203A3 /* WakeAlarmMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeAlarmMetadata.swift; sourceTree = "<group>"; };
 		6C852BBB81600E9DD16FE8A2 /* AlarmHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmHomeView.swift; sourceTree = "<group>"; };
 		71EBD6989AB4C5D1484FB102 /* Alarma.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Alarma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		862A4FE4D518C88A57840161 /* arpa.caf */ = {isa = PBXFileReference; path = arpa.caf; sourceTree = "<group>"; };
 		98687CED6B6969DF12CDE0A2 /* AlarmaWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmaWidgetsBundle.swift; sourceTree = "<group>"; };
 		B21EBD82F3E54E445D839505 /* AlarmStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStore.swift; sourceTree = "<group>"; };
 		C280ACD20C7C82FC2DD09D6A /* AlarmaWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AlarmaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 		CE7C5839A8F3CFD8996FDD4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				862A4FE4D518C88A57840161 /* arpa.caf */,
 				DEAA0A31A2375E91DC3D2718 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2BA00ACCC9D478FD22C6C38 /* Assets.xcassets in Resources */,
+				FCA8ED8C775A351DA64F34C1 /* arpa.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

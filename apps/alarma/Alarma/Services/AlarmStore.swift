@@ -206,7 +206,7 @@ final class AlarmStore: ObservableObject {
             countdownDuration: countdown,
             schedule: schedule,
             attributes: attributes,
-            sound: .default
+            sound: .named("arpa.caf")
         )
     }
 
