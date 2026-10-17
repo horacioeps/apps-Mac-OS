@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 21:06 | ¿subir Alarma a App Store? | Sí viable; checklist (AlarmKit entitlement, sonido propio, ASC, Distribution) | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:00 | icono simple levantarse feliz | AppIcon sol sonriente/amanecer; reinstalada en iPad | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:57 | ¿cómo se llama la app? | **Alarma** (`com.horacioeps.alarma`) | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:57 | ¿para qué es Activar? | Explicado: ON programa alarma diaria a esa hora; OFF la cancela | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |

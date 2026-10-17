@@ -76,3 +76,15 @@ con alguni simbolo simple esteticaente de levantarse feliz
 
 - Icono simple: sol sonriente / amanecer.
 - AppIcon.png 1024; reinstalada en iPad.
+
+## Usuario
+
+ha quedao guay. la podemos subir a la app store ?
+
+## Agente
+
+- Sí, con matices: Apple Developer Program, App Store Connect, firma Distribution.
+- Posible entitlement AlarmKit revisado por Apple.
+- Sustituir `arpa.caf` (viene de Harp.m4r del sistema → copyright).
+- Solo iPadOS 26+; metadatos, capturas, privacidad.
+- Preguntado si quiere que prepare el envío.
