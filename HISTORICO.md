@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 19:34 | no las puedes enviar directamente al iphone? | Sí: build+install+launch AntiDoom en iPhone 17 Pro Max (team WMY552P2HR) | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
 | 2026-10-17 19:33 | compila | AntiDoom BUILD SUCCEEDED (iOS Simulator); `build/` en .gitignore | [2026-10-17-compilar-antidoom](sesiones/2026-10-17-compilar-antidoom.md) |
 | 2026-10-17 18:48 | Instala AntiDoom | xcodeproj generado en repo; instalar/run solo en Mac+Xcode (worker offline) | [2026-10-17-apps-mac-os-crear-repo](sesiones/2026-10-17-apps-mac-os-crear-repo.md) |
 | 2026-10-17 17:37 | vuelve a escribir el código iPhone AntiDoom | SwiftUI v1: PRODUCT.md, RationView, RSS, seed tweets, project.yml | [2026-10-17-apps-mac-os-crear-repo](sesiones/2026-10-17-apps-mac-os-crear-repo.md) |
