@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-17 20:57 | ¿cómo se llama la app? | **Alarma** (`com.horacioeps.alarma`) | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:57 | ¿para qué es Activar? | Explicado: ON programa alarma diaria a esa hora; OFF la cancela | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:56 | sonido de Alarma = arpa | arpa.caf (Harp.m4r→CAF) + AlarmKit `.named`; reinstalada en iPad | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 20:53 | compila e instala Alarma en iPad | Build device OK; instalada+lanzada en iPad de Horacio (26.5.2) tras desbloqueo | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |

@@ -51,3 +51,11 @@ para que es el boton de activar?
 ## Agente
 
 - Explicado: el interruptor programa/cancela la alarma diaria a la hora elegida (ON = suena cada día; OFF = apagada). Distinto de «Probar en 10 s».
+
+## Usuario
+
+como se llama la pp
+
+## Agente
+
+- Se llama **Alarma** (`com.horacioeps.alarma`).
