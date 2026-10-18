@@ -6,3 +6,5 @@ build/
 # Clave OpenAI embebida (generada desde ~/.cursor/secrets.env)
 Lector/Secrets.Local.swift
 Secrets.Local.swift
+# Volcados de depuración (trazas + pantallas)
+debug-dumps/

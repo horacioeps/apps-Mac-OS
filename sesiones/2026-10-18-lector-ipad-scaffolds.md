@@ -201,3 +201,27 @@ podemos tener dos versiones, una ipad y otra de mi iphone xs max pro 17 ?
 - BUILD SUCCEEDED; install+launch en **iPad** y **iPhone 17 Pro Max**.
 - iPhone XS Max aparece en CoreDevice como *unavailable* (no emparejado/túnel); mismo binario sirve cuando esté online.
 
+
+
+---
+
+## Follow-up: Capas + icono + TraceDump (2026-10-18 10:33 UTC)
+
+### Pedido
+
+```
+la app de lector la acabo de ver en el iphoe. lo primero si le podemos poner un nombre mas diferenciador pero simple. luego ponerle un icono original. luego he añadido un libro, me he puesto a leerlo pero lo que sale es un desastre. par que lo entiendas, añade un mecanismo de volcado de trazas y pantallas de manera qe teu enel simulador puedas ver lo que esta pasando cada vez que te informo de un error, ok ?
+```
+
+### Hecho
+
+- Nombre en dispositivo: **Capas** (bundle sigue `com.horacioeps.lector`).
+- Icono original (capas/zoom) en AppIcon.appiconset.
+- `TraceDump`: trazas + state.json + screen.png en Documents/CapasDumps; botón 🐞 / shake / auto al abrir libro; `scripts/pull-dumps.sh` → `debug-dumps/` (gitignored).
+- ZoomTreeView envuelto en ScrollView (mitiga desborde).
+- Install iPad + iPhone 17 Pro Max.
+
+### Flujo para errores
+
+Usuario reproduce → Volcar (o auto) → «mira el dump» → agente `./scripts/pull-dumps.sh` y lee latest/.
+

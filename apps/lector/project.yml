@@ -39,7 +39,7 @@ targets:
     info:
       path: Lector/Resources/Info.plist
       properties:
-        CFBundleDisplayName: Lector
+        CFBundleDisplayName: Capas
         UILaunchScreen: {}
         UISupportsDocumentBrowser: true
         UIFileSharingEnabled: true

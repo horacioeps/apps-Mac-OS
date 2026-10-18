@@ -79,6 +79,21 @@ struct BookSessionView: View {
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
         .task { await open() }
+        .onChange(of: tab) { _, new in
+            TraceDump.shared.setContext("tab", new.rawValue)
+            TraceDump.shared.log("ui", "tab → \(new.rawValue)")
+        }
+        .onChange(of: path.nodeIDs) { _, ids in
+            TraceDump.shared.setContext("zoomPathDepth", "\(ids.count)")
+            if let node = currentNode {
+                TraceDump.shared.setContext("zoomNode", node.title)
+                TraceDump.shared.log("zoom", "path depth=\(ids.count) node=\(node.title)", data: [
+                    "children": "\(node.children.count)",
+                    "summaryChars": "\(node.summary.count)",
+                    "verbatimChars": "\(node.verbatim.count)"
+                ])
+            }
+        }
         .sheet(isPresented: $showChat) {
             if let node = currentNode {
                 ChatSheet(chat: chat, bookTitle: book.title, node: node)
@@ -154,17 +169,50 @@ struct BookSessionView: View {
         loading = true
         errorText = nil
         library.markOpened(book)
+        TraceDump.shared.setContext("bookTitle", book.title)
+        TraceDump.shared.setContext("bookFormat", book.format.rawValue)
+        TraceDump.shared.setContext("bookPath", book.relativePath)
+        TraceDump.shared.log("book", "Abriendo \(book.title)", data: [
+            "format": book.format.rawValue,
+            "path": book.relativePath
+        ])
         do {
             let text = try await DocumentTextExtractor.extract(from: book)
             fullText = text
+            TraceDump.shared.setContext("textChars", "\(text.count)")
+            TraceDump.shared.log("book", "Texto extraído", data: [
+                "chars": "\(text.count)",
+                "preview": String(text.prefix(240))
+            ])
             var tree = ZoomTreeService.buildTree(title: book.title, fullText: text)
+            TraceDump.shared.log("zoom", "Árbol extractivo", data: [
+                "children": "\(tree.children.count)",
+                "rootSummaryChars": "\(tree.summary.count)"
+            ])
             let enriched = await ZoomTreeService.enrichWithLLM(root: tree, fullText: text)
             tree = enriched.0
             zoomMode = enriched.1
+            TraceDump.shared.setContext("zoomMode", zoomMode)
+            TraceDump.shared.log("zoom", "Árbol listo mode=\(zoomMode)", data: [
+                "children": "\(tree.children.count)",
+                "rootSummaryChars": "\(tree.summary.count)",
+                "childTitles": tree.children.map(\.title).prefix(12).joined(separator: " | ")
+            ])
             root = tree
             path = .root
+            TraceDump.shared.setContext("tab", tab.rawValue)
+            // Auto-volcado al abrir: el agente puede pull-dumps y ver el desastre de lectura.
+            TraceDump.shared.dump(reason: "book-opened", extraState: [
+                "childCount": "\(tree.children.count)",
+                "textChars": "\(text.count)",
+                "zoomMode": zoomMode
+            ])
         } catch {
             errorText = error.localizedDescription
+            TraceDump.shared.log("error", "open failed", data: ["error": error.localizedDescription])
+            TraceDump.shared.dump(reason: "book-open-error", extraState: [
+                "error": error.localizedDescription
+            ])
         }
         loading = false
     }

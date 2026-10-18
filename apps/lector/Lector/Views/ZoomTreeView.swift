@@ -11,23 +11,23 @@ struct ZoomTreeView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            breadcrumb
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                breadcrumb
 
-            Text(current.title)
-                .font(.title2.weight(.semibold))
+                Text(current.title)
+                    .font(.title2.weight(.semibold))
 
-            Text(current.summary)
-                .font(.body)
-                .foregroundStyle(.primary.opacity(0.9))
-                .textSelection(.enabled)
+                Text(current.summary)
+                    .font(.body)
+                    .foregroundStyle(.primary.opacity(0.9))
+                    .textSelection(.enabled)
 
-            if current.hasVerbatim {
-                Divider()
-                Text("Verbatim")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
-                ScrollView {
+                if current.hasVerbatim {
+                    Divider()
+                    Text("Verbatim")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
                     Text(current.verbatim)
                         .font(.body)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -38,38 +38,39 @@ struct ZoomTreeView: View {
                             }
                         }
                 }
-            }
 
-            if !current.children.isEmpty {
-                Divider()
-                Text("Zoom a…")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
-                ForEach(current.children) { child in
-                    Button {
-                        path.nodeIDs.append(child.id)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(child.title)
-                                    .font(.headline)
-                                Text(child.summary)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(2)
+                if !current.children.isEmpty {
+                    Divider()
+                    Text("Zoom a… (\(current.children.count))")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                    ForEach(current.children) { child in
+                        Button {
+                            TraceDump.shared.log("zoom", "tap child \(child.title)")
+                            path.nodeIDs.append(child.id)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(child.title)
+                                        .font(.headline)
+                                        .multilineTextAlignment(.leading)
+                                    Text(child.summary)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
+                                }
+                                Spacer()
+                                Image(systemName: "plus.magnifyingglass")
                             }
-                            Spacer()
-                            Image(systemName: "plus.magnifyingglass")
+                            .padding(.vertical, 6)
                         }
-                        .padding(.vertical, 6)
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
-
-            Spacer(minLength: 0)
+            .padding()
         }
-        .padding()
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: onAskChat) {

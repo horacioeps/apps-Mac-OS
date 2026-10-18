@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 10:33 | Capas nombre+icono+dumps | Display Capas, AppIcon, TraceDump+pull-dumps; install devices | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:17 | Lector iPad + iPhone 17? | Universal 1,2; install iPad + iPhone 17 Pro Max (XS Max offline) | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:16 | shell abortado (búsqueda TEDx/devices) | Ignorado: trabajo Lector ya cerrado en turno previo | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:16 | compila Lector + key OpenAI + Preguntador TEDx local | Leitner MemorizaGuion; Secrets.Local gitignored; BUILD+install iPad | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |

@@ -1,6 +1,6 @@
-# Lector (iPad) — product brief
+# Capas — product brief
 
-App lectora para iPadOS: zoom multinivel sobre el libro, chat con el contenido, Preguntador (SRS), highlights tipo Readwise propio, y biblioteca amplia (PDF/EPUB + exports Books/Kindle DRM-free + ítems Zotero seleccionados).
+Nombre en dispositivo: **Capas** (bundle `com.horacioeps.lector`). Zoom multinivel sobre el libro, chat, Preguntador (SRS), highlights tipo Readwise propio, biblioteca (PDF/EPUB + exports Books/Kindle DRM-free + Zotero seleccionados).
 
 ## Origen en el vault
 

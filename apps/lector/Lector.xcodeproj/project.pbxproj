@@ -16,6 +16,7 @@
 		3A42725B7D6B6159E9194C75 /* LectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D72D8D9AEF5CC8DE76D02 /* LectorApp.swift */; };
 		4D4F6C7EB3C6C1028B8FF903 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5347D620F20BECAAC958A0 /* ReviewCard.swift */; };
 		4FB28D745EEA20B9D7C1E366 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECDB16753882F3161BCAEA1 /* SettingsView.swift */; };
+		51B2889BF319298A599966DB /* TraceDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83522A04D48F532A8E4BC8BB /* TraceDump.swift */; };
 		638A1D9262D1F9FD1E446C08 /* BookSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E9CA9DD0B429194EF28BE /* BookSessionView.swift */; };
 		66F1B5AF1D8780D8E16D871A /* LLMSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA597CA61F2B5DCDE31134D /* LLMSettings.swift */; };
 		69B5B2E8706012651D4848D1 /* HighlightStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF38771491397424F54B55E /* HighlightStore.swift */; };
@@ -55,6 +56,7 @@
 		754C79644381F6B74734F634 /* BookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookItem.swift; sourceTree = "<group>"; };
 		7BF38771491397424F54B55E /* HighlightStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightStore.swift; sourceTree = "<group>"; };
 		828E9CA9DD0B429194EF28BE /* BookSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSessionView.swift; sourceTree = "<group>"; };
+		83522A04D48F532A8E4BC8BB /* TraceDump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceDump.swift; sourceTree = "<group>"; };
 		9CFAF2C522933FFA86F2DFAD /* PreguntadorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntadorView.swift; sourceTree = "<group>"; };
 		A2C2942A4230AC15E39F828D /* PreguntadorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntadorStore.swift; sourceTree = "<group>"; };
 		AA7FEEE015F29B7EED04D617 /* Secrets.Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.Local.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				BEA597CA61F2B5DCDE31134D /* LLMSettings.swift */,
 				A2C2942A4230AC15E39F828D /* PreguntadorStore.swift */,
 				5B5106AAADE8BF9AC5FDADE6 /* ReadiumBridge.swift */,
+				83522A04D48F532A8E4BC8BB /* TraceDump.swift */,
 				221C2A167B409FC84EC36461 /* ZoomTreeService.swift */,
 			);
 			path = Services;
@@ -264,6 +267,7 @@
 				FB0E594F5AACF28FC0441D54 /* RootView.swift in Sources */,
 				00FA3E5C056CE037A471A38A /* Secrets.Local.swift in Sources */,
 				4FB28D745EEA20B9D7C1E366 /* SettingsView.swift in Sources */,
+				51B2889BF319298A599966DB /* TraceDump.swift in Sources */,
 				B8E91F0D6213E05C643696DE /* ZoomNode.swift in Sources */,
 				BA9EBCE3117305D1D0FC290E /* ZoomTreeService.swift in Sources */,
 				9D9AC1AD37E00092654792DE /* ZoomTreeView.swift in Sources */,

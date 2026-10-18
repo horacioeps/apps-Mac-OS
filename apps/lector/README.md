@@ -1,6 +1,6 @@
-# Lector
+# Capas
 
-Lector iPad: zoom multinivel (vault) + chat + Preguntador (SRS) + highlights tipo Readwise. Motor **Readium** (SPM) + PDFKit.
+App **Capas** (bundle `com.horacioeps.lector`): zoom multinivel + chat + Preguntador (SRS) + highlights. Motor **Readium** (SPM) + PDFKit.
 
 Ver [PRODUCT.md](PRODUCT.md) y [SCAFFOLDS.md](SCAFFOLDS.md).
 
@@ -42,9 +42,24 @@ La primera resolución de paquetes puede tardar.
 
 ### OpenAI
 
-1. Abre Lector → ⚙ Ajustes  
-2. Pega API key → modelo (default `gpt-4o-mini`) → Guardar  
+1. Abre Capas → ⚙ Ajustes  
+2. API key embebida local o pégala → modelo (default `gpt-4o-mini`) → Guardar  
 3. Al abrir un libro, el zoom pide resúmenes LLM; el chat y «Generar con LLM» del Preguntador la usan.
+
+### Depuración (trazas + pantallas)
+
+Cuando algo falle en el iPhone/iPad:
+
+1. En la app: botón **🐞 Volcar** (o agitar el dispositivo). También se vuelca solo al abrir un libro.
+2. En el Mac, desde esta carpeta:
+
+```bash
+./scripts/pull-dumps.sh          # sim o device
+./scripts/pull-dumps.sh device   # forzar iPhone/iPad
+./scripts/pull-dumps.sh sim      # forzar simulador
+```
+
+3. Los ficheros quedan en `debug-dumps/` (`state.json`, `trace.jsonl`, `screen.png`). Dile al agente «mira el dump» o describe el error: con el volcado se ve la pantalla y el rastro.
 
 ## Estructura
 

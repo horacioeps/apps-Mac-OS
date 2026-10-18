@@ -43,7 +43,10 @@ struct LibraryView: View {
                 Label("Zotero seleccionados: API / adjuntos", systemImage: "books.vertical")
             }
         }
-        .navigationTitle("Lector")
+        .navigationTitle("Capas")
+        .onAppear {
+            TraceDump.shared.log("ui", "LibraryView appear", data: ["books": "\(library.books.count)"])
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
