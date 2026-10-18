@@ -169,3 +169,16 @@ compila y meet la api open ai key dentro de la app, nunca voy a comartir esta ap
 - Build OK (Xcode 26.6) + install + launch en iPad de Horacio (`com.horacioeps.lector`).
 - Fix actor: `LibraryStore.booksDirectory` nonisolated.
 
+
+
+---
+
+## Follow-up: notificación shell abortado (2026-10-18 08:16 UTC)
+
+### Pedido
+Sistema: informar del task shell abortado (Find API key / TEDx / devices).
+
+### Hecho
+- Ese shell se abortó por timeout; no hace falta reejecutarlo.
+- Resultados ya usados en el turno anterior (TEDx MemorizaGuion, API key, devices iPad).
+
