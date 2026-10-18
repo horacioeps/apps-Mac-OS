@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 08:09 | guarda sesion | Volcado ampliado + fila HISTORICO + push main | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 07:55 | ambas: LLM zoom/chat + recuperar TEDx | OpenAI Keychain+Zoom/Chat/Preguntador LLM; TEDx Mac no accesible (sin placement worker); SRS estilo vault | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 05:35 | Arranca con lo recomendado (Readium) | Greenfield SwiftUI iPad: Zoom/Chat/Preguntador/Highlights + Readium SPM + PDFKit; `Lector.xcodeproj` | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 05:30 | Lector iPad (zoom/chat/SRS/Readwise/fuentes) + scaffolds GitHub + concepto vault | Spec `apps/lector/`; zoom vault hallado; scaffold recomendado Readium; TEDx Cursor no en VPS | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |

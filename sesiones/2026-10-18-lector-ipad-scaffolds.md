@@ -107,3 +107,27 @@ ambas
 
 - Relanzar agent **self-hosted** en worker `~/work/Projects/apps-Mac-OS @ Horacio M4` y buscar `TEDXAlmeria` / Personal/Charlas para fusionar código original si existe.
 - Compilar Lector en Xcode; pegar API key en Ajustes.
+
+---
+
+## Follow-up: guarda sesion (2026-10-18 08:09 UTC)
+
+### Pedido
+
+```
+guarda sesion
+```
+
+### Hecho
+
+- Comprobado: carpeta `sesiones/` existe; volcado `sesiones/2026-10-18-lector-ipad-scaffolds.md` ampliado con este turno.
+- `HISTORICO.md` actualizado (fila «guarda sesion»).
+- README ya enlaza HISTORICO.
+- Sync: `git pull --rebase origin main` → commit → `git push origin main`.
+
+### Resumen compacto de la conversación completa
+
+1. Idea app Lector iPad (zoom/chat/Preguntador/Readwise/fuentes) → búsqueda vault + scaffolds GitHub → Readium recomendado.
+2. «Arranca con lo recomendado» → greenfield `apps/lector` SwiftUI + Readium/PDFKit.
+3. «ambas» → LLM OpenAI (Zoom/Chat/Preguntador) + intento recuperar TEDx Mac (bloqueado sin placement worker); SRS estilo vault portado.
+4. «guarda sesion» → este volcado + HISTORICO + push.
