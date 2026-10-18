@@ -23,21 +23,28 @@ open Lector.xcodeproj
 
 La primera resolución de paquetes puede tardar.
 
-## v0 incluido
+## v0.1 incluido
 
 | Pieza | Estado |
 |-------|--------|
 | Biblioteca + import PDF/EPUB/MD/TXT | sí |
 | Libro semilla `seed_book.md` | sí |
-| Zoom árbol extractivo (headings → verbatim) | sí |
-| Chat anclado al nodo (local, sin LLM aún) | sí |
-| Preguntador SM-2 desde nodos zoom | sí |
+| Zoom extractivo + **enriquecimiento LLM** | sí |
+| Chat anclado al nodo con **OpenAI** (fallback local) | sí |
+| Preguntador SM-2 + **generación LLM** (escaletas / pistas) | sí |
+| Ajustes: API key en Keychain | sí |
 | Highlights + export Markdown | sí |
 | Extracción EPUB vía Readium | sí |
 | PDF páginas (PDFKit) | sí |
-| LLM para resúmenes de zoom | pendiente |
-| Zotero / Books / Kindle DRM | pendiente (import manual sin DRM) |
+| Código original Cursor «TEDX Almería 2026» (Mac) | no recuperable desde este cloud (sin placement al worker M4) |
+| Zotero / Books / Kindle DRM | pendiente |
 | EPUBNavigator UI nativa Readium | pendiente |
+
+### OpenAI
+
+1. Abre Lector → ⚙ Ajustes  
+2. Pega API key → modelo (default `gpt-4o-mini`) → Guardar  
+3. Al abrir un libro, el zoom pide resúmenes LLM; el chat y «Generar con LLM» del Preguntador la usan.
 
 ## Estructura
 

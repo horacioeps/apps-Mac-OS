@@ -77,3 +77,33 @@ Greenfield `apps/lector` SwiftUI iPad:
 
 - Compilar en Mac/Xcode (este agent es Linux)
 - LLM en zoom/chat; EPUBNavigator UI; Zotero/Books/Kindle
+
+---
+
+## Follow-up: ambas (LLM + TEDx)
+
+### Pedido
+
+```
+ambas
+```
+
+(= conectar LLM al zoom/chat **y** recuperar Preguntador TEDx del Mac)
+
+### Hecho
+
+**LLM**
+- `LLMClient` + `LLMSettings` (Keychain) + `SettingsView`
+- Zoom: `enrichWithLLM` tras árbol extractivo
+- Chat: OpenAI con historial + fallback local
+- Preguntador: `seedWithLLM` (JSON cards, detailLevel, hints) + prioridad due/lapses
+
+**TEDx Mac**
+- Workers M4 online (`9a40fb81…` apps-Mac-OS) pero Task/subagents solo corren en Linux cloud (`privateWorkerId=null`, sin API de placement).
+- Vault: App CLI estudio = diseño SM-2 (todo), no código; TEDx note apunta a Cursor «TEDX Almería 2026» en Personal/Charlas.
+- Preguntador Lector portó el comportamiento descrito (escaletas/pistas/SM-2/LLM) sin el repo Mac.
+
+### Pendiente usuario/Mac
+
+- Relanzar agent **self-hosted** en worker `~/work/Projects/apps-Mac-OS @ Horacio M4` y buscar `TEDXAlmeria` / Personal/Charlas para fusionar código original si existe.
+- Compilar Lector en Xcode; pegar API key en Ajustes.

@@ -63,12 +63,14 @@ No otra app lineal de ebooks: el **zoom jerárquico resumen→verbatim** + Pregu
 - Secundario: iPhone companion / Mac más adelante.
 - Motor: ver [SCAFFOLDS.md](SCAFFOLDS.md).
 
-## Estado v0 (código en repo)
+## Estado v0.1 (código en repo)
 
-Arranque greenfield con Readium SPM + PDFKit:
+Arranque greenfield con Readium SPM + PDFKit + OpenAI:
 
 - `apps/lector/Lector/` — SwiftUI iPad (`com.horacioeps.lector`)
-- Zoom extractivo local (headings → párrafos verbatim)
-- Chat local anclado al nodo; Preguntador SM-2; highlights + export MD
-- Import PDF/EPUB/MD/TXT; semilla `seed_book.md`
-- Pendiente: LLM en Zoom/Chat, Navigator EPUB UI, Zotero/Books/Kindle
+- Zoom extractivo + `enrichWithLLM` (resúmenes raíz/capítulos)
+- Chat LLM anclado al nodo (Keychain); fallback extractivo
+- Preguntador SM-2 + seed LLM multi-nivel + pistas (estilo TEDx/CLI vault)
+- Highlights + export MD; semilla `seed_book.md`
+- **TEDx Mac:** proyecto Cursor «TEDX Almería 2026» no montado aquí; workers M4 online pero Task no acepta `workerId`. Abrir agent self-hosted en `apps-Mac-OS @ Horacio M4` para copiar el código original.
+- Pendiente: Navigator EPUB UI, Zotero/Books/Kindle
