@@ -299,3 +299,20 @@ pregunta: lo podemos abrir en un similar visual aqui en el mac ? y otra osa, pro
 - Sim: EPUB copiado a Application Support + catalog; app relanzada.
 - Device: reinstall Lectura en iPhone.
 
+
+
+---
+
+## Follow-up: scroll no va (2026-10-18 11:40 UTC)
+
+### Pedido
+```
+parec que no va el scroll
+```
+
+### Causa / fix
+- ScrollView en VStack sin `maxHeight` → crece con el contenido y no scrollea.
+- Páginas: UITextView nativo; EPUB grande limitado a extracto + Zoom para capítulos.
+- Banner de dump se auto-oculta a los 4s.
+- Reinstall iPhone + Simulator.
+

@@ -45,34 +45,40 @@ struct BookSessionView: View {
                         }
                     }
                     .pickerStyle(.segmented)
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
 
-                    switch tab {
-                    case .zoom:
-                        VStack(spacing: 0) {
-                            if !zoomMode.isEmpty {
-                                Text("Zoom: \(zoomMode)")
-                                    .font(.caption2)
-                                    .foregroundStyle(.secondary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.horizontal)
-                            }
-                            ZoomTreeView(
-                                root: root,
-                                path: $path,
-                                onAskChat: { showChat = true },
-                                onHighlight: { text in
-                                    highlights.add(bookID: book.id, text: text, zoomNodeID: currentNode?.id)
+                    // maxHeight: el ScrollView hijo necesita altura acotada o no hace scroll.
+                    Group {
+                        switch tab {
+                        case .zoom:
+                            VStack(spacing: 0) {
+                                if !zoomMode.isEmpty {
+                                    Text("Zoom: \(zoomMode)")
+                                        .font(.caption2)
+                                        .foregroundStyle(.secondary)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.horizontal)
+                                        .padding(.bottom, 4)
                                 }
-                            )
+                                ZoomTreeView(
+                                    root: root,
+                                    path: $path,
+                                    onAskChat: { showChat = true },
+                                    onHighlight: { text in
+                                        highlights.add(bookID: book.id, text: text, zoomNodeID: currentNode?.id)
+                                    }
+                                )
+                            }
+                        case .pages:
+                            pagesPane
+                        case .preguntador:
+                            PreguntadorView(book: book, root: root)
+                        case .highlights:
+                            highlightsPane
                         }
-                    case .pages:
-                        pagesPane
-                    case .preguntador:
-                        PreguntadorView(book: book, root: root)
-                    case .highlights:
-                        highlightsPane
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
             }
         }
@@ -122,14 +128,33 @@ struct BookSessionView: View {
 
     @ViewBuilder
     private var pagesPane: some View {
-        switch book.format {
-        case .pdf:
-            PDFKitView(url: book.fileURL)
-        case .markdown:
-            ReadableTextView(text: fullText, treatAsMarkdown: true)
-        case .plainText, .epub, .unknown:
-            ReadableTextView(text: fullText, treatAsMarkdown: false)
+        Group {
+            switch book.format {
+            case .pdf:
+                PDFKitView(url: book.fileURL)
+            case .markdown:
+                ReadableTextView(text: fullText, treatAsMarkdown: true)
+            case .plainText, .epub, .unknown:
+                // EPUB entero (~800k) en un solo Text mata el scroll; cap suave + aviso.
+                if fullText.count > 120_000 {
+                    VStack(spacing: 0) {
+                        Text("Vista Páginas: extracto inicial. Usa Zoom para navegar por capítulos.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .padding(8)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.secondary.opacity(0.08))
+                        ReadableTextView(
+                            text: String(fullText.prefix(120_000)) + "\n\n[…]",
+                            treatAsMarkdown: false
+                        )
+                    }
+                } else {
+                    ReadableTextView(text: fullText, treatAsMarkdown: false)
+                }
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var highlightsPane: some View {

@@ -1,91 +1,104 @@
 import SwiftUI
+import UIKit
 
-/// Texto de lectura bien renderizado (Markdown → tipografía; plano → párrafos).
+/// Texto de lectura bien renderizado y con scroll fiable (UITextView).
 struct ReadableTextView: View {
     let text: String
     var treatAsMarkdown: Bool = false
 
     var body: some View {
-        ScrollView {
-            Group {
-                if treatAsMarkdown, let attributed = Self.markdown(text) {
-                    Text(attributed)
-                } else if treatAsMarkdown {
-                    // Fallback si AttributedString falla: bloques tipográficos caseros
-                    VStack(alignment: .leading, spacing: 12) {
-                        ForEach(Array(Self.simpleBlocks(text).enumerated()), id: \.offset) { _, block in
-                            blockView(block)
-                        }
-                    }
-                } else {
-                    Text(text)
-                        .font(.body)
-                        .lineSpacing(4)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 16)
-            .textSelection(.enabled)
-            .fixedSize(horizontal: false, vertical: true)
+        ScrollableTextRepresentable(
+            attributed: treatAsMarkdown ? Self.attributedMarkdown(text) : Self.attributedPlain(text)
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private static func attributedPlain(_ source: String) -> NSAttributedString {
+        let para = NSMutableParagraphStyle()
+        para.lineSpacing = 4
+        para.paragraphSpacing = 8
+        return NSAttributedString(
+            string: source,
+            attributes: [
+                .font: UIFont.preferredFont(forTextStyle: .body),
+                .foregroundColor: UIColor.label,
+                .paragraphStyle: para
+            ]
+        )
+    }
+
+    private static func attributedMarkdown(_ source: String) -> NSAttributedString {
+        if let md = try? AttributedString(
+            markdown: source,
+            options: {
+                var o = AttributedString.MarkdownParsingOptions()
+                o.interpretedSyntax = .full
+                o.failurePolicy = .returnPartiallyParsedIfPossible
+                return o
+            }()
+        ) {
+            return NSAttributedString(md)
         }
-    }
-
-    @ViewBuilder
-    private func blockView(_ block: TextBlock) -> some View {
-        switch block {
-        case .h1(let t):
-            Text(t).font(.largeTitle.weight(.bold)).padding(.top, 8)
-        case .h2(let t):
-            Text(t).font(.title2.weight(.semibold)).padding(.top, 10)
-        case .h3(let t):
-            Text(t).font(.title3.weight(.semibold)).padding(.top, 6)
-        case .body(let t):
-            Text(t).font(.body).lineSpacing(4)
-        }
-    }
-
-    private enum TextBlock {
-        case h1(String), h2(String), h3(String), body(String)
-    }
-
-    private static func markdown(_ source: String) -> AttributedString? {
-        var options = AttributedString.MarkdownParsingOptions()
-        options.interpretedSyntax = .full
-        options.failurePolicy = .returnPartiallyParsedIfPossible
-        return try? AttributedString(markdown: source, options: options)
-    }
-
-    private static func simpleBlocks(_ source: String) -> [TextBlock] {
-        var blocks: [TextBlock] = []
-        var paragraph: [String] = []
-
-        func flush() {
-            let p = paragraph.joined(separator: " ").trimmingCharacters(in: .whitespacesAndNewlines)
-            if !p.isEmpty { blocks.append(.body(p)) }
-            paragraph = []
-        }
+        // Fallback tipográfico casero
+        let out = NSMutableAttributedString()
+        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
+        let h1 = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
+        let h2 = UIFont.preferredFont(forTextStyle: .title2).bold()
+        let h3 = UIFont.preferredFont(forTextStyle: .title3).bold()
+        let para = NSMutableParagraphStyle()
+        para.lineSpacing = 4
+        para.paragraphSpacing = 10
 
         for raw in source.components(separatedBy: .newlines) {
             let line = raw.trimmingCharacters(in: .whitespaces)
             if line.isEmpty {
-                flush()
+                out.append(NSAttributedString(string: "\n"))
                 continue
             }
-            if line.hasPrefix("### ") {
-                flush()
-                blocks.append(.h3(String(line.dropFirst(4))))
-            } else if line.hasPrefix("## ") {
-                flush()
-                blocks.append(.h2(String(line.dropFirst(3))))
-            } else if line.hasPrefix("# ") {
-                flush()
-                blocks.append(.h1(String(line.dropFirst(2))))
-            } else {
-                paragraph.append(line)
-            }
+            let (font, content): (UIFont, String) = {
+                if line.hasPrefix("### ") { return (h3, String(line.dropFirst(4))) }
+                if line.hasPrefix("## ") { return (h2, String(line.dropFirst(3))) }
+                if line.hasPrefix("# ") { return (h1, String(line.dropFirst(2))) }
+                return (bodyFont, line)
+            }()
+            out.append(NSAttributedString(string: content + "\n", attributes: [
+                .font: font,
+                .foregroundColor: UIColor.label,
+                .paragraphStyle: para
+            ]))
         }
-        flush()
-        return blocks
+        return out
+    }
+}
+
+private extension UIFont {
+    func bold() -> UIFont {
+        guard let d = fontDescriptor.withSymbolicTraits(.traitBold) else { return self }
+        return UIFont(descriptor: d, size: pointSize)
+    }
+}
+
+/// UITextView con scroll nativo (evita el bug de ScrollView sin altura en VStack).
+private struct ScrollableTextRepresentable: UIViewRepresentable {
+    let attributed: NSAttributedString
+
+    func makeUIView(context: Context) -> UITextView {
+        let tv = UITextView()
+        tv.isEditable = false
+        tv.isSelectable = true
+        tv.backgroundColor = .clear
+        tv.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 24, right: 16)
+        tv.textContainer.lineFragmentPadding = 0
+        tv.alwaysBounceVertical = true
+        tv.showsVerticalScrollIndicator = true
+        tv.adjustsFontForContentSizeCategory = true
+        return tv
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        if uiView.attributedText != attributed {
+            uiView.attributedText = attributed
+            uiView.setContentOffset(.zero, animated: false)
+        }
     }
 }

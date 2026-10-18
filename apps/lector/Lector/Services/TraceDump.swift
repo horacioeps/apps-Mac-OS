@@ -202,6 +202,24 @@ struct TraceDumpChrome: ViewModifier {
                         .onTapGesture { dump.banner = nil }
                         .transition(.move(edge: .bottom))
                         .padding(.bottom, 8)
+                        // No comerse los gestos de scroll debajo del banner.
+                        .allowsHitTesting(true)
+                }
+            }
+            .onAppear {
+                // Auto-ocultar banner para no tapar scroll
+                if dump.banner != nil {
+                    Task { @MainActor in
+                        try? await Task.sleep(nanoseconds: 4_000_000_000)
+                        dump.banner = nil
+                    }
+                }
+            }
+            .onChange(of: dump.banner) { _, new in
+                guard new != nil else { return }
+                Task { @MainActor in
+                    try? await Task.sleep(nanoseconds: 4_000_000_000)
+                    if dump.banner == new { dump.banner = nil }
                 }
             }
             .onShake {
