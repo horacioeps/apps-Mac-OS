@@ -49,6 +49,11 @@ struct ChatSheet: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cerrar") { dismiss() }
                 }
+                ToolbarItem(placement: .status) {
+                    if !chat.lastMode.isEmpty {
+                        Text(chat.lastMode).font(.caption2).foregroundStyle(.secondary)
+                    }
+                }
             }
             .onAppear {
                 chat.reset(for: bookTitle, node: node)

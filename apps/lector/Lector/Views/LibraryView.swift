@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 struct LibraryView: View {
     @EnvironmentObject private var library: LibraryStore
     @State private var showImporter = false
+    @State private var showSettings = false
     @State private var importError: String?
 
     var body: some View {
@@ -44,6 +45,13 @@ struct LibraryView: View {
         }
         .navigationTitle("Lector")
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    showSettings = true
+                } label: {
+                    Label("Ajustes", systemImage: "gearshape")
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     showImporter = true
@@ -51,6 +59,9 @@ struct LibraryView: View {
                     Label("Importar", systemImage: "plus")
                 }
             }
+        }
+        .sheet(isPresented: $showSettings) {
+            NavigationStack { SettingsView() }
         }
         .fileImporter(
             isPresented: $showImporter,

@@ -59,6 +59,68 @@ enum ZoomTreeService {
         return current
     }
 
+    /// Mejora resúmenes del árbol con LLM (raíz + hijos de profundidad 1). Fallback: árbol extractivo.
+    static func enrichWithLLM(root: ZoomNode, fullText: String) async -> (ZoomNode, String) {
+        guard await LLMClient.shared.isConfigured() else {
+            return (root, "extractivo")
+        }
+        do {
+            let outline = try await LLMClient.shared.complete(
+                system: """
+                Generas resúmenes para zoom de lectura multinivel (visión general → detalle).
+                Responde SOLO JSON válido UTF-8, sin markdown:
+                {"rootSummary":"...","chapters":[{"title":"...","summary":"..."}]}
+                rootSummary: 2-4 frases del libro entero.
+                chapters: un ítem por cada título hijo de primer nivel (mismos títulos).
+                Español. Fiel al texto. Sin inventar secciones.
+                """,
+                user: """
+                Título: \(root.title)
+
+                Hijos (títulos exactos):
+                \(root.children.map(\.title).joined(separator: "\n"))
+
+                Texto (recortado):
+                \(fullText.prefix(24_000))
+                """,
+                temperature: 0.25,
+                maxTokens: 1800
+            )
+            let enriched = applyLLMOutline(outline, to: root)
+            return (enriched, "LLM · \(LLMSettings.model)")
+        } catch {
+            return (root, "extractivo (\(error.localizedDescription))")
+        }
+    }
+
+    private static func applyLLMOutline(_ raw: String, to root: ZoomNode) -> ZoomNode {
+        let jsonString = raw
+            .replacingOccurrences(of: "```json", with: "")
+            .replacingOccurrences(of: "```", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let data = jsonString.data(using: .utf8),
+              let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return root
+        }
+        var next = root
+        if let rootSummary = obj["rootSummary"] as? String, !rootSummary.isEmpty {
+            next.summary = rootSummary
+        }
+        guard let chapters = obj["chapters"] as? [[String: Any]] else { return next }
+        let byTitle = Dictionary(uniqueKeysWithValues: chapters.compactMap { item -> (String, String)? in
+            guard let t = item["title"] as? String, let s = item["summary"] as? String else { return nil }
+            return (t.lowercased(), s)
+        })
+        next.children = next.children.map { child in
+            var c = child
+            if let s = byTitle[child.title.lowercased()], !s.isEmpty {
+                c.summary = s
+            }
+            return c
+        }
+        return next
+    }
+
     // MARK: - private
 
     private struct Section {

@@ -16,6 +16,7 @@ struct BookSessionView: View {
     @State private var showChat = false
     @State private var tab: SessionTab = .zoom
     @State private var exportText: String?
+    @State private var zoomMode: String = ""
 
     private enum SessionTab: String, CaseIterable, Identifiable {
         case zoom = "Zoom"
@@ -48,14 +49,23 @@ struct BookSessionView: View {
 
                     switch tab {
                     case .zoom:
-                        ZoomTreeView(
-                            root: root,
-                            path: $path,
-                            onAskChat: { showChat = true },
-                            onHighlight: { text in
-                                highlights.add(bookID: book.id, text: text, zoomNodeID: currentNode?.id)
+                        VStack(spacing: 0) {
+                            if !zoomMode.isEmpty {
+                                Text("Zoom: \(zoomMode)")
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal)
                             }
-                        )
+                            ZoomTreeView(
+                                root: root,
+                                path: $path,
+                                onAskChat: { showChat = true },
+                                onHighlight: { text in
+                                    highlights.add(bookID: book.id, text: text, zoomNodeID: currentNode?.id)
+                                }
+                            )
+                        }
                     case .pages:
                         pagesPane
                     case .preguntador:
@@ -147,7 +157,11 @@ struct BookSessionView: View {
         do {
             let text = try await DocumentTextExtractor.extract(from: book)
             fullText = text
-            root = ZoomTreeService.buildTree(title: book.title, fullText: text)
+            var tree = ZoomTreeService.buildTree(title: book.title, fullText: text)
+            let enriched = await ZoomTreeService.enrichWithLLM(root: tree, fullText: text)
+            tree = enriched.0
+            zoomMode = enriched.1
+            root = tree
             path = .root
         } catch {
             errorText = error.localizedDescription

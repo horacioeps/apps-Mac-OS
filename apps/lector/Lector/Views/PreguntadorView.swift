@@ -5,48 +5,93 @@ struct PreguntadorView: View {
     let book: BookItem
     let root: ZoomNode?
     @State private var revealing = false
+    @State private var hintIndex = 0
     @State private var current: ReviewCard?
+    @State private var generating = false
 
     var body: some View {
         VStack(spacing: 20) {
-            if let card = current ?? preguntador.dueCards.first(where: { $0.bookID == book.id }) {
+            if let card = current {
                 cardView(card)
             } else {
                 ContentUnavailableView(
                     "Nada pendiente",
                     systemImage: "checkmark.circle",
-                    description: Text("Genera tarjetas desde el zoom o vuelve más tarde.")
+                    description: Text("Genera tarjetas (LLM estilo TEDx o extractivo) y vuelve.")
                 )
-                if root != nil {
-                    Button("Generar desde zoom") {
-                        seed()
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
+                generateButtons
+            }
+            if !preguntador.statusMessage.isEmpty {
+                Text(preguntador.statusMessage)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
         .navigationTitle("Preguntador")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button("Generar") { seed() }
+                Menu("Generar") {
+                    Button("Con LLM (TEDx / escaletas)") {
+                        Task { await generateLLM() }
+                    }
+                    .disabled(root == nil || generating)
+                    Button("Extractivo (sin LLM)") {
+                        seedExtractive()
+                    }
                     .disabled(root == nil)
+                }
             }
         }
-        .onAppear {
-            current = preguntador.dueCards.first(where: { $0.bookID == book.id })
-            revealing = false
+        .onAppear { refreshCurrent() }
+        .overlay {
+            if generating { ProgressView("Generando…").padding().background(.ultraThinMaterial) }
+        }
+    }
+
+    private var generateButtons: some View {
+        VStack(spacing: 12) {
+            Button {
+                Task { await generateLLM() }
+            } label: {
+                Label("Generar con LLM", systemImage: "sparkles")
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(root == nil || generating)
+
+            Button("Generar extractivo") { seedExtractive() }
+                .buttonStyle(.bordered)
+                .disabled(root == nil)
         }
     }
 
     @ViewBuilder
     private func cardView(_ card: ReviewCard) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Repetición espaciada")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            HStack {
+                Text("Nivel \(card.detailLevel) · SM-2")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(preguntador.dueCards(for: book.id).count) pendientes")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             Text(card.prompt)
                 .font(.title3.weight(.semibold))
+
+            if hintIndex > 0 {
+                ForEach(Array(card.hints.prefix(hintIndex).enumerated()), id: \.offset) { _, hint in
+                    Text("Pista: \(hint)")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                        .padding(8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.secondary.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                }
+            }
+
             if revealing {
                 Text(card.answer)
                     .font(.body)
@@ -59,26 +104,43 @@ struct PreguntadorView: View {
                         Button(grade.title) {
                             preguntador.grade(card, grade)
                             revealing = false
-                            current = preguntador.dueCards.first(where: { $0.bookID == book.id })
+                            hintIndex = 0
+                            refreshCurrent()
                         }
                         .buttonStyle(.bordered)
                     }
                 }
             } else {
-                Button("Mostrar respuesta") { revealing = true }
-                    .buttonStyle(.borderedProminent)
+                HStack {
+                    if hintIndex < card.hints.count {
+                        Button("Pista") { hintIndex += 1 }
+                            .buttonStyle(.bordered)
+                    }
+                    Button("Mostrar respuesta") { revealing = true }
+                        .buttonStyle(.borderedProminent)
+                }
             }
             Spacer()
-            Text("\(preguntador.dueCards.filter { $0.bookID == book.id }.count) pendientes · \(preguntador.cards.filter { $0.bookID == book.id }.count) total")
-                .font(.caption)
-                .foregroundStyle(.secondary)
         }
     }
 
-    private func seed() {
+    private func refreshCurrent() {
+        current = preguntador.dueCards(for: book.id).first
+        revealing = false
+        hintIndex = 0
+    }
+
+    private func seedExtractive() {
         guard let root else { return }
         preguntador.seedFromZoom(book: book, root: root)
-        current = preguntador.dueCards.first(where: { $0.bookID == book.id })
-        revealing = false
+        refreshCurrent()
+    }
+
+    private func generateLLM() async {
+        guard let root else { return }
+        generating = true
+        await preguntador.seedWithLLM(book: book, root: root)
+        generating = false
+        refreshCurrent()
     }
 }
