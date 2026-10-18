@@ -225,3 +225,26 @@ la app de lector la acabo de ver en el iphoe. lo primero si le podemos poner un 
 
 Usuario reproduce → Volcar (o auto) → «mira el dump» → agente `./scripts/pull-dumps.sh` y lee latest/.
 
+
+
+---
+
+## Follow-up: mira las trazas (2026-10-18 10:38 UTC)
+
+### Pedido
+```
+mira las trazas porq ue sale mal todavia
+```
+
+### Diagnóstico (dump iPhone `20261018-123351`)
+- Libro: EPUB *Maybe You Should Talk to Someone* (400k chars).
+- Zoom: **87 hijos «§ N»** — blob plano sin TOC; `leafChunks` por párrafo.
+- `zoomMode=extractivo`; resumen raíz 1644 chars (TOC basura).
+- `screen.png` = spinner (dump antes de `loading=false`).
+
+### Fix
+- Readium: `extractChapters` por spine + títulos TOC/NCX.
+- ZoomTree: un nodo por capítulo, chunks fusionados (máx ~10), resumen corto; filtra boilerplate.
+- Dump tras pintar UI (+250ms).
+- Reinstall iPhone + iPad. Pedir reabrir libro y nuevo dump si sigue mal.
+

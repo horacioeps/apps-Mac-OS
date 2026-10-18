@@ -1,22 +1,36 @@
 import Foundation
 import PDFKit
 
-/// Extrae texto plano para Zoom / Chat / Preguntador.
+/// Extrae texto / capítulos para Zoom / Chat / Preguntador.
 enum DocumentTextExtractor {
-    static func extract(from book: BookItem) async throws -> String {
+    struct Extraction {
+        let fullText: String
+        let chapters: [ReadiumBridge.Chapter]
+    }
+
+    static func extract(from book: BookItem) async throws -> Extraction {
         switch book.format {
         case .markdown, .plainText:
-            return try String(contentsOf: book.fileURL, encoding: .utf8)
+            let text = try String(contentsOf: book.fileURL, encoding: .utf8)
+            return Extraction(fullText: text, chapters: [])
         case .pdf:
-            return try extractPDF(url: book.fileURL)
+            let text = try extractPDF(url: book.fileURL)
+            return Extraction(fullText: text, chapters: [])
         case .epub, .unknown:
+            if book.format == .epub || book.fileURL.pathExtension.lowercased() == "epub" {
+                let chapters = try await ReadiumBridge.extractChapters(from: book.fileURL)
+                if !chapters.isEmpty {
+                    let full = chapters.map(\.body).joined(separator: "\n\n")
+                    return Extraction(fullText: full, chapters: chapters)
+                }
+            }
             if let viaReadium = try await ReadiumBridge.extractPlainText(from: book.fileURL) {
-                return viaReadium
+                return Extraction(fullText: viaReadium, chapters: [])
             }
             if book.format == .unknown,
                let text = try? String(contentsOf: book.fileURL, encoding: .utf8),
                !text.isEmpty {
-                return text
+                return Extraction(fullText: text, chapters: [])
             }
             throw ExtractError.unsupportedFormat
         }

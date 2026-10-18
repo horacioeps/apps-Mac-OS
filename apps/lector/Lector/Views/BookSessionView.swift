@@ -177,17 +177,27 @@ struct BookSessionView: View {
             "path": book.relativePath
         ])
         do {
-            let text = try await DocumentTextExtractor.extract(from: book)
+            let extraction = try await DocumentTextExtractor.extract(from: book)
+            let text = extraction.fullText
             fullText = text
             TraceDump.shared.setContext("textChars", "\(text.count)")
+            TraceDump.shared.setContext("chapterCount", "\(extraction.chapters.count)")
             TraceDump.shared.log("book", "Texto extraído", data: [
                 "chars": "\(text.count)",
-                "preview": String(text.prefix(240))
+                "chapters": "\(extraction.chapters.count)",
+                "preview": String(text.prefix(240)),
+                "chapterTitles": extraction.chapters.prefix(8).map(\.title).joined(separator: " | ")
             ])
-            var tree = ZoomTreeService.buildTree(title: book.title, fullText: text)
+            var tree: ZoomNode
+            if !extraction.chapters.isEmpty {
+                tree = ZoomTreeService.buildTree(title: book.title, chapters: extraction.chapters)
+            } else {
+                tree = ZoomTreeService.buildTree(title: book.title, fullText: text)
+            }
             TraceDump.shared.log("zoom", "Árbol extractivo", data: [
                 "children": "\(tree.children.count)",
-                "rootSummaryChars": "\(tree.summary.count)"
+                "rootSummaryChars": "\(tree.summary.count)",
+                "childTitles": tree.children.map(\.title).prefix(12).joined(separator: " | ")
             ])
             let enriched = await ZoomTreeService.enrichWithLLM(root: tree, fullText: text)
             tree = enriched.0
@@ -201,19 +211,21 @@ struct BookSessionView: View {
             root = tree
             path = .root
             TraceDump.shared.setContext("tab", tab.rawValue)
-            // Auto-volcado al abrir: el agente puede pull-dumps y ver el desastre de lectura.
-            TraceDump.shared.dump(reason: "book-opened", extraState: [
-                "childCount": "\(tree.children.count)",
-                "textChars": "\(text.count)",
-                "zoomMode": zoomMode
-            ])
         } catch {
             errorText = error.localizedDescription
             TraceDump.shared.log("error", "open failed", data: ["error": error.localizedDescription])
-            TraceDump.shared.dump(reason: "book-open-error", extraState: [
-                "error": error.localizedDescription
-            ])
         }
         loading = false
+        // Tras pintar la UI: captura real (no el spinner).
+        try? await Task.sleep(nanoseconds: 250_000_000)
+        TraceDump.shared.dump(
+            reason: errorText == nil ? "book-opened" : "book-open-error",
+            extraState: [
+                "childCount": "\(root?.children.count ?? 0)",
+                "textChars": "\(fullText.count)",
+                "zoomMode": zoomMode,
+                "error": errorText ?? ""
+            ]
+        )
     }
 }
