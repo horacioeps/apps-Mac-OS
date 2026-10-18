@@ -248,3 +248,23 @@ mira las trazas porq ue sale mal todavia
 - Dump tras pintar UI (+250ms).
 - Reinstall iPhone + iPad. Pedir reabrir libro y nuevo dump si sigue mal.
 
+
+
+---
+
+## Follow-up: revisa lo que acabo de hacer (2026-10-18 10:56 UTC)
+
+### Pedido
+```
+revisa lo que acabo de hacer
+```
+
+### Lectura de dumps
+1. `124355` — abrió seed_book (8 secciones OK), zoom a «Zoom de lectura».
+2. `125355` — abrió EPUB Gottlieb: **69 capítulos TOC** (Idiots, Part One…); ya no §N. Screenshot: raíz con Contents/Copyright aún visibles (filtro `body>800` los dejaba).
+
+### Fix extra
+- Front matter → carpeta «Preliminares»; zoom principal empieza en Part One / capítulos.
+- Título limpio (sin «12.» / «by Author»).
+- Reinstall iPhone.
+

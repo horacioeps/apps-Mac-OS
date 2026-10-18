@@ -4,11 +4,48 @@ import Foundation
 enum ZoomTreeService {
     /// Árbol desde capítulos EPUB (spine/TOC). Evita 87× «§ N» sobre un blob plano.
     static func buildTree(title: String, chapters: [ReadiumBridge.Chapter]) -> ZoomNode {
-        let usable = chapters.filter { !isBoilerplateTitle($0.title) || $0.body.count > 800 }
-        let list = usable.isEmpty ? chapters : usable
+        // Front matter (Contents, Copyright…) fuera del zoom principal.
+        let reading = chapters.filter { !isBoilerplateTitle($0.title) }
+        let front = chapters.filter { isBoilerplateTitle($0.title) }
+        let list = reading.isEmpty ? chapters : reading
 
         var offset = 0
         var children: [ZoomNode] = []
+
+        if !front.isEmpty, !reading.isEmpty {
+            let start = offset
+            var frontKids: [ZoomNode] = []
+            for ch in front {
+                let s = offset
+                let e = s + ch.body.count
+                frontKids.append(
+                    ZoomNode(
+                        id: UUID(),
+                        title: ch.title,
+                        summary: summarize(ch.body, maxSentences: 1, maxChars: 160),
+                        verbatim: ch.body,
+                        children: [],
+                        sourceStart: s,
+                        sourceEnd: e,
+                        depth: 2
+                    )
+                )
+                offset = e + 2
+            }
+            children.append(
+                ZoomNode(
+                    id: UUID(),
+                    title: "Preliminares",
+                    summary: front.map(\.title).joined(separator: " · "),
+                    verbatim: "",
+                    children: frontKids,
+                    sourceStart: start,
+                    sourceEnd: offset,
+                    depth: 1
+                )
+            )
+        }
+
         for chapter in list {
             let start = offset
             let end = start + chapter.body.count
@@ -17,7 +54,7 @@ enum ZoomTreeService {
                 ZoomNode(
                     id: UUID(),
                     title: chapter.title,
-                    summary: summarize(chapter.body, maxSentences: 2, maxChars: 280),
+                    summary: summarize(chapter.body, maxSentences: 2, maxChars: 220),
                     verbatim: "",
                     children: chunks,
                     sourceStart: start,
@@ -28,21 +65,20 @@ enum ZoomTreeService {
             offset = end + 2
         }
 
-        let outline = list.prefix(14).map(\.title).joined(separator: " · ")
-        let rootSummary = summarize(
-            list.drop(while: { isBoilerplateTitle($0.title) }).first?.body
-                ?? list.first?.body
-                ?? "",
-            maxSentences: 3,
-            maxChars: 320
-        )
-        let summary = rootSummary.isEmpty
-            ? "\(list.count) secciones: \(outline)"
-            : "\(rootSummary)\n\n(\(list.count) secciones)"
+        let displayTitle = cleanBookTitle(title)
+        let firstReal = list.first(where: { !isPartOnlyTitle($0.title) }) ?? list.first
+        let rootSummary = summarize(firstReal?.body ?? "", maxSentences: 3, maxChars: 280)
+        let chapterNames = list.prefix(10).map(\.title).joined(separator: " · ")
+        let summary: String
+        if rootSummary.isEmpty {
+            summary = "\(list.count) capítulos: \(chapterNames)"
+        } else {
+            summary = "\(rootSummary)\n\n\(list.count) capítulos · \(chapterNames)\(list.count > 10 ? "…" : "")"
+        }
 
         return ZoomNode(
             id: UUID(),
-            title: title,
+            title: displayTitle,
             summary: summary,
             verbatim: "",
             children: children,
@@ -186,9 +222,32 @@ enum ZoomTreeService {
         let junk = [
             "contents", "table of contents", "copyright", "title page", "titlepage",
             "epigraph", "dedication", "also by", "about the author", "praise",
-            "cover", "halftitle", "copyright page"
+            "cover", "halftitle", "copyright page", "front matter", "acknowledgments",
+            "acknowledgements", "permissions"
         ]
-        return junk.contains(where: { t == $0 || t.hasPrefix($0) })
+        if junk.contains(where: { t == $0 || t.hasPrefix($0 + " ") || t.hasPrefix($0) }) {
+            return true
+        }
+        // "Copyright © 2019…"
+        if t.contains("copyright") { return true }
+        return false
+    }
+
+    private static func isPartOnlyTitle(_ title: String) -> Bool {
+        title.range(of: #"^(Part|Parte)\b"#, options: [.regularExpression, .caseInsensitive]) != nil
+            && title.split(separator: " ").count <= 4
+    }
+
+    private static func cleanBookTitle(_ title: String) -> String {
+        var t = title
+        // "12. MAYBE YOU SHOULD…" → sin prefijo numérico de fichero
+        if let r = t.range(of: #"^\d+\.\s+"#, options: .regularExpression) {
+            t.removeSubrange(r)
+        }
+        if let r = t.range(of: #"\s+by\s+.+$"#, options: [.regularExpression, .caseInsensitive]) {
+            t.removeSubrange(r)
+        }
+        return t.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private static func splitIntoSections(_ text: String) -> [Section] {

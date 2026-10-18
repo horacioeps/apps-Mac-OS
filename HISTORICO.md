@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 10:56 | revisa lo que hice (dumps) | EPUB OK capítulos; front matter→Preliminares; reinstall | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 10:38 | mira trazas Capas | Diagnóstico §N/EPUB; fix capítulos TOC + dump post-UI; reinstall | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 10:33 | Capas nombre+icono+dumps | Display Capas, AppIcon, TraceDump+pull-dumps; install devices | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:17 | Lector iPad + iPhone 17? | Universal 1,2; install iPad + iPhone 17 Pro Max (XS Max offline) | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
