@@ -62,3 +62,13 @@ No otra app lineal de ebooks: el **zoom jerárquico resumen→verbatim** + Pregu
 - Primario: **iPad** (SwiftUI).
 - Secundario: iPhone companion / Mac más adelante.
 - Motor: ver [SCAFFOLDS.md](SCAFFOLDS.md).
+
+## Estado v0 (código en repo)
+
+Arranque greenfield con Readium SPM + PDFKit:
+
+- `apps/lector/Lector/` — SwiftUI iPad (`com.horacioeps.lector`)
+- Zoom extractivo local (headings → párrafos verbatim)
+- Chat local anclado al nodo; Preguntador SM-2; highlights + export MD
+- Import PDF/EPUB/MD/TXT; semilla `seed_book.md`
+- Pendiente: LLM en Zoom/Chat, Navigator EPUB UI, Zotero/Books/Kindle

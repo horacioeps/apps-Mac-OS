@@ -51,3 +51,29 @@ Documentado en `apps/lector/SCAFFOLDS.md`:
 - Decidir: greenfield Readium vs estudiar Empty.
 - Recuperar proyecto Cursor TEDx del Mac para Preguntador.
 - No implementar código Swift aún (solo research + spec, como pedía el usuario).
+
+---
+
+## Follow-up: Arranca con lo recomendado
+
+### Pedido
+
+```
+Arranca con lo recomendado
+```
+
+### Hecho
+
+Greenfield `apps/lector` SwiftUI iPad:
+
+- SPM Readium 3.11.1 (`ReadiumShared` + `ReadiumStreamer`)
+- PDFKit para PDF; extracción EPUB vía ReadiumBridge
+- ZoomTreeService extractivo, ChatService local, PreguntadorStore SM-2, HighlightStore + export MD
+- Biblioteca + import + seed_book.md
+- `project.yml`, `Lector.xcodeproj`, README
+- Push `main`
+
+### Pendiente
+
+- Compilar en Mac/Xcode (este agent es Linux)
+- LLM en zoom/chat; EPUBNavigator UI; Zotero/Books/Kindle
