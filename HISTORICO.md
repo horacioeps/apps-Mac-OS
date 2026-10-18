@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 05:30 | Lector iPad (zoom/chat/SRS/Readwise/fuentes) + scaffolds GitHub + concepto vault | Spec `apps/lector/`; zoom vault hallado; scaffold recomendado Readium; TEDx Cursor no en VPS | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-17 21:25 | captura ASC (banner PLA) | PLA aún pendiente en ASC; Alarma no creada (solo SegmentPod) | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:21 | listo (PLA aceptado) | IPA export OK; falta crear app en ASC `com.horacioeps.alarma` | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
 | 2026-10-17 21:17 | dame la url (PLA) | Enlaces developer.apple.com/account y ASC agreements | [2026-10-17-alarma-ipad](sesiones/2026-10-17-alarma-ipad.md) |
