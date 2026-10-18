@@ -3,3 +3,6 @@ xcuserdata/
 DerivedData/
 .build/
 build/
+# Clave OpenAI embebida (generada desde ~/.cursor/secrets.env)
+Lector/Secrets.Local.swift
+Secrets.Local.swift

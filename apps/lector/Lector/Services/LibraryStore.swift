@@ -6,7 +6,7 @@ final class LibraryStore: ObservableObject {
     @Published private(set) var books: [BookItem] = []
     @Published var errorMessage: String?
 
-    static var booksDirectory: URL {
+    nonisolated static var booksDirectory: URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let dir = base.appendingPathComponent("Lector/Books", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)

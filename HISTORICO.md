@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 08:16 | compila Lector + key OpenAI + Preguntador TEDx local | Leitner MemorizaGuion; Secrets.Local gitignored; BUILD+install iPad | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:10 | lee sesión: ¿qué queda? | Resumen pendientes Lector (compilar Mac, API key, TEDx worker, EPUBNavigator, Zotero/Books/Kindle) | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 08:09 | guarda sesion | Volcado ampliado + fila HISTORICO + push main | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 07:55 | ambas: LLM zoom/chat + recuperar TEDx | OpenAI Keychain+Zoom/Chat/Preguntador LLM; TEDx Mac no accesible (sin placement worker); SRS estilo vault | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |

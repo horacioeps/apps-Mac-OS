@@ -31,12 +31,12 @@ La primera resolución de paquetes puede tardar.
 | Libro semilla `seed_book.md` | sí |
 | Zoom extractivo + **enriquecimiento LLM** | sí |
 | Chat anclado al nodo con **OpenAI** (fallback local) | sí |
-| Preguntador SM-2 + **generación LLM** (escaletas / pistas) | sí |
-| Ajustes: API key en Keychain | sí |
+| Preguntador Leitner TEDx (MemorizaGuion) + **LLM** | sí |
+| API key embebida local (`Secrets.Local`) + Keychain | sí |
 | Highlights + export Markdown | sí |
 | Extracción EPUB vía Readium | sí |
 | PDF páginas (PDFKit) | sí |
-| Código original Cursor «TEDX Almería 2026» (Mac) | no recuperable desde este cloud (sin placement al worker M4) |
+| Fuente Preguntador MemorizaGuion (TEDx local) | integrado (Leitner + cola) |
 | Zotero / Books / Kindle DRM | pendiente |
 | EPUBNavigator UI nativa Readium | pendiente |
 

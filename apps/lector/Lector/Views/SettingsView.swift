@@ -17,7 +17,7 @@ struct SettingsView: View {
                 TextField("Modelo", text: $model)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
-                Text("La clave se guarda en el Keychain del dispositivo. No va al repo.")
+                Text("Clave embebida en build local (Secrets.Local, fuera del repo) y/o Keychain. App privada.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } header: {
@@ -26,7 +26,7 @@ struct SettingsView: View {
 
             Section("Estado") {
                 Label(
-                    LLMSettings.hasKey ? "API key configurada" : "Sin API key",
+                    LLMSettings.hasKey ? "API key lista (embebida o Keychain)" : "Sin API key",
                     systemImage: LLMSettings.hasKey ? "checkmark.seal.fill" : "key.slash"
                 )
                 Text("Modelo activo: \(LLMSettings.model)")
@@ -35,7 +35,7 @@ struct SettingsView: View {
             }
 
             Section("TEDx / Preguntador") {
-                Text("El Preguntador usa SM-2 + generación LLM a varios niveles (estilo escaleta TEDx). El proyecto Cursor «TEDX Almería 2026» vive en el Mac; este cloud no puede colocarse en el worker M4.")
+                Text("Cajas Leitner + cola de sesión de MemorizaGuion (TEDX Almería 2026 / app/repeticion espaciada iOS). Generación LLM con pistas progresivas.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

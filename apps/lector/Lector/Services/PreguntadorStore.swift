@@ -1,7 +1,8 @@
 import Foundation
 import Combine
 
-/// Repetición espaciada SM-2 + generación LLM (estilo TEDx / CLI de estudio del vault).
+/// Preguntador: cajas Leitner + cola de sesión de MemorizaGuion
+/// (`Personal/Charlas/TEDX Almería 2026/app/repeticion espaciada iOS`).
 @MainActor
 final class PreguntadorStore: ObservableObject {
     @Published private(set) var cards: [ReviewCard] = []
@@ -14,13 +15,13 @@ final class PreguntadorStore: ObservableObject {
 
     init() { load() }
 
-    /// Prioridad tipo CLI: vencidas → lapsos → ease bajo.
+    /// Prioridad: vencidas → fallos → caja baja (MemorizaGuion / CLI).
     func dueCards(for bookID: UUID) -> [ReviewCard] {
         cards
             .filter { $0.bookID == bookID && $0.isDue }
             .sorted {
-                if $0.lapses != $1.lapses { return $0.lapses > $1.lapses }
-                if $0.easeFactor != $1.easeFactor { return $0.easeFactor < $1.easeFactor }
+                if $0.fallos != $1.fallos { return $0.fallos > $1.fallos }
+                if $0.caja != $1.caja { return $0.caja < $1.caja }
                 return $0.dueAt < $1.dueAt
             }
     }
@@ -65,7 +66,7 @@ final class PreguntadorStore: ObservableObject {
         statusMessage = "+\(min(40, generated.count)) tarjetas extractivas"
     }
 
-    /// Genera preguntas con LLM a varios niveles de detalle (escaleta TEDx).
+    /// Genera preguntas con LLM a varios niveles (escaleta TEDx).
     func seedWithLLM(book: BookItem, root: ZoomNode) async {
         guard await LLMClient.shared.isConfigured() else {
             seedFromZoom(book: book, root: root)
@@ -78,7 +79,7 @@ final class PreguntadorStore: ObservableObject {
             let raw = try await LLMClient.shared.complete(
                 system: """
                 Eres el Preguntador de Lector: repetición espaciada para interiorizar un libro
-                (como el repaso de una charla TEDx con escaletas a varios niveles).
+                (como Memoriza Guion / TEDx Almería: pistas progresivas y varios niveles).
                 Devuelve SOLO JSON:
                 {"cards":[{"prompt":"...","answer":"...","hints":["pista1","pista2"],"detailLevel":0}]}
                 detailLevel: 0=esquema, 1=medio, 2=detalle fino.
@@ -102,7 +103,7 @@ final class PreguntadorStore: ObservableObject {
             } else {
                 cards.append(contentsOf: fresh)
                 persist()
-                statusMessage = "+\(fresh.count) tarjetas LLM (estilo TEDx)"
+                statusMessage = "+\(fresh.count) tarjetas (Leitner TEDx)"
             }
         } catch {
             seedFromZoom(book: book, root: root)
@@ -110,28 +111,11 @@ final class PreguntadorStore: ObservableObject {
         }
     }
 
-    func grade(_ card: ReviewCard, _ grade: ReviewGrade) {
+    /// Califica con cajas Leitner de MemorizaGuion (`Nucleo.calificar`).
+    func grade(_ card: ReviewCard, _ grade: ReviewGrade, primera: Bool = true) {
         guard let idx = cards.firstIndex(where: { $0.id == card.id }) else { return }
         var c = cards[idx]
-        let q = Double(grade.rawValue)
-        if grade == .again {
-            c.repetitions = 0
-            c.intervalDays = 0
-            c.lapses += 1
-            c.dueAt = Date().addingTimeInterval(10 * 60)
-        } else {
-            c.repetitions += 1
-            if c.repetitions == 1 {
-                c.intervalDays = 1
-            } else if c.repetitions == 2 {
-                c.intervalDays = 3
-            } else {
-                c.intervalDays = max(1, c.intervalDays * c.easeFactor)
-            }
-            c.easeFactor = max(1.3, c.easeFactor + (0.1 - (3 - q) * (0.08 + (3 - q) * 0.02)))
-            c.dueAt = Date().addingTimeInterval(c.intervalDays * 24 * 3600)
-        }
-        c.lastReviewedAt = Date()
+        LeitnerScheduler.grade(&c, ok: grade == .good, primera: primera)
         cards[idx] = c
         persist()
     }

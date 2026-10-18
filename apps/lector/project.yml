@@ -23,6 +23,9 @@ targets:
       - path: Lector
         excludes:
           - Resources/Info.plist
+          - Secrets.Local.swift
+      - path: Lector/Secrets.Local.swift
+        optional: true
     resources:
       - path: Lector/Resources/Assets.xcassets
       - path: Lector/Resources/seed_book.md

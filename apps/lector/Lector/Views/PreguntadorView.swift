@@ -6,8 +6,10 @@ struct PreguntadorView: View {
     let root: ZoomNode?
     @State private var revealing = false
     @State private var hintIndex = 0
+    @State private var queue: ReviewSessionQueue?
     @State private var current: ReviewCard?
     @State private var generating = false
+    @State private var quedan = 0
 
     var body: some View {
         VStack(spacing: 20) {
@@ -17,7 +19,7 @@ struct PreguntadorView: View {
                 ContentUnavailableView(
                     "Nada pendiente",
                     systemImage: "checkmark.circle",
-                    description: Text("Genera tarjetas (LLM estilo TEDx o extractivo) y vuelve.")
+                    description: Text("Genera tarjetas (LLM o extractivo) y empieza sesión.")
                 )
                 generateButtons
             }
@@ -40,10 +42,13 @@ struct PreguntadorView: View {
                         seedExtractive()
                     }
                     .disabled(root == nil)
+                    Button("Nueva sesión (vencidas)") {
+                        startSession()
+                    }
                 }
             }
         }
-        .onAppear { refreshCurrent() }
+        .onAppear { startSession() }
         .overlay {
             if generating { ProgressView("Generando…").padding().background(.ultraThinMaterial) }
         }
@@ -69,12 +74,12 @@ struct PreguntadorView: View {
     private func cardView(_ card: ReviewCard) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Nivel \(card.detailLevel) · SM-2")
+                Text("Nivel \(card.detailLevel) · caja \(card.caja) · Leitner TEDx")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Text("\(preguntador.dueCards(for: book.id).count) pendientes")
-                    .font(.caption)
+                Text("quedan \(quedan)")
+                    .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
             Text(card.prompt)
@@ -100,23 +105,18 @@ struct PreguntadorView: View {
                     .background(Color.secondary.opacity(0.1))
                     .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 HStack {
-                    ForEach(ReviewGrade.allCases) { grade in
-                        Button(grade.title) {
-                            preguntador.grade(card, grade)
-                            revealing = false
-                            hintIndex = 0
-                            refreshCurrent()
-                        }
+                    Button("↻ Reintentar") { answer(ok: false) }
                         .buttonStyle(.bordered)
-                    }
+                    Button("✓ OK") { answer(ok: true) }
+                        .buttonStyle(.borderedProminent)
                 }
             } else {
                 HStack {
                     if hintIndex < card.hints.count {
-                        Button("Pista") { hintIndex += 1 }
+                        Button("💡 Pista") { hintIndex += 1 }
                             .buttonStyle(.bordered)
                     }
-                    Button("Mostrar respuesta") { revealing = true }
+                    Button("Ver") { revealing = true }
                         .buttonStyle(.borderedProminent)
                 }
             }
@@ -124,16 +124,31 @@ struct PreguntadorView: View {
         }
     }
 
-    private func refreshCurrent() {
-        current = preguntador.dueCards(for: book.id).first
+    private func startSession() {
+        let due = preguntador.dueCards(for: book.id)
+        queue = ReviewSessionQueue(cards: due)
         revealing = false
         hintIndex = 0
+        syncCurrent()
+    }
+
+    private func syncCurrent() {
+        current = queue?.current
+        quedan = queue?.quedan ?? 0
+        revealing = false
+        hintIndex = 0
+    }
+
+    private func answer(ok: Bool) {
+        guard let q = queue, let result = q.responder(ok: ok) else { return }
+        preguntador.grade(result.card, ok ? .good : .again, primera: result.primera)
+        syncCurrent()
     }
 
     private func seedExtractive() {
         guard let root else { return }
         preguntador.seedFromZoom(book: book, root: root)
-        refreshCurrent()
+        startSession()
     }
 
     private func generateLLM() async {
@@ -141,6 +156,6 @@ struct PreguntadorView: View {
         generating = true
         await preguntador.seedWithLLM(book: book, root: root)
         generating = false
-        refreshCurrent()
+        startSession()
     }
 }

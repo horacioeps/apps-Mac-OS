@@ -21,7 +21,13 @@ enum LLMSettings {
     }
 
     static var apiKey: String? {
-        get { KeychainStore.read(service: keyService, account: keyAccount) }
+        get {
+            if let stored = KeychainStore.read(service: keyService, account: keyAccount), !stored.isEmpty {
+                return stored
+            }
+            let bundled = AppSecrets.openAIAPIKey
+            return bundled.isEmpty ? nil : bundled
+        }
         set {
             if let newValue, !newValue.isEmpty {
                 KeychainStore.write(service: keyService, account: keyAccount, value: newValue)
@@ -32,6 +38,14 @@ enum LLMSettings {
     }
 
     static var hasKey: Bool { apiKey?.isEmpty == false }
+
+    /// Si hay clave embebida (Secrets.Local) y el Keychain está vacío, la copia al Keychain.
+    static func seedKeychainFromBundleIfNeeded() {
+        guard KeychainStore.read(service: keyService, account: keyAccount)?.isEmpty != false else { return }
+        let bundled = AppSecrets.openAIAPIKey
+        guard !bundled.isEmpty else { return }
+        KeychainStore.write(service: keyService, account: keyAccount, value: bundled)
+    }
 }
 
 enum KeychainStore {

@@ -70,7 +70,7 @@ Arranque greenfield con Readium SPM + PDFKit + OpenAI:
 - `apps/lector/Lector/` — SwiftUI iPad (`com.horacioeps.lector`)
 - Zoom extractivo + `enrichWithLLM` (resúmenes raíz/capítulos)
 - Chat LLM anclado al nodo (Keychain); fallback extractivo
-- Preguntador SM-2 + seed LLM multi-nivel + pistas (estilo TEDx/CLI vault)
+- Preguntador = cajas Leitner + cola sesión de **MemorizaGuion** (`Personal/Charlas/TEDX Almería 2026/app/repeticion espaciada iOS`) + seed LLM
 - Highlights + export MD; semilla `seed_book.md`
-- **TEDx Mac:** proyecto Cursor «TEDX Almería 2026» no montado aquí; workers M4 online pero Task no acepta `workerId`. Abrir agent self-hosted en `apps-Mac-OS @ Horacio M4` para copiar el código original.
+- OpenAI: `Secrets.Local.swift` (gitignored, desde `API_KEY_OPEN_AI`) → Keychain al arrancar
 - Pendiente: Navigator EPUB UI, Zotero/Books/Kindle

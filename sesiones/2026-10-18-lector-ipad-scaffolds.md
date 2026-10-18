@@ -149,3 +149,23 @@ lee esta sesion y dime que queda por hacer
 - Leído el volcado completo + `PRODUCT.md` / `SCAFFOLDS.md` / `README.md` de `apps/lector`.
 - Respuesta al usuario: lista de pendientes (Mac/Xcode, API key, TEDx worker, Navigator EPUB, Zotero/Books/Kindle, FSRS opcional).
 
+
+
+---
+
+## Follow-up: compila + API key + Preguntador TEDx local (2026-10-18 08:16 UTC)
+
+### Pedido
+
+```
+compila y meet la api open ai key dentro de la app, nunca voy a comartir esta app. y el preguntador lo puedes enoncrar ahora en el proyecto local en este mac
+```
+
+### Hecho
+
+- Hallado Preguntador TEDx: `Personal/Charlas/TEDX Almería 2026/app/repeticion espaciada iOS` (MemorizaGuion).
+- Preguntador Lector: cajas Leitner + cola sesión (Nucleo/Cola) + UI Ver / Pista / Reintentar / OK.
+- OpenAI: `API_KEY_OPEN_AI` → `Lector/Secrets.Local.swift` (**gitignored**); seed a Keychain al arrancar. No va al repo.
+- Build OK (Xcode 26.6) + install + launch en iPad de Horacio (`com.horacioeps.lector`).
+- Fix actor: `LibraryStore.booksDirectory` nonisolated.
+
