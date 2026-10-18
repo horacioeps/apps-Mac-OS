@@ -182,3 +182,22 @@ Sistema: informar del task shell abortado (Find API key / TEDx / devices).
 - Ese shell se abortó por timeout; no hace falta reejecutarlo.
 - Resultados ya usados en el turno anterior (TEDx MemorizaGuion, API key, devices iPad).
 
+
+
+---
+
+## Follow-up: universal iPhone + iPad (2026-10-18 08:17 UTC)
+
+### Pedido
+
+```
+podemos tener dos versiones, una ipad y otra de mi iphone xs max pro 17 ?
+```
+
+### Hecho
+
+- Una sola app universal (`TARGETED_DEVICE_FAMILY` 1,2) — no dos bundle IDs.
+- Orientaciones iPhone en Info.plist.
+- BUILD SUCCEEDED; install+launch en **iPad** y **iPhone 17 Pro Max**.
+- iPhone XS Max aparece en CoreDevice como *unavailable* (no emparejado/túnel); mismo binario sirve cuando esté online.
+

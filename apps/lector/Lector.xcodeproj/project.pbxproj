@@ -19,6 +19,7 @@
 		638A1D9262D1F9FD1E446C08 /* BookSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E9CA9DD0B429194EF28BE /* BookSessionView.swift */; };
 		66F1B5AF1D8780D8E16D871A /* LLMSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA597CA61F2B5DCDE31134D /* LLMSettings.swift */; };
 		69B5B2E8706012651D4848D1 /* HighlightStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF38771491397424F54B55E /* HighlightStore.swift */; };
+		8BC74FB4C0D4D3D4DE5961C3 /* Secrets.Local.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = 384A0AEF55CA08B1EDBBB1CF /* Secrets.Local.swift.example */; };
 		9D9AC1AD37E00092654792DE /* ZoomTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E9D444181AEFC541B4475E /* ZoomTreeView.swift */; };
 		9F2D385DAA4117ED0C3AE1E5 /* DocumentTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAB899C495214AD627B636 /* DocumentTextExtractor.swift */; };
 		A5C9AE1B705084D632C9F18C /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF449279FCCCF56484D209D /* ChatMessage.swift */; };
@@ -43,6 +44,7 @@
 		221C2A167B409FC84EC36461 /* ZoomTreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTreeService.swift; sourceTree = "<group>"; };
 		2F082EAFCF2A72A73D2E6136 /* seed_book.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = seed_book.md; sourceTree = "<group>"; };
 		3258D85DE98A1616B3FB94FE /* LibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStore.swift; sourceTree = "<group>"; };
+		384A0AEF55CA08B1EDBBB1CF /* Secrets.Local.swift.example */ = {isa = PBXFileReference; path = Secrets.Local.swift.example; sourceTree = "<group>"; };
 		3CFE36B2F1C1AD3B8271732D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453731F83B6920FDCB825F46 /* Lector.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Lector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECDB16753882F3161BCAEA1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				106D72D8D9AEF5CC8DE76D02 /* LectorApp.swift */,
 				AA7FEEE015F29B7EED04D617 /* Secrets.Local.swift */,
+				384A0AEF55CA08B1EDBBB1CF /* Secrets.Local.swift.example */,
 				9C7FEB5D8C527F287130C8CD /* Models */,
 				425A1579EAC59A4FB78DD3BF /* Resources */,
 				86324BDC74C927298891508A /* Services */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E505B99A56D416080573D4B4 /* Assets.xcassets in Resources */,
+				8BC74FB4C0D4D3D4DE5961C3 /* Secrets.Local.swift.example in Resources */,
 				0E03F2705251F2ABFFD6D704 /* seed_book.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +336,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.10;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -430,7 +434,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.10;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

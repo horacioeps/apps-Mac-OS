@@ -16,8 +16,8 @@ xcodegen generate
 open Lector.xcodeproj
 ```
 
-- Destino: **iPad** (device family 2), iOS 17+
-- Bundle ID: `com.horacioeps.lector`
+- Destino: **universal** iPhone + iPad (`TARGETED_DEVICE_FAMILY` 1,2), iOS 17+
+- Bundle ID: `com.horacioeps.lector` (misma app en ambos)
 - Team: `WMY552P2HR`
 - SPM: `readium/swift-toolkit` ≥ 3.11.1 → `ReadiumShared` + `ReadiumStreamer`
 

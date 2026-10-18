@@ -59,8 +59,8 @@ No otra app lineal de ebooks: el **zoom jerárquico resumen→verbatim** + Pregu
 
 ## Plataforma
 
-- Primario: **iPad** (SwiftUI).
-- Secundario: iPhone companion / Mac más adelante.
+- **Universal** iPhone + iPad (SwiftUI, misma app `com.horacioeps.lector`).
+- Mac más adelante.
 - Motor: ver [SCAFFOLDS.md](SCAFFOLDS.md).
 
 ## Estado v0.1 (código en repo)
