@@ -125,14 +125,10 @@ struct BookSessionView: View {
         switch book.format {
         case .pdf:
             PDFKitView(url: book.fileURL)
-        case .markdown, .plainText, .epub, .unknown:
-            ScrollView {
-                Text(fullText)
-                    .font(.body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .textSelection(.enabled)
-            }
+        case .markdown:
+            ReadableTextView(text: fullText, treatAsMarkdown: true)
+        case .plainText, .epub, .unknown:
+            ReadableTextView(text: fullText, treatAsMarkdown: false)
         }
     }
 

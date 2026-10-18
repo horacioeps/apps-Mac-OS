@@ -1,6 +1,6 @@
 # Zoom de lectura
 
-Un librito de ejemplo para probar el zoom multinivel de Lector.
+Un librito de ejemplo para probar el zoom multinivel de Lectura.
 
 ## Por qué leer así
 

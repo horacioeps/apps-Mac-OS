@@ -62,7 +62,7 @@ final class ChatService: ObservableObject {
 
     private func llmAnswer(question: String, context: String, nodeTitle: String, bookTitle: String) async throws -> String {
         let system = """
-        Eres el asistente de lectura de la app Lector (iPad).
+        Eres el asistente de lectura de la app Lectura.
         Responde en español, breve y fiel al contexto del nodo de zoom actual.
         Si el contexto no basta, dilo; no inventes citas.
         Nodo: «\(nodeTitle)» del libro «\(bookTitle)».

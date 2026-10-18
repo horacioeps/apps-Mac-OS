@@ -1,6 +1,6 @@
-# Capas
+# Lectura
 
-App **Capas** (bundle `com.horacioeps.lector`): zoom multinivel + chat + Preguntador (SRS) + highlights. Motor **Readium** (SPM) + PDFKit.
+App **Lectura** (bundle `com.horacioeps.lector`): zoom multinivel + chat + Preguntador (SRS) + highlights. Motor **Readium** (SPM) + PDFKit.
 
 Ver [PRODUCT.md](PRODUCT.md) y [SCAFFOLDS.md](SCAFFOLDS.md).
 
@@ -42,7 +42,7 @@ La primera resolución de paquetes puede tardar.
 
 ### OpenAI
 
-1. Abre Capas → ⚙ Ajustes  
+1. Abre Lectura → ⚙ Ajustes  
 2. API key embebida local o pégala → modelo (default `gpt-4o-mini`) → Guardar  
 3. Al abrir un libro, el zoom pide resúmenes LLM; el chat y «Generar con LLM» del Preguntador la usan.
 
@@ -60,6 +60,8 @@ Cuando algo falle en el iPhone/iPad:
 ```
 
 3. Los ficheros quedan en `debug-dumps/` (`state.json`, `trace.jsonl`, `screen.png`). Dile al agente «mira el dump» o describe el error: con el volcado se ve la pantalla y el rastro.
+
+Páginas renderiza Markdown (títulos tipográficos, sin `#` crudos).
 
 ## Estructura
 

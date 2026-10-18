@@ -50,7 +50,7 @@ final class LibraryStore: ObservableObject {
         let item = BookItem(
             id: UUID(),
             title: "Zoom de lectura (ejemplo)",
-            author: "Lector",
+            author: "Lectura",
             format: .markdown,
             relativePath: "seed_book.md",
             importedAt: Date(),

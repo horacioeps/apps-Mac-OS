@@ -78,7 +78,7 @@ final class PreguntadorStore: ObservableObject {
         do {
             let raw = try await LLMClient.shared.complete(
                 system: """
-                Eres el Preguntador de Lector: repetición espaciada para interiorizar un libro
+                Eres el Preguntador de Lectura: repetición espaciada para interiorizar un libro
                 (como Memoriza Guion / TEDx Almería: pistas progresivas y varios niveles).
                 Devuelve SOLO JSON:
                 {"cards":[{"prompt":"...","answer":"...","hints":["pista1","pista2"],"detailLevel":0}]}

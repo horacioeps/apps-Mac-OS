@@ -283,3 +283,19 @@ pregunta: lo podemos abrir en un similar visual aqui en el mac ? y otra osa, pro
 - Creado sim «Capas iPhone» (iPhone 17 Pro Max, iOS 26.5), build sim OK, install+launch `com.horacioeps.lector`, Simulator activado.
 - Propuestas de nombre (sin aplicar aún): **Mirada**, **Escala**, **Profund**.
 
+
+
+---
+
+## Follow-up: nombre Lectura + Markdown + EPUB en sim (2026-10-18 11:18 UTC)
+
+### Pedido
+- Nombre «Lectura» y Páginas bien renderizado (screenshot seed con `#` crudos).
+- Meter el EPUB Gottlieb del path iCloud en el simulador.
+
+### Hecho
+- Display name **Lectura**; docs/UI/dumps renombrados.
+- `ReadableTextView`: Markdown tipográfico en pestaña Páginas.
+- Sim: EPUB copiado a Application Support + catalog; app relanzada.
+- Device: reinstall Lectura en iPhone.
+

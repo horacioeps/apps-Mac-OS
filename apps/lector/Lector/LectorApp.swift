@@ -17,7 +17,7 @@ struct LectorApp: App {
                 .environmentObject(preguntador)
                 .environmentObject(highlights)
                 .environmentObject(TraceDump.shared)
-                .capasTraceDumpChrome()
+                .lecturaTraceDumpChrome()
         }
     }
 }

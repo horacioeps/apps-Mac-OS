@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Trae CapasDumps del dispositivo o simulador a apps/lector/debug-dumps/
+# Trae LecturaDumps (o CapasDumps legacy) a apps/lector/debug-dumps/
 set -euo pipefail
 export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -16,8 +16,11 @@ pull_sim() {
   local container
   container="$(xcrun simctl get_app_container "$udid" "$BUNDLE" data 2>/dev/null || true)"
   [[ -n "$container" ]] || { echo "App no instalada en sim $udid"; return 1; }
-  local src="$container/Documents/CapasDumps"
-  [[ -d "$src" ]] || { echo "Sin CapasDumps en sim: $src"; return 1; }
+  local src=""
+  for name in LecturaDumps CapasDumps; do
+    if [[ -d "$container/Documents/$name" ]]; then src="$container/Documents/$name"; break; fi
+  done
+  [[ -n "$src" ]] || { echo "Sin LecturaDumps en sim: $container/Documents"; return 1; }
   rsync -a --delete "$src/" "$OUT/sim/"
   echo "OK sim → $OUT/sim/"
   ls -la "$OUT/sim/latest" 2>/dev/null || ls -la "$OUT/sim" | tail -5
@@ -31,15 +34,20 @@ pull_device() {
   [[ -n "$device" ]] || { echo "No hay device paired"; return 1; }
   local tmp
   tmp="$(mktemp -d)"
-  # Copia contenedor de documentos de la app
-  if xcrun devicectl device copy from --device "$device" --domain-type appDataContainer --domain-identifier "$BUNDLE" --source Documents/CapasDumps --destination "$tmp/CapasDumps" 2>/dev/null; then
-    rsync -a --delete "$tmp/CapasDumps/" "$OUT/device/"
-    echo "OK device ($device) → $OUT/device/"
-    ls -la "$OUT/device/latest" 2>/dev/null || ls -la "$OUT/device" | tail -5
-  else
-    echo "devicectl copy falló. Alternativa: Archivos › Capas › CapasDumps › AirDrop/carpeta compartida."
-    echo "Intentando listar..."
+  local ok=0
+  for name in LecturaDumps CapasDumps; do
+    if xcrun devicectl device copy from --device "$device" --domain-type appDataContainer --domain-identifier "$BUNDLE" --source "Documents/$name" --destination "$tmp/Dumps" 2>/dev/null; then
+      rsync -a --delete "$tmp/Dumps/" "$OUT/device/"
+      echo "OK device ($device) → $OUT/device/ (desde $name)"
+      ls -la "$OUT/device/latest" 2>/dev/null || ls -la "$OUT/device" | tail -5
+      ok=1
+      break
+    fi
+  done
+  if [[ "$ok" -ne 1 ]]; then
+    echo "devicectl copy falló. Alternativa: Archivos › Lectura › LecturaDumps."
     xcrun devicectl device info files --device "$device" --domain-type appDataContainer --domain-identifier "$BUNDLE" 2>&1 | head -40 || true
+    rm -rf "$tmp"
     return 1
   fi
   rm -rf "$tmp"

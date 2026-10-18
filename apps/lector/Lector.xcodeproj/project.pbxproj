@@ -29,6 +29,7 @@
 		B835ECD3CA4DAC08169D4330 /* ChatSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE303117E8D647FA5F221FFC /* ChatSheet.swift */; };
 		B8E91F0D6213E05C643696DE /* ZoomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE151B51F0CCEE4C9683D7B6 /* ZoomNode.swift */; };
 		BA9EBCE3117305D1D0FC290E /* ZoomTreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C2A167B409FC84EC36461 /* ZoomTreeService.swift */; };
+		C4A8961171B8A9C62AA37E51 /* ReadableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65D363AF33D91827D16AF3 /* ReadableTextView.swift */; };
 		E4F1B08FE5F18FC93DB858B8 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C410F082C0C64172A061347 /* PDFKitView.swift */; };
 		E505B99A56D416080573D4B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE36B2F1C1AD3B8271732D /* Assets.xcassets */; };
 		EA6EC4828725CA3C5A709786 /* ReadiumStreamer in Frameworks */ = {isa = PBXBuildFile; productRef = 847B888E9E74A6F553DE69A6 /* ReadiumStreamer */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		106D72D8D9AEF5CC8DE76D02 /* LectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectorApp.swift; sourceTree = "<group>"; };
+		1D65D363AF33D91827D16AF3 /* ReadableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableTextView.swift; sourceTree = "<group>"; };
 		1DF449279FCCCF56484D209D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		221C2A167B409FC84EC36461 /* ZoomTreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTreeService.swift; sourceTree = "<group>"; };
 		2F082EAFCF2A72A73D2E6136 /* seed_book.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = seed_book.md; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				F6C8B906D3CC55250293AF71 /* LibraryView.swift */,
 				6C410F082C0C64172A061347 /* PDFKitView.swift */,
 				9CFAF2C522933FFA86F2DFAD /* PreguntadorView.swift */,
+				1D65D363AF33D91827D16AF3 /* ReadableTextView.swift */,
 				641D09744C9CB7A450704EE5 /* RootView.swift */,
 				4ECDB16753882F3161BCAEA1 /* SettingsView.swift */,
 				F7E9D444181AEFC541B4475E /* ZoomTreeView.swift */,
@@ -262,6 +265,7 @@
 				E4F1B08FE5F18FC93DB858B8 /* PDFKitView.swift in Sources */,
 				A7AB5D256EE785E19EB03696 /* PreguntadorStore.swift in Sources */,
 				F6C9C25CA84C566953FA7E87 /* PreguntadorView.swift in Sources */,
+				C4A8961171B8A9C62AA37E51 /* ReadableTextView.swift in Sources */,
 				EE8B3FA0B9218B01F9B3250E /* ReadiumBridge.swift in Sources */,
 				4D4F6C7EB3C6C1028B8FF903 /* ReviewCard.swift in Sources */,
 				FB0E594F5AACF28FC0441D54 /* RootView.swift in Sources */,

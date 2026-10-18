@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 
 /// Volcado de trazas + capturas para depurar con el agente (simulador o device).
-/// Escribe en Documents/CapasDumps/ (visible en Archivos) y Application Support.
+/// Escribe en Documents/LecturaDumps/ (visible en Archivos) y Application Support.
 @MainActor
 final class TraceDump: ObservableObject {
     static let shared = TraceDump()
@@ -49,21 +49,21 @@ final class TraceDump: ObservableObject {
             events.removeFirst(events.count - maxEvents)
         }
         #if DEBUG
-        print("[Capas/\(category)] \(message)")
+        print("[Lectura/\(category)] \(message)")
         #endif
     }
 
-    /// Carpeta Documents/CapasDumps (File Sharing / Archivos).
+    /// Carpeta Documents/LecturaDumps (File Sharing / Archivos).
     var documentsDumpsURL: URL {
         let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let dir = docs.appendingPathComponent("CapasDumps", isDirectory: true)
+        let dir = docs.appendingPathComponent("LecturaDumps", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
     }
 
     var supportDumpsURL: URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let dir = base.appendingPathComponent("Capas/dumps", isDirectory: true)
+        let dir = base.appendingPathComponent("Lectura/dumps", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
     }
@@ -89,7 +89,7 @@ final class TraceDump: ObservableObject {
             state["dumpAt"] = iso.string(from: Date())
             state["device"] = UIDevice.current.model
             state["system"] = UIDevice.current.systemVersion
-            state["app"] = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Capas"
+            state["app"] = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Lectura"
             for (k, v) in extraState { state[k] = v }
             let stateData = try JSONSerialization.data(withJSONObject: state, options: [.prettyPrinted, .sortedKeys])
             try stateData.write(to: primary.appendingPathComponent("state.json"), options: .atomic)
@@ -108,7 +108,7 @@ final class TraceDump: ObservableObject {
 
             // README for agent
             let readme = """
-            # Capas dump \(folderName)
+            # Lectura dump \(folderName)
 
             Motivo: \(reason)
 
@@ -138,7 +138,7 @@ final class TraceDump: ObservableObject {
             try? FileManager.default.copyItem(at: primary, to: supportCopy)
 
             lastDumpFolderName = folderName
-            lastDumpMessage = "Volcado \(folderName) → Archivos › Capas › CapasDumps"
+            lastDumpMessage = "Volcado \(folderName) → Archivos › Lectura › LecturaDumps"
             banner = lastDumpMessage
             log("dump", "OK \(folderName)")
             return primary
@@ -185,7 +185,7 @@ struct TraceDumpChrome: ViewModifier {
                     } label: {
                         Label("Volcar", systemImage: "ladybug.fill")
                     }
-                    .accessibilityIdentifier("capas.dump")
+                    .accessibilityIdentifier("lectura.dump")
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
@@ -212,6 +212,10 @@ struct TraceDumpChrome: ViewModifier {
 
 extension View {
     func capasTraceDumpChrome() -> some View {
+        modifier(TraceDumpChrome())
+    }
+
+    func lecturaTraceDumpChrome() -> some View {
         modifier(TraceDumpChrome())
     }
 }

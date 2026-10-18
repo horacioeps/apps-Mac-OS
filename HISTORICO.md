@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-18 11:18 | Lectura + render MD + EPUB en sim | Nombre Lectura; ReadableTextView; Gottlieb en Simulator | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 11:01 | sim Mac + 3 nombres vs Capas | Sim iPhone 17 Pro Max booted+Capas; nombres Mirada/Escala/Profund | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 10:56 | revisa lo que hice (dumps) | EPUB OK capítulos; front matter→Preliminares; reinstall | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 10:38 | mira trazas Capas | Diagnóstico §N/EPUB; fix capítulos TOC + dump post-UI; reinstall | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
