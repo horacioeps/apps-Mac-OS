@@ -131,3 +131,21 @@ guarda sesion
 2. «Arranca con lo recomendado» → greenfield `apps/lector` SwiftUI + Readium/PDFKit.
 3. «ambas» → LLM OpenAI (Zoom/Chat/Preguntador) + intento recuperar TEDx Mac (bloqueado sin placement worker); SRS estilo vault portado.
 4. «guarda sesion» → este volcado + HISTORICO + push.
+
+---
+
+## Follow-up: lee esta sesion y dime que queda por hacer (2026-10-18 08:10 UTC)
+
+### Pedido
+
+```
+lee esta sesion y dime que queda por hacer
+```
+(Captura: «Sesión guardada…» con enlace a este volcado.)
+
+### Hecho
+
+- `git pull --rebase origin main` (faltaba el commit del scaffold Lector en la copia local).
+- Leído el volcado completo + `PRODUCT.md` / `SCAFFOLDS.md` / `README.md` de `apps/lector`.
+- Respuesta al usuario: lista de pendientes (Mac/Xcode, API key, TEDx worker, Navigator EPUB, Zotero/Books/Kindle, FSRS opcional).
+
