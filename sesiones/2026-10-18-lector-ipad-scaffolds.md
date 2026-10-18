@@ -268,3 +268,18 @@ revisa lo que acabo de hacer
 - Título limpio (sin «12.» / «by Author»).
 - Reinstall iPhone.
 
+
+
+---
+
+## Follow-up: simulador Mac + nombres (2026-10-18 11:01 UTC)
+
+### Pedido
+```
+pregunta: lo podemos abrir en un similar visual aqui en el mac ? y otra osa, propon nombre diferente de capas, 3 variantes
+```
+
+### Hecho
+- Creado sim «Capas iPhone» (iPhone 17 Pro Max, iOS 26.5), build sim OK, install+launch `com.horacioeps.lector`, Simulator activado.
+- Propuestas de nombre (sin aplicar aún): **Mirada**, **Escala**, **Profund**.
+
