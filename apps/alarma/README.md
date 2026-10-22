@@ -1,10 +1,10 @@
 # Alarma
 
-Despertador simple para **iPad** (iPadOS 26+). Usa **AlarmKit**: al sonar aparece en la **pantalla bloqueada** con dos botones grandes del sistema — **Parar** y **Snooze**.
+Despertador simple para **iPad** (iPadOS 26.1+). Usa **AlarmKit**: al sonar aparece en la **pantalla bloqueada** con dos botones grandes del sistema — **Parar** y **Snooze**.
 
 ## Requisitos
 
-- iPadOS **26.0** o superior (AlarmKit)
+- iPadOS **26.1** o superior (AlarmKit)
 - Xcode 26+
 - Autorización de Alarmas la primera vez (o en Ajustes → Alarma)
 

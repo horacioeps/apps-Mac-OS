@@ -95,6 +95,7 @@ final class AlarmStore: ObservableObject {
         let id = UUID()
         do {
             let config = try makeConfiguration(
+                id: id,
                 schedule: nil,
                 countdown: Alarm.CountdownDuration(preAlert: 10, postAlert: TimeInterval(snoozeMinutes * 60)),
                 label: "Prueba"
@@ -106,6 +107,24 @@ final class AlarmStore: ObservableObject {
             statusMessage = "Suena en 10 s. Bloquea el iPad para ver Parar y Snooze."
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    /// Para la alarma que suena o está en snooze. Si es diaria, queda programada para mañana.
+    func stopRinging() {
+        guard let id = activeAlarmID else { return }
+        do {
+            try manager.stop(id: id)
+            statusMessage = isEnabled ? "Parada · vuelve mañana a las \(formattedTime)" : "Parada"
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    var isRingingOrSnoozing: Bool {
+        switch alarmState {
+        case .alerting, .countdown, .paused: return true
+        default: return false
         }
     }
 
@@ -132,6 +151,7 @@ final class AlarmStore: ObservableObject {
 
         do {
             let config = try makeConfiguration(
+                id: id,
                 schedule: schedule,
                 countdown: Alarm.CountdownDuration(
                     preAlert: nil,
@@ -169,24 +189,20 @@ final class AlarmStore: ObservableObject {
     }
 
     private func makeConfiguration(
+        id: UUID,
         schedule: Alarm.Schedule?,
         countdown: Alarm.CountdownDuration?,
         label: String
     ) throws -> AlarmManager.AlarmConfiguration<WakeAlarmMetadata> {
-        let stop = AlarmButton(
-            text: "Parar",
-            textColor: .white,
-            systemImageName: "stop.fill"
-        )
         let snooze = AlarmButton(
             text: "Snooze",
             textColor: .white,
             systemImageName: "moon.zzz.fill"
         )
 
+        // Desde iPadOS 26.1 el botón de parar lo dibuja el sistema (deslizar); solo el secundario es nuestro.
         let alert = AlarmPresentation.Alert(
-            title: LocalizedStringResource(stringLiteral: label),
-            stopButton: stop,
+            title: LocalizedStringResource(stringLiteral: "\(label) · desliza para parar"),
             secondaryButton: snooze,
             secondaryButtonBehavior: .countdown
         )
@@ -206,6 +222,7 @@ final class AlarmStore: ObservableObject {
             countdownDuration: countdown,
             schedule: schedule,
             attributes: attributes,
+            stopIntent: StopAlarmIntent(alarmID: id),
             sound: .named("arpa.caf")
         )
     }

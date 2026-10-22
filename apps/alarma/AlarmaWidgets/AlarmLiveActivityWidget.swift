@@ -1,4 +1,5 @@
 import AlarmKit
+import AppIntents
 import SwiftUI
 import WidgetKit
 
@@ -19,6 +20,9 @@ struct AlarmLiveActivityWidget: Widget {
                 DynamicIslandExpandedRegion(.center) {
                     Text(context.attributes.metadata?.label ?? "Alarma")
                         .font(.headline)
+                }
+                DynamicIslandExpandedRegion(.bottom) {
+                    stopButton(state: context.state)
                 }
             } compactLeading: {
                 Image(systemName: "alarm.fill")
@@ -54,9 +58,21 @@ struct AlarmLiveActivityWidget: Widget {
 
             countdownText(state: context.state)
                 .font(.title2.monospacedDigit().weight(.bold))
+
+            stopButton(state: context.state)
         }
         .padding(16)
         .activityBackgroundTint(Color.black.opacity(0.35))
+    }
+
+    private func stopButton(state: AlarmPresentationState) -> some View {
+        Button(intent: StopAlarmIntent(alarmID: state.alarmID)) {
+            Label("Parar", systemImage: "stop.fill")
+                .font(.headline)
+                .padding(.horizontal, 6)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(.red)
     }
 
     @ViewBuilder

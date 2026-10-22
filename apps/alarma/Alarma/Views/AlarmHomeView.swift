@@ -12,6 +12,10 @@ struct AlarmHomeView: View {
                     .font(.system(size: 28, weight: .semibold, design: .rounded))
                     .foregroundStyle(.secondary)
 
+                if store.isRingingOrSnoozing {
+                    stopButton
+                }
+
                 timePicker
 
                 Toggle(isOn: Binding(
@@ -64,7 +68,7 @@ struct AlarmHomeView: View {
                 .tint(.orange)
                 .padding(.horizontal, 40)
 
-                Text("Al sonar: pantalla bloqueada con Parar y Snooze.")
+                Text("Al sonar: desliza para parar o pulsa Snooze. En snooze, Parar en la pantalla bloqueada.")
                     .font(.footnote)
                     .foregroundStyle(.tertiary)
                     .multilineTextAlignment(.center)
@@ -123,6 +127,20 @@ struct AlarmHomeView: View {
         .onChange(of: store.minute) { _, _ in
             Task { await store.applyTimeChange() }
         }
+    }
+
+    private var stopButton: some View {
+        Button {
+            store.stopRinging()
+        } label: {
+            Label("PARAR", systemImage: "stop.fill")
+                .font(.system(size: 40, weight: .heavy, design: .rounded))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 28)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(.red)
+        .padding(.horizontal, 40)
     }
 
     private var snoozeControl: some View {
