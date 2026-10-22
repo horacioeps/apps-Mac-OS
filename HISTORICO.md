@@ -4,6 +4,7 @@ Registro compacto de pedidos y acciones en este repositorio.
 
 | Fecha (UTC) | Pedido | Hecho | Sesión |
 |-------------|--------|-------|--------|
+| 2026-10-23 | ¿está hecha la app de snooze para iPad? | Sí: `apps/alarma/` (AlarmKit, Parar+Snooze en pantalla bloqueada, instalada en iPad); App Store pendiente de crear app en ASC | [2026-10-23-app-snooze-ipad](sesiones/2026-10-23-app-snooze-ipad.md) |
 | 2026-10-18 11:40 | scroll no va | Frame maxHeight + UITextView Páginas; reinstall | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 11:18 | Lectura + render MD + EPUB en sim | Nombre Lectura; ReadableTextView; Gottlieb en Simulator | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
 | 2026-10-18 11:01 | sim Mac + 3 nombres vs Capas | Sim iPhone 17 Pro Max booted+Capas; nombres Mirada/Escala/Profund | [2026-10-18-lector-ipad-scaffolds](sesiones/2026-10-18-lector-ipad-scaffolds.md) |
