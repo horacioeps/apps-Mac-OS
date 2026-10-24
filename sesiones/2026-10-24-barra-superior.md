@@ -83,4 +83,27 @@ bien , otra mod, que los bordes no sean 100% cuadrados , si no que sean redondea
 
 Rounded and darker; it now stands out from the window below. Saving.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta a62dd09e-9e7e-4902-89e2-9588125c2936 -->
+## Agente (Claude Code)
+
+La barra ya tiene las esquinas redondeadas y un gris algo más oscuro. Está instalada en la versión v1.2.0 y la he comprobado con una captura de pantalla.
+
+- **Esquinas**: las cuatro van redondeadas con un radio de 12 pt, con la curva suave de las ventanas del Mac. También lleva un borde muy fino, como el de las ventanas.
+- **Color**: en modo claro es un gris al 84 %, frente al casi blanco de las apps. En modo oscuro es un gris al 10 %, más oscuro que las ventanas oscuras. Cambia sola al pasar de claro a oscuro.
+
+En la captura se distingue bien de la ventana de debajo, y la esquina de los avisos sigue libre.
+
+Si quieres más o menos redondeo, u otro tono de gris, son dos números en `BarBackground` de [Sources/main.swift](apps/barra/Sources/main.swift). Está subido a `main`, con el volcado de la sesión y la fila en `HISTORICO.md`.
+
+## Usuario
+
+un gris un poco mas oscuro o mejor un azul como este
+
+## Agente (Claude Code)
+
+The blue works. Paused timers look faint on it, so I'll raise their contrast. Now adding the Mac's memory used / physical.
+
+On the notch screen the right side only has ~256 pt, so the RAM figure and the clock got dropped. I'll put the Mac's RAM on the left of the notch, where there's room.
+
+Matches (13.22 vs 13.29 GB a few seconds apart). Saving.
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 3cfd8ad2-42cf-4d42-801c-52c87b3e0f5a -->

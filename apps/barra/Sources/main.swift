@@ -50,6 +50,20 @@ struct TableroSnapshot: Decodable {
   let memMB: Int
 }
 
+// "Memory Used" as Activity Monitor computes it: app memory (anonymous pages not marked
+// purgeable) + wired + compressed. Physical is the installed RAM.
+func systemMemory() -> (used: Double, total: Double)? {
+  var stats = vm_statistics64()
+  var count = mach_msg_type_number_t(MemoryLayout<vm_statistics64>.size / MemoryLayout<integer_t>.size)
+  let ok = withUnsafeMutablePointer(to: &stats) {
+    $0.withMemoryRebound(to: integer_t.self, capacity: Int(count)) { host_statistics64(mach_host_self(), HOST_VM_INFO64, $0, &count) }
+  }
+  guard ok == KERN_SUCCESS else { return nil }
+  let pages = Double(stats.internal_page_count) - Double(stats.purgeable_count)
+    + Double(stats.wire_count) + Double(stats.compressor_page_count)
+  return (pages * Double(vm_kernel_page_size), Double(ProcessInfo.processInfo.physicalMemory))
+}
+
 func alive(_ pid: Int32) -> Bool { kill(pid, 0) == 0 || errno == EPERM }
 func load<T: Decodable>(_ url: URL) -> T? {
   guard let data = try? Data(contentsOf: url) else { return nil }
@@ -60,9 +74,11 @@ final class Model: ObservableObject {
   @Published var now = Date()
   @Published var timers: [ActiveTimer]?        // nil: Timers Paralelos PRO is not running
   @Published var tablero: TableroSnapshot?     // nil: Tablero IA closed or silent for 30 s
+  @Published var memory: (used: Double, total: Double)?
 
   func refresh() {
     now = Date()
+    memory = systemMemory()
     if let s: TimersSnapshot = load(timersFile), alive(s.pid) { timers = s.timers } else { timers = nil }
     if let s: TableroSnapshot = load(tableroFile), alive(s.pid),
        now.timeIntervalSince1970 - s.at / 1000 < 30 { tablero = s } else { tablero = nil }
@@ -88,6 +104,11 @@ func gigas(_ mb: Int) -> String {
   f.locale = Locale(identifier: "es_ES"); f.minimumFractionDigits = 1; f.maximumFractionDigits = 1
   return (f.string(from: NSNumber(value: Double(mb) / 1024)) ?? "?") + " GB"
 }
+func gigasBytes(_ bytes: Double, digits: Int) -> String {
+  let f = NumberFormatter()
+  f.locale = Locale(identifier: "es_ES"); f.minimumFractionDigits = digits; f.maximumFractionDigits = digits
+  return f.string(from: NSNumber(value: bytes / 1_073_741_824)) ?? "?"
+}
 func open(_ app: URL) {
   let c = NSWorkspace.OpenConfiguration()
   c.activates = true
@@ -109,7 +130,7 @@ struct TimerChip: View {
         if t.state == "paused" { Image(systemName: "pause.fill").font(.system(size: 9)) }
       }
     }
-    .opacity(t.state == "running" ? 1 : 0.55)
+    .opacity(t.state == "running" ? 1 : 0.75)
   }
 }
 
@@ -145,17 +166,25 @@ struct BarView: View {
 
   var body: some View {
     HStack(spacing: 0) {
-      timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
-        .frame(width: leftWidth, alignment: .leading).clipped()
+      // Left of the notch (or of everything): timers, and the Mac's RAM at its far end. On a notched
+      // screen the right side is short once the notification corner is left free, so RAM lives here.
+      HStack(spacing: 16) {
+        timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
+          .layoutPriority(-1)
+        if leftWidth != nil { Spacer(minLength: 0); macMemory }
+      }
+      .frame(width: leftWidth, alignment: .leading).clipped()
       Spacer(minLength: 16)
-      // With the notification corner left free the right side can get tight: drop the date, then the clock.
+      // Tight on the right: drop the date, then the "IA" label, then the clock.
       ViewThatFits(in: .horizontal) {
         HStack(spacing: 16) {
-          iaPart
+          if leftWidth == nil { macMemory }
+          iaPart(label: true)
           Text(model.now, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
         }
-        HStack(spacing: 16) { iaPart; Text(model.now, format: .dateTime.hour().minute()) }
-        iaPart
+        HStack(spacing: 16) { iaPart(label: true); Text(model.now, format: .dateTime.hour().minute()) }
+        HStack(spacing: 12) { iaPart(label: false); Text(model.now, format: .dateTime.hour().minute()) }
+        iaPart(label: false)
       }
       .frame(width: rightWidth, alignment: .trailing)
     }
@@ -181,12 +210,25 @@ struct BarView: View {
     }
   }
 
-  var iaPart: some View { tablero.contentShape(Rectangle()).onTapGesture { open(tableroApp) } }
+  // The Mac as a whole, as Activity Monitor shows it: memory used / physical memory.
+  @ViewBuilder var macMemory: some View {
+    if let m = model.memory {
+      HStack(spacing: 4) {
+        Text("RAM").foregroundStyle(.secondary)
+        Text("\(gigasBytes(m.used, digits: 2)) / \(gigasBytes(m.total, digits: 0)) GB").monospacedDigit()
+      }
+      .help("Memoria usada / memoria física del Mac (como el Monitor de Actividad)")
+    }
+  }
 
-  @ViewBuilder var tablero: some View {
+  func iaPart(label: Bool) -> some View {
+    tablero(label: label).contentShape(Rectangle()).onTapGesture { open(tableroApp) }
+  }
+
+  @ViewBuilder func tablero(label: Bool) -> some View {
     if let t = model.tablero {
       HStack(spacing: 10) {
-        Text("IA").foregroundStyle(.secondary)
+        if label { Text("IA").foregroundStyle(.secondary) }
         if t.permission > 0 { Count(n: t.permission, icon: "exclamationmark.circle.fill", tint: .red, help: "Piden permiso") }
         Count(n: t.working, icon: "play.fill", tint: .green, help: "Trabajando")
         Count(n: t.waiting, icon: "pause.fill", tint: .orange, help: "Te esperan")
@@ -210,17 +252,17 @@ final class BarPanel: NSPanel {
   // AppKit pushes windows below the menu bar and the notch; this one belongs exactly up there.
   override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect { frameRect }
 }
-// Rounded like a Mac window, a shade darker than one so it reads as its own thing. Drawn on a
-// layer because the corners need the window itself to be clear; colours are re-resolved on
-// every appearance change since a CGColor does not follow light/dark on its own.
+// Rounded like a Mac window, in the sky blue of Horacio's wallpaper (#4CB2E2) so it never passes
+// for an app. Drawn on a layer because the corners need the window itself to be clear. The panel
+// is forced to dark appearance, so text and symbols come out white on the blue in either mode.
 final class BarBackground: NSView {
   static let radius: CGFloat = 12
+  static let color = NSColor(srgbRed: 0x4C / 255, green: 0xB2 / 255, blue: 0xE2 / 255, alpha: 1)
   override var wantsUpdateLayer: Bool { true }
   override func updateLayer() {
     guard let layer else { return }
-    let dark = effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-    layer.backgroundColor = NSColor(white: dark ? 0.10 : 0.84, alpha: 1).cgColor
-    layer.borderColor = NSColor(white: dark ? 1 : 0, alpha: dark ? 0.12 : 0.10).cgColor
+    layer.backgroundColor = Self.color.cgColor
+    layer.borderColor = NSColor(white: 1, alpha: 0.18).cgColor
     layer.borderWidth = 0.5
     layer.cornerRadius = Self.radius
     layer.cornerCurve = .continuous
@@ -317,6 +359,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       // top edge when the menu bar hides, and their text showing through made the bar unreadable.
       panel.isOpaque = false
       panel.backgroundColor = .clear
+      panel.appearance = NSAppearance(named: .darkAqua)
       panel.hasShadow = false
       panel.hidesOnDeactivate = false
       panel.isReleasedWhenClosed = false
