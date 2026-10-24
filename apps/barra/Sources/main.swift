@@ -13,6 +13,7 @@
 // costs about 1 ms a call.
 import AVFoundation
 import AppKit
+import ApplicationServices
 import ServiceManagement
 import SwiftUI
 
@@ -429,6 +430,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     model.refresh()
     every(1) { [weak self] in self?.model.refresh() }
     every(0.08) { [weak self] in self?.syncVisibility() }
+    every(0.5) { [weak self] in self?.keepWindowsBelowBar() }
+    if keepWindowsBelow { askForAccessibility() }
     NotificationCenter.default.addObserver(self, selector: #selector(rebuild),
                                            name: NSApplication.didChangeScreenParametersNotification, object: nil)
     rebuild()
@@ -491,6 +494,79 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     syncVisibility()
   }
 
+  // MARK: Windows below the bar
+  //
+  // macOS gives no way to reserve screen space the way the real menu bar does: with it auto-hidden,
+  // windows (and "fill"/zoom) reach y = 0. So, like a window manager, the bar moves them: twice a
+  // second it looks for app windows whose top edge is under a bar that is showing and, through the
+  // Accessibility API, shrinks them from the top so they start right below it. Full-screen windows
+  // are left alone. A window that will not move (minimum size, an app that refuses) is not retried
+  // for 10 s. Needs Accessibility permission.
+
+  var keepWindowsBelow: Bool { UserDefaults.standard.object(forKey: "apartarVentanas") as? Bool ?? true }
+  var stubborn: [CGWindowID: Date] = [:]
+
+  func askForAccessibility() {
+    let prompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
+    _ = AXIsProcessTrustedWithOptions([prompt: true] as CFDictionary)
+  }
+
+  func keepWindowsBelowBar() {
+    guard keepWindowsBelow, AXIsProcessTrusted() else { return }
+    let shown = bars.values.filter(\.shown)
+    guard !shown.isEmpty else { return }
+    let me = ProcessInfo.processInfo.processIdentifier
+    let now = Date()
+    stubborn = stubborn.filter { $0.value > now }
+    let list = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
+    for w in list {
+      guard w[kCGWindowLayer as String] as? Int == 0,
+            let pid = w[kCGWindowOwnerPID as String] as? pid_t, pid != me,
+            let id = w[kCGWindowNumber as String] as? CGWindowID, stubborn[id] == nil,
+            let b = w[kCGWindowBounds as String] as? NSDictionary,
+            let r = CGRect(dictionaryRepresentation: b), r.height > 60, r.width > 60,
+            let bar = shown.first(where: {
+              r.midX >= $0.display.minX && r.midX < $0.display.maxX &&
+              r.minY >= $0.display.minY - 1 && r.minY < $0.display.minY + $0.height - 1 })
+      else { continue }
+      if !moveBelow(pid: pid, frame: r, top: bar.display.minY + bar.height) {
+        stubborn[id] = now.addingTimeInterval(10)
+      }
+    }
+  }
+
+  // Finds the AX window with the same frame as the CG one and moves its top edge down to `top`,
+  // keeping the bottom edge where it was. True if it ended up below the bar.
+  func moveBelow(pid: pid_t, frame r: CGRect, top: CGFloat) -> Bool {
+    let app = AXUIElementCreateApplication(pid)
+    var value: CFTypeRef?
+    guard AXUIElementCopyAttributeValue(app, kAXWindowsAttribute as CFString, &value) == .success,
+          let windows = value as? [AXUIElement] else { return false }
+    for win in windows {
+      guard let f = axFrame(win), abs(f.minX - r.minX) < 2, abs(f.minY - r.minY) < 2,
+            abs(f.width - r.width) < 2, abs(f.height - r.height) < 2 else { continue }
+      var full: CFTypeRef?
+      if AXUIElementCopyAttributeValue(win, "AXFullScreen" as CFString, &full) == .success, (full as? Bool) == true { return false }
+      var size = CGSize(width: f.width, height: max(120, f.maxY - top))
+      var origin = CGPoint(x: f.minX, y: top)
+      // Shrink first: some apps refuse a move that would push the window past the bottom of the screen.
+      if let v = AXValueCreate(.cgSize, &size) { AXUIElementSetAttributeValue(win, kAXSizeAttribute as CFString, v) }
+      if let v = AXValueCreate(.cgPoint, &origin) { AXUIElementSetAttributeValue(win, kAXPositionAttribute as CFString, v) }
+      return (axFrame(win)?.minY ?? 0) >= top - 1
+    }
+    return false
+  }
+
+  func axFrame(_ win: AXUIElement) -> CGRect? {
+    var p: CFTypeRef?, s: CFTypeRef?
+    guard AXUIElementCopyAttributeValue(win, kAXPositionAttribute as CFString, &p) == .success,
+          AXUIElementCopyAttributeValue(win, kAXSizeAttribute as CFString, &s) == .success else { return nil }
+    var origin = CGPoint.zero, size = CGSize.zero
+    AXValueGetValue(p as! AXValue, .cgPoint, &origin)
+    AXValueGetValue(s as! AXValue, .cgSize, &size)
+    return CGRect(origin: origin, size: size)
+  }
+
   func syncVisibility() {
     let onScreen = menuBars(.optionOnScreenOnly)
     for (id, bar) in bars {
@@ -523,6 +599,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     _ = item("Abrir Tablero IA", #selector(openTablero))
     _ = item("Abrir carpeta de fotos", #selector(openPhotos))
     menu.addItem(.separator())
+    item("Apartar las ventanas debajo de la barra", #selector(toggleKeepWindowsBelow)).state = keepWindowsBelow ? .on : .off
     item("Dejar libre la esquina de avisos", #selector(toggleNotificationCorner)).state = leaveNotificationsFree ? .on : .off
     item("Abrir al iniciar sesión", #selector(toggleLogin)).state = SMAppService.mainApp.status == .enabled ? .on : .off
     menu.addItem(.separator())
@@ -542,6 +619,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   @objc func toggleNotificationCorner() {
     UserDefaults.standard.set(!leaveNotificationsFree, forKey: "dejarLibreAvisos")
     rebuild()
+  }
+  @objc func toggleKeepWindowsBelow() {
+    UserDefaults.standard.set(!keepWindowsBelow, forKey: "apartarVentanas")
+    if keepWindowsBelow { askForAccessibility() }
   }
   @objc func quit() { NSApp.terminate(nil) }
 }

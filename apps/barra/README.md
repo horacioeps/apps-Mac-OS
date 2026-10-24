@@ -14,6 +14,8 @@ Qué muestra:
 
 **Avisos por encima** (v1.7.0): la barra va en el nivel del Dock (20), por encima de todas las ventanas de las apps (0) y de las flotantes (3), pero por debajo de Centro de Notificaciones (21). Los avisos de macOS caen encima de la barra, y la barra llega hasta el borde derecho. La opción de v1.1.0 de dejar libre esa esquina (370 pt) sigue en el clic derecho, apagada por defecto; el ancho se cambia con `defaults write net.horacio.barrasuperior anchoAvisos -int 420`.
 
+**Ventanas debajo de la barra** (v1.9.0): macOS no deja a otra app reservar espacio arriba como hace la barra de menús; con ella oculta, las ventanas (y «Rellenar» / zoom) llegan hasta arriba del todo. La barra hace de gestor de ventanas: dos veces por segundo busca ventanas de apps cuyo borde de arriba queda bajo una barra visible y, con la API de Accesibilidad, las recorta por arriba para que empiecen justo debajo (el borde de abajo no se mueve). Las de pantalla completa no se tocan; una ventana que no se deja mover no se reintenta en 10 s. Necesita permiso de **Accesibilidad** (Ajustes → Privacidad y seguridad → Accesibilidad → Barra Superior). Se apaga en el clic derecho: «Apartar las ventanas debajo de la barra».
+
 **Foto con la webcam** (v1.8.0): el icono de cámara del extremo izquierdo hace una foto sin mostrar nada (ni ventana ni vista previa) y la guarda en `~/Pictures/Barra Superior/AAAA-MM-DD HH.mm.ss.jpg`. Usa la cámara del Mac, no las virtuales (Camo, OBS, Elgato); si no hay (tapa cerrada), la que haya. Espera 1,2 s a que se ajuste la exposición. El icono responde un momento: ✓ guardada, ✕ falló (por ejemplo, sin permiso de cámara). La luz verde de la cámara se enciende ese segundo: es del hardware y no se puede evitar. La primera vez macOS pide permiso de cámara. `build.sh` firma con la identidad «Apple Development» si existe, para que el permiso no se pierda en cada compilación (con firma ad hoc, macOS lo volvería a pedir).
 
 Clic en los timers → abre Timers Paralelos PRO. Clic en la parte IA → abre Tablero IA. Clic derecho → menú (abrir apps, abrir la carpeta de fotos, «Dejar libre la esquina de avisos» —apagada—, «Abrir al iniciar sesión», salir).
@@ -43,7 +45,7 @@ El Window Server tiene una ventana «Menubar» por pantalla, en el nivel del men
 
 ## Límites
 
-- La barra tapa los 30 pt de arriba de las ventanas (barras de título, pestañas). macOS no deja reservar ese espacio a otra app.
+- Sin permiso de Accesibilidad (o con «Apartar las ventanas» apagado), la barra tapa los 30 pt de arriba de las ventanas. Con él, una ventana que arrastres hasta arriba vuelve a bajar en medio segundo.
 - En pantallas con notch, el contenido evita la zona de la cámara.
 - El contenido acaba 40 pt antes del borde derecho para no pisar el punto naranja (o verde) que macOS pinta arriba a la derecha cuando una app usa el micro o la cámara (`trailingRoom`).
 - Si algún día macOS cambia el nombre o el nivel de la ventana «Menubar», la barra se quedaría siempre visible: mirar `menuBars()` en `Sources/main.swift`.

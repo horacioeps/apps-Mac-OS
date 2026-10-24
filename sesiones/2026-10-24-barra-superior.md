@@ -254,4 +254,18 @@ Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y
 
 funciona espectacular
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 428348b9-23e9-4355-9378-24267a50cfa8 -->
+## Agente (Claude Code)
+
+¡Bien! En `~/Pictures/Barra Superior/` ya hay dos fotos: la de mi clic de prueba (12.27.13) y la tuya (12.29.33). Como la app va firmada con tu certificado, macOS recordará el permiso de cámara cuando actualice la barra.
+
+He corregido la fila de `HISTORICO.md` para que diga que funciona, y está subido a `main`.
+
+## Usuario
+
+otra cosa, cuando este en modo monitor extern oo normal, que no se superponga a las apps, que las apps salgan "debajo" como saldrian debajo de la barra normal
+
+## Agente (Claude Code)
+
+macOS doesn't let other apps reserve space at the top the way the real menu bar does. The usual workaround, which window managers like Rectangle also use, is to move any window that slides under the bar down, through the Accessibility API. I'll build that.
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 11ed10a6-d292-4aaf-9852-0295019d0c83 -->
