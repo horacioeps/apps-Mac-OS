@@ -210,6 +210,23 @@ final class BarPanel: NSPanel {
   // AppKit pushes windows below the menu bar and the notch; this one belongs exactly up there.
   override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect { frameRect }
 }
+// Rounded like a Mac window, a shade darker than one so it reads as its own thing. Drawn on a
+// layer because the corners need the window itself to be clear; colours are re-resolved on
+// every appearance change since a CGColor does not follow light/dark on its own.
+final class BarBackground: NSView {
+  static let radius: CGFloat = 12
+  override var wantsUpdateLayer: Bool { true }
+  override func updateLayer() {
+    guard let layer else { return }
+    let dark = effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+    layer.backgroundColor = NSColor(white: dark ? 0.10 : 0.84, alpha: 1).cgColor
+    layer.borderColor = NSColor(white: dark ? 1 : 0, alpha: dark ? 0.12 : 0.10).cgColor
+    layer.borderWidth = 0.5
+    layer.cornerRadius = Self.radius
+    layer.cornerCurve = .continuous
+    layer.masksToBounds = true
+  }
+}
 final class BarHost: NSHostingView<BarView> {
   override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
   override func menu(for event: NSEvent) -> NSMenu? { AppDelegate.shared.contextMenu() }
@@ -296,19 +313,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       // One level under the real menu bar: when it slides in it covers us even before we fade.
       panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow)) - 1)
       panel.collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle, .fullScreenAuxiliary]
-      // Solid, not glass: windows reach the top edge when the menu bar hides, and their text
-      // showing through a translucent strip made the bar unreadable.
-      panel.isOpaque = true
-      // A fixed grey per appearance: on macOS 26 windowBackgroundColor itself lets the text through.
-      panel.backgroundColor = NSColor(name: nil) {
-        $0.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua ? NSColor(white: 0.14, alpha: 1) : NSColor(white: 0.93, alpha: 1)
-      }
+      // Clear window, solid rounded background (BarBackground). Solid, not glass: windows reach the
+      // top edge when the menu bar hides, and their text showing through made the bar unreadable.
+      panel.isOpaque = false
+      panel.backgroundColor = .clear
       panel.hasShadow = false
       panel.hidesOnDeactivate = false
       panel.isReleasedWhenClosed = false
       panel.alphaValue = 0
 
-      panel.contentView = BarHost(rootView: BarView(model: model, leftWidth: leftWidth, rightWidth: rightWidth))
+      let background = BarBackground()
+      background.wantsLayer = true
+      let host = BarHost(rootView: BarView(model: model, leftWidth: leftWidth, rightWidth: rightWidth))
+      host.autoresizingMask = [.width, .height]
+      background.addSubview(host)
+      panel.contentView = background
+      host.frame = background.bounds
 
       bars[id] = Bar(panel: panel, display: display, height: height)
     }

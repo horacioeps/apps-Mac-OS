@@ -63,4 +63,24 @@ genial, podemos modificarla para que no "pinte" en la zona derecha donde salen l
 
 The corner is free and the banner shows. Saving and pushing.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 7d02a8bf-9d7a-484f-ac96-a000eb5cbddb -->
+## Agente (Claude Code)
+
+Sí. La barra ya no pinta la zona derecha donde salen las notificaciones (v1.1.0, instalada y en marcha). Lo he comprobado con el aviso «Login Item Added» todavía en pantalla: se ve entero, sin la barra encima.
+
+**Qué cambia:**
+- **Termina antes:** la barra acaba 380 pt antes del borde derecho, que es lo que ocupa un aviso más su margen. En esa esquina no hay nada nuestro, así que los clics llegan a lo que haya debajo.
+- **Recorte de la derecha:** si falta sitio, la parte derecha se recorta: primero quita la fecha y luego la hora. En el portátil ahora se ve `IA ▶1 ⏸11 9,0 GB 11:21`, sin la fecha.
+- **Dejarla entera otra vez:** con clic derecho en la barra → **«Dejar libre la esquina de avisos»** la desactivas o la vuelves a activar.
+- **Cambiar el ancho:** si algún aviso más ancho aún roza la barra, usa `defaults write net.horacio.barrasuperior anchoAvisos -int 420` y luego reabre la app.
+
+Está en [Sources/main.swift](apps/barra/Sources/main.swift) y explicado en el [README](apps/barra/README.md). Ya está subido a `main`, con el volcado de la sesión y la fila en `HISTORICO.md`.
+
+## Usuario
+
+bien , otra mod, que los bordes no sean 100% cuadrados , si no que sean redondeados, como las ventanas normales del mac. el color que tenga un tono un poco mas oscuro de gris para diferenciarse de las apps nornales
+
+## Agente (Claude Code)
+
+Rounded and darker; it now stands out from the window below. Saving.
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta a62dd09e-9e7e-4902-89e2-9588125c2936 -->

@@ -7,6 +7,8 @@ Qué muestra:
 - **Izquierda**: los timers activos de *Timers Paralelos PRO* (color, nombre, cuenta atrás). Primero los que corren, el que antes termina delante; luego los pausados (⏸, atenuados) y los que esperan en cola. Rojo en el último minuto.
 - **Derecha**: *Tablero IA*: `IA ! permiso ▶ trabajando ⏸ te esperan` y la memoria de Claude Code + Cursor; después la fecha y la hora (la barra de menús oculta se lleva el reloj).
 
+**Aspecto** (v1.2.0): esquinas redondeadas (12 pt, curva continua, como las ventanas) y un gris algo más oscuro que el de las apps (84 % en claro, 10 % en oscuro) con un filo fino, para que no se confunda con la ventana de debajo. Se cambia en `BarBackground`.
+
 **Esquina de avisos libre** (v1.1.0): la barra termina 380 pt antes del borde derecho, donde caen las notificaciones de macOS, así que nunca las tapa. Si falta sitio, quita primero la fecha y después la hora. Se desactiva desde el clic derecho; el ancho se cambia con `defaults write net.horacio.barrasuperior anchoAvisos -int 420` y se aplica al reabrir la app.
 
 Clic en los timers → abre Timers Paralelos PRO. Clic en la parte IA → abre Tablero IA. Clic derecho → menú (abrir apps, «Dejar libre la esquina de avisos», «Abrir al iniciar sesión», salir).
