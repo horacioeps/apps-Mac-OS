@@ -106,4 +106,30 @@ On the notch screen the right side only has ~256 pt, so the RAM figure and the c
 
 Matches (13.22 vs 13.29 GB a few seconds apart). Saving.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 3cfd8ad2-42cf-4d42-801c-52c87b3e0f5a -->
+## Agente (Claude Code)
+
+La barra ya sale en azul y muestra también la memoria del Mac. Está instalada en la versión v1.4.0 y la he comprobado en pantalla.
+
+**Color.** La imagen que pegaste me llegó casi blanca, sin nada de azul. Por eso te pregunté, y elegiste el azul cielo de tu fondo de escritorio (`#4CB2E2`). Es el mismo en modo claro y oscuro, con texto blanco. Los timers pausados se veían apagados sobre el azul y les he subido el contraste.
+
+**Memoria del Mac.** Ahora sale `RAM 13,22 / 16 GB`: la «Memory Used» y la «Physical Memory» del Monitor de Actividad, y se actualiza cada segundo. La he comparado con lo que da `vm_stat` en ese momento: 13,22 frente a 13,29 GB, con unos segundos de diferencia entre las dos lecturas.
+
+**Dónde va cada cosa en el portátil.** A la derecha del notch, con la esquina de avisos libre, quedan unos 256 pt. Ahí no cabían a la vez la RAM, la parte IA y la hora, y el primer intento perdió la RAM y la hora. Ahora queda así:
+- **Izquierda del notch:** los timers y, al final, la RAM.
+- **Derecha:** `IA ▶1 ⏸8 6,9 GB 11:27`. Si falta sitio, quita primero la fecha, luego la etiqueta «IA» y por último la hora.
+
+En el monitor de 5K todo cabe en la parte derecha, porque no hay notch.
+
+Está en [Sources/main.swift](apps/barra/Sources/main.swift) y el [README](apps/barra/README.md) está al día. Todo está subido a `main`, con el volcado de la sesión y la fila en `HISTORICO.md`.
+
+## Usuario
+
+lo de RAM qeu salga justo a la drecha de la memoria consumidad por cursor y antes de la hora
+
+## Agente (Claude Code)
+
+Too tight: the Cursor memory gets cut off ("6,…"), and the pipes will need more room. I'll add tighter variants, then the pipes.
+
+Order and pipes as requested, and nothing gets cut off. Saving.
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 5d371f8a-a24c-475c-9991-3c686e9ac5bc -->

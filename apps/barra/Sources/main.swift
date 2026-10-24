@@ -148,6 +148,11 @@ struct Count: View {
   }
 }
 
+// The pipe between blocks.
+struct Sep: View {
+  var body: some View { Text("|").foregroundStyle(.white.opacity(0.55)) }
+}
+
 struct BarView: View {
   @ObservedObject var model: Model
   // On screens with a notch: the room left of it, and right of it up to the bar's end. Content is held
@@ -166,25 +171,27 @@ struct BarView: View {
 
   var body: some View {
     HStack(spacing: 0) {
-      // Left of the notch (or of everything): timers, and the Mac's RAM at its far end. On a notched
-      // screen the right side is short once the notification corner is left free, so RAM lives here.
-      HStack(spacing: 16) {
-        timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
-          .layoutPriority(-1)
-        if leftWidth != nil { Spacer(minLength: 0); macMemory }
-      }
-      .frame(width: leftWidth, alignment: .leading).clipped()
+      timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
+        .frame(width: leftWidth, alignment: .leading).clipped()
       Spacer(minLength: 16)
-      // Tight on the right: drop the date, then the "IA" label, then the clock.
+      // Order on the right, blocks split by a pipe: Tablero IA (its memory last) | the Mac's RAM | the
+      // clock. When it gets tight (a notched screen with the notification corner left free): drop the
+      // date, then the "IA" label and a decimal, then the GB units, then the clock.
       ViewThatFits(in: .horizontal) {
-        HStack(spacing: 16) {
-          if leftWidth == nil { macMemory }
-          iaPart(label: true)
+        HStack(spacing: 10) {
+          iaPart(label: true, unit: true); Sep(); macMemory(compact: false); Sep()
           Text(model.now, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
         }
-        HStack(spacing: 16) { iaPart(label: true); Text(model.now, format: .dateTime.hour().minute()) }
-        HStack(spacing: 12) { iaPart(label: false); Text(model.now, format: .dateTime.hour().minute()) }
-        iaPart(label: false)
+        HStack(spacing: 10) {
+          iaPart(label: true, unit: true); Sep(); macMemory(compact: false); Sep(); Text(model.now, format: .dateTime.hour().minute())
+        }
+        HStack(spacing: 8) {
+          iaPart(label: false, unit: true); Sep(); macMemory(compact: true); Sep(); Text(model.now, format: .dateTime.hour().minute())
+        }
+        HStack(spacing: 8) {
+          iaPart(label: false, unit: false); Sep(); macMemory(compact: true); Sep(); Text(model.now, format: .dateTime.hour().minute())
+        }
+        HStack(spacing: 8) { iaPart(label: false, unit: false); Sep(); macMemory(compact: true) }
       }
       .frame(width: rightWidth, alignment: .trailing)
     }
@@ -200,8 +207,11 @@ struct BarView: View {
       if list.isEmpty {
         Label("Sin timers", systemImage: "timer").foregroundStyle(.secondary)
       } else {
-        HStack(spacing: 16) {
-          ForEach(ordered.prefix(Self.maxTimers)) { TimerChip(t: $0, now: model.now) }
+        HStack(spacing: 10) {
+          ForEach(Array(ordered.prefix(Self.maxTimers).enumerated()), id: \.element.id) { i, t in
+            if i > 0 { Sep() }
+            TimerChip(t: t, now: model.now)
+          }
           if list.count > Self.maxTimers { Text("+\(list.count - Self.maxTimers)").foregroundStyle(.secondary) }
         }
       }
@@ -211,21 +221,19 @@ struct BarView: View {
   }
 
   // The Mac as a whole, as Activity Monitor shows it: memory used / physical memory.
-  @ViewBuilder var macMemory: some View {
+  @ViewBuilder func macMemory(compact: Bool) -> some View {
     if let m = model.memory {
-      HStack(spacing: 4) {
-        Text("RAM").foregroundStyle(.secondary)
-        Text("\(gigasBytes(m.used, digits: 2)) / \(gigasBytes(m.total, digits: 0)) GB").monospacedDigit()
-      }
+      Text(compact ? "\(gigasBytes(m.used, digits: 1))/\(gigasBytes(m.total, digits: 0))"
+                   : "\(gigasBytes(m.used, digits: 2)) / \(gigasBytes(m.total, digits: 0)) GB").monospacedDigit()
       .help("Memoria usada / memoria física del Mac (como el Monitor de Actividad)")
     }
   }
 
-  func iaPart(label: Bool) -> some View {
-    tablero(label: label).contentShape(Rectangle()).onTapGesture { open(tableroApp) }
+  func iaPart(label: Bool, unit: Bool) -> some View {
+    tablero(label: label, unit: unit).contentShape(Rectangle()).onTapGesture { open(tableroApp) }
   }
 
-  @ViewBuilder func tablero(label: Bool) -> some View {
+  @ViewBuilder func tablero(label: Bool, unit: Bool) -> some View {
     if let t = model.tablero {
       HStack(spacing: 10) {
         if label { Text("IA").foregroundStyle(.secondary) }
@@ -234,7 +242,7 @@ struct BarView: View {
         Count(n: t.waiting, icon: "pause.fill", tint: .orange, help: "Te esperan")
         HStack(spacing: 3) {
           Image(systemName: "memorychip").font(.system(size: 11)).foregroundStyle(.secondary)
-          Text(gigas(t.memMB)).monospacedDigit()
+          Text(unit ? gigas(t.memMB) : String(gigas(t.memMB).dropLast(3))).monospacedDigit()
         }
         .help("Memoria de Claude Code + Cursor")
       }
@@ -308,7 +316,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   // `defaults write net.horacio.barrasuperior anchoAvisos -int 420` to widen the free corner.
   var notificationCorner: CGFloat {
     let w = UserDefaults.standard.integer(forKey: "anchoAvisos")
-    return CGFloat(w > 0 ? w : 380)
+    return CGFloat(w > 0 ? w : 370)
   }
   var leaveNotificationsFree: Bool {
     UserDefaults.standard.object(forKey: "dejarLibreAvisos") as? Bool ?? true
@@ -341,7 +349,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       let display = CGDisplayBounds(id)
       let height = all.first { abs($0.minX - display.minX) < 1 && abs($0.width - display.width) < 1 }?.height ?? 30
       // Notification banners drop in at the top right; the bar stops short of that corner so it
-      // never paints over them. 380 pt = a banner (~345) plus its margin.
+      // never paints over them. 370 pt = a banner (344) plus its 15 pt margin, and a little air.
       let gap: CGFloat = leaveNotificationsFree ? notificationCorner : 0
       var leftWidth: CGFloat?, rightWidth: CGFloat?
       if screen.safeAreaInsets.top > 0, let l = screen.auxiliaryTopLeftArea, let r = screen.auxiliaryTopRightArea {
