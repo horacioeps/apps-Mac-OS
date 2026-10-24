@@ -3,7 +3,7 @@
 # /Applications. Bump VERSION on every change: major = new capability, minor = visible change,
 # patch = fix.
 set -e
-VERSION=1.5.0
+VERSION=1.6.0
 cd "$(dirname "$0")"
 APP="build/Barra Superior.app"
 rm -rf "$APP"

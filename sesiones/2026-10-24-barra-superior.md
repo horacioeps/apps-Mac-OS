@@ -132,4 +132,30 @@ Too tight: the Cursor memory gets cut off ("6,…"), and the pipes will need mor
 
 Order and pipes as requested, and nothing gets cut off. Saving.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 5d371f8a-a24c-475c-9991-3c686e9ac5bc -->
+## Agente (Claude Code)
+
+He hecho los tres cambios (v1.5.0, instalada). En la captura del portátil se ve todo entero:
+
+`● Pomodoro 28:00 | ● Alternar PROYECTOS y … 06:59 ⏸ | ● Difuso-concentrado 2:25:30 ⏸ … ▶1 ⏸8 ⎕6,8 GB | 13,3/16 | 11:28`
+
+- **RAM:** va justo después de la memoria de Claude + Cursor y antes de la hora.
+- **Separadores `|`:** separan los bloques de la derecha y también cada timer.
+- **Sin la palabra «RAM»:** se queda solo `usada/física`.
+
+**Recortes por falta de sitio:** a la derecha del notch del portátil caben muy pocas cosas. En la primera prueba, la memoria de Cursor salía cortada («6,…»). Ahora la barra va recortando por pasos hasta que todo cabe:
+1. Quita la fecha.
+2. Quita la etiqueta «IA» y deja la RAM con un decimal (13,3/16).
+3. Quita las unidades «GB».
+4. Si aun así no cabe, quita la hora.
+
+Ahora mismo el portátil va en el paso 2. En el monitor de 5K sale todo: `IA ▶1 ⏸8 ⎕6,8 GB | 13,22 / 16 GB | sáb, 24 oct, 11:28`.
+
+**Esquina de avisos:** he reducido la zona libre de 380 a 370 pt. Medí el aviso de tu primera captura: 344 pt de ancho más 15 de margen, así que el aviso sigue sin quedar tapado.
+
+Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+y aqui de las tareas que solo salgan las que estan activas
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta f0e00fd3-ea14-4ade-ae8f-84ff8c801e46 -->

@@ -161,12 +161,10 @@ struct BarView: View {
   let rightWidth: CGFloat?
   static let maxTimers = 8
 
-  // Running first, the one finishing soonest leading; then paused, then queued.
-  var ordered: [ActiveTimer] {
-    let rank = ["running": 0, "paused": 1, "waiting": 2]
-    return (model.timers ?? []).sorted {
-      (rank[$0.state] ?? 3, $0.remaining(model.now)) < (rank[$1.state] ?? 3, $1.remaining(model.now))
-    }
+  // Only the timers that are counting down, the one finishing soonest first. Paused and queued
+  // ones stay in Timers Paralelos PRO.
+  var running: [ActiveTimer] {
+    (model.timers ?? []).filter { $0.state == "running" }.sorted { $0.remaining(model.now) < $1.remaining(model.now) }
   }
 
   var body: some View {
@@ -203,12 +201,13 @@ struct BarView: View {
   }
 
   @ViewBuilder var timers: some View {
-    if let list = model.timers {
+    if model.timers != nil {
+      let list = running
       if list.isEmpty {
-        Label("Sin timers", systemImage: "timer").foregroundStyle(.secondary)
+        Label("Ningún timer en marcha", systemImage: "timer").foregroundStyle(.secondary)
       } else {
         HStack(spacing: 10) {
-          ForEach(Array(ordered.prefix(Self.maxTimers).enumerated()), id: \.element.id) { i, t in
+          ForEach(Array(list.prefix(Self.maxTimers).enumerated()), id: \.element.id) { i, t in
             if i > 0 { Sep() }
             TimerChip(t: t, now: model.now)
           }
