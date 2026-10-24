@@ -158,4 +158,26 @@ Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y
 
 y aqui de las tareas que solo salgan las que estan activas
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta f0e00fd3-ea14-4ade-ae8f-84ff8c801e46 -->
+## Agente (Claude Code)
+
+Hecho: de los timers solo salen los que están en marcha, primero el que antes termina (v1.6.0, instalada). En la barra se ve ahora:
+
+`● Alternar con tarea de… 06:12 | ● Pomodoro 27:11`
+
+Los pausados («Alternar PROYECTOS», «Difuso-concentrado») y los que esperan en cola ya no salen. Siguen en Timers Paralelos PRO como siempre. Si no hay ninguno en marcha, la barra pone «Ningún timer en marcha».
+
+Al quitar los pausados queda más sitio, así que los nombres se cortan menos: «Alternar con tarea de…» antes salía como «Alternar con t…».
+
+Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+y una pregunta, sep uede hacer par aque si llega una notificaicon del sistema, la barra sala detrás de la notificacon? de ser asi la expandes otra vez hasta el maxiomo a la dercha
+
+## Agente (Claude Code)
+
+Testing first: Notification Centre draws its banners in a window at level 21, and the bar sits at 23. Moving the bar to 20 should put it under the banners while staying above normal windows (0) and floating ones (3).
+
+Banners now land on top of the bar, and the bar runs to the right edge again, full date included. Updating docs and saving.
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 77e10b31-bc2e-4280-b19d-15ec5294adb5 -->

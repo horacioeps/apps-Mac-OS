@@ -318,7 +318,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     return CGFloat(w > 0 ? w : 370)
   }
   var leaveNotificationsFree: Bool {
-    UserDefaults.standard.object(forKey: "dejarLibreAvisos") as? Bool ?? true
+    UserDefaults.standard.object(forKey: "dejarLibreAvisos") as? Bool ?? false
   }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
@@ -347,8 +347,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       guard let id = screen.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID else { continue }
       let display = CGDisplayBounds(id)
       let height = all.first { abs($0.minX - display.minX) < 1 && abs($0.width - display.width) < 1 }?.height ?? 30
-      // Notification banners drop in at the top right; the bar stops short of that corner so it
-      // never paints over them. 370 pt = a banner (344) plus its 15 pt margin, and a little air.
+      // Optional (off by default, since the bar now sits under the banners): stop short of the
+      // top-right corner where they drop in. 370 pt = a banner (344) plus its 15 pt margin.
       let gap: CGFloat = leaveNotificationsFree ? notificationCorner : 0
       var leftWidth: CGFloat?, rightWidth: CGFloat?
       if screen.safeAreaInsets.top > 0, let l = screen.auxiliaryTopLeftArea, let r = screen.auxiliaryTopRightArea {
@@ -359,8 +359,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       let f = screen.frame
       let panel = BarPanel(contentRect: NSRect(x: f.minX, y: f.maxY - height, width: f.width - gap, height: height),
                            styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
-      // One level under the real menu bar: when it slides in it covers us even before we fade.
-      panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow)) - 1)
+      // Dock level (20): above every app window (0) and floating panel (3), but under Notification
+      // Centre (21), whose banners land on top of the bar, and under the real menu bar (24), which
+      // covers us as it slides in even before we fade.
+      panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.dockWindow)))
       panel.collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle, .fullScreenAuxiliary]
       // Clear window, solid rounded background (BarBackground). Solid, not glass: windows reach the
       // top edge when the menu bar hides, and their text showing through made the bar unreadable.

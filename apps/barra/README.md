@@ -12,9 +12,9 @@ Qué muestra:
 
 **RAM del Mac** (v1.5.0): `usada / física`, sin etiqueta, igual que «Memory Used» y «Physical Memory» del Monitor de Actividad (memoria de apps + fija + comprimida, vía `host_statistics64`). Va justo después de la memoria de Claude + Cursor y antes de la hora.
 
-**Esquina de avisos libre** (v1.1.0): la barra termina 370 pt antes del borde derecho, donde caen las notificaciones de macOS, así que nunca las tapa. Si falta sitio, quita primero la fecha y después la hora. Se desactiva desde el clic derecho; el ancho se cambia con `defaults write net.horacio.barrasuperior anchoAvisos -int 420` y se aplica al reabrir la app.
+**Avisos por encima** (v1.7.0): la barra va en el nivel del Dock (20), por encima de todas las ventanas de las apps (0) y de las flotantes (3), pero por debajo de Centro de Notificaciones (21). Los avisos de macOS caen encima de la barra, y la barra llega hasta el borde derecho. La opción de v1.1.0 de dejar libre esa esquina (370 pt) sigue en el clic derecho, apagada por defecto; el ancho se cambia con `defaults write net.horacio.barrasuperior anchoAvisos -int 420`.
 
-Clic en los timers → abre Timers Paralelos PRO. Clic en la parte IA → abre Tablero IA. Clic derecho → menú (abrir apps, «Dejar libre la esquina de avisos», «Abrir al iniciar sesión», salir).
+Clic en los timers → abre Timers Paralelos PRO. Clic en la parte IA → abre Tablero IA. Clic derecho → menú (abrir apps, «Dejar libre la esquina de avisos» —apagada—, «Abrir al iniciar sesión», salir).
 
 ## Instalar / actualizar
 
@@ -37,7 +37,7 @@ Los dos llevan el `pid` de la app: si la app se cierra, la barra dice «Timers c
 
 ## Cómo sabe si la barra de menús está a la vista
 
-El Window Server tiene una ventana «Menubar» por pantalla, en el nivel del menú principal (24). Oculta, está fuera de la pantalla (`y = -30`) y no sale en la lista de ventanas visibles; al bajar vuelve con `y` de -27 a 0. La app consulta `CGWindowListCopyWindowInfo` unas 12 veces por segundo (~1 ms cada vez) y esconde su barra en cuanto asoma la del sistema. Su ventana está un nivel por debajo (23): si la del sistema llega antes que el fundido, la tapa.
+El Window Server tiene una ventana «Menubar» por pantalla, en el nivel del menú principal (24). Oculta, está fuera de la pantalla (`y = -30`) y no sale en la lista de ventanas visibles; al bajar vuelve con `y` de -27 a 0. La app consulta `CGWindowListCopyWindowInfo` unas 12 veces por segundo (~1 ms cada vez) y esconde su barra en cuanto asoma la del sistema. La barra está por debajo (nivel 20, el del Dock): si la del sistema llega antes que el fundido, la tapa.
 
 ## Límites
 
