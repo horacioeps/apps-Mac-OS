@@ -268,4 +268,32 @@ otra cosa, cuando este en modo monitor extern oo normal, que no se superponga a 
 
 macOS doesn't let other apps reserve space at the top the way the real menu bar does. The usual workaround, which window managers like Rectangle also use, is to move any window that slides under the bar down, through the Accessibility API. I'll build that.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 11ed10a6-d292-4aaf-9852-0295019d0c83 -->
+## Agente (Claude Code)
+
+He hecho que las ventanas queden debajo de la barra (v1.9.0, instalada), pero todavía no funciona en tu Mac: falta un permiso que tienes que dar tú. Ahora mismo Thunderbird sigue tapado por arriba.
+
+**Por qué hace falta el permiso:** macOS solo deja reservar ese espacio de arriba a su propia barra de menús. Las demás apps no pueden. Por eso Barra Superior hace lo mismo que hacen apps como Rectangle: mueve las ventanas ella misma, y para eso macOS pide el permiso de Accesibilidad.
+
+**Qué hace:**
+- Dos veces por segundo mira si alguna ventana tiene su parte de arriba debajo de la barra, ya sea en el monitor externo o en el portátil.
+- Si la tiene, la recorta por arriba para que empiece justo debajo. El borde de abajo no se mueve.
+- Así queda como con la barra de menús normal. También se aplica cuando maximizas una ventana o usas «Rellenar».
+- Las apps en pantalla completa no se tocan.
+- Si una ventana no se deja mover, no lo vuelve a intentar hasta pasados 10 segundos.
+- Se puede apagar desde el clic derecho, con «Apartar las ventanas debajo de la barra».
+
+**Lo que tienes que hacer:** al arrancar, la barra abrió Ajustes del Sistema → Privacidad y seguridad → **Accesibilidad**. Ahí:
+1. Activa **Barra Superior**.
+2. Si no aparece en la lista, pulsa **+** y elige `/Applications/Barra Superior.app`.
+
+Medio segundo después, las ventanas que están debajo de la barra deberían bajar solas. Igual que con la cámara, el permiso se mantendrá cuando actualice la barra.
+
+**Algo que notarás:** si arrastras una ventana hasta arriba del todo, volverá a bajar en medio segundo. Es lo mismo que hace macOS con su barra de menús.
+
+Cuando lo actives, dime si las ventanas bajan bien o si alguna app se resiste. Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+mola mazo!
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 98ad9818-f11b-4bbb-ba21-b7a3763d947b -->
