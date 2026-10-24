@@ -43,4 +43,5 @@ El Window Server tiene una ventana «Menubar» por pantalla, en el nivel del men
 
 - La barra tapa los 30 pt de arriba de las ventanas (barras de título, pestañas). macOS no deja reservar ese espacio a otra app.
 - En pantallas con notch, el contenido evita la zona de la cámara.
+- El contenido acaba 40 pt antes del borde derecho para no pisar el punto naranja (o verde) que macOS pinta arriba a la derecha cuando una app usa el micro o la cámara (`trailingRoom`).
 - Si algún día macOS cambia el nombre o el nivel de la ventana «Menubar», la barra se quedaría siempre visible: mirar `menuBars()` en `Sources/main.swift`.

@@ -180,4 +180,20 @@ Testing first: Notification Centre draws its banners in a window at level 21, an
 
 Banners now land on top of the bar, and the bar runs to the right edge again, full date included. Updating docs and saving.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 77e10b31-bc2e-4280-b19d-15ec5294adb5 -->
+## Agente (Claude Code)
+
+Sí se puede, y ya está hecho (v1.7.0, instalada). La barra queda detrás de las notificaciones y otra vez llega hasta el borde derecho.
+
+**Cómo funciona:** macOS dibuja las notificaciones en una capa propia, un nivel por encima de la del Dock. He puesto la barra en el nivel del Dock. Así sigue por encima de todas las ventanas de las apps, también las fijadas encima, y queda justo debajo de las notificaciones.
+
+**Prueba:** lancé una notificación real («Prueba de Barra Superior…»). La notificación quedó encima de la barra, tapando la parte de la derecha. La barra vuelve a ocupar todo el ancho y en el portátil se ve completa: `IA ▶1 ⏸8 6,8 GB | 13,30 / 16 GB | sáb, 24 oct, 11:3x`.
+
+**Opción anterior:** dejar libre la esquina de las notificaciones sigue en el menú del clic derecho, pero apagada. Ya no hace falta, salvo que prefieras que esa esquina quede siempre vacía.
+
+Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+corre un poco  a la izquiera para que no solape con el punto naranaja
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta abe88b9b-44f4-4e14-acbd-a8a44cc09b3c -->

@@ -160,6 +160,9 @@ struct BarView: View {
   let leftWidth: CGFloat?
   let rightWidth: CGFloat?
   static let maxTimers = 8
+  // macOS draws its camera/microphone dot (the orange one) in the top-right corner, over everything;
+  // the bar's content ends before it.
+  static let trailingRoom: CGFloat = 40
 
   // Only the timers that are counting down, the one finishing soonest first. Paused and queued
   // ones stay in Timers Paralelos PRO.
@@ -195,7 +198,8 @@ struct BarView: View {
     }
     .font(.system(size: 13, weight: .medium))
     .lineLimit(1)
-    .padding(.horizontal, 12)
+    .padding(.leading, 12)
+    .padding(.trailing, BarView.trailingRoom)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .environment(\.locale, Locale(identifier: "es_ES"))
   }
@@ -353,7 +357,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       var leftWidth: CGFloat?, rightWidth: CGFloat?
       if screen.safeAreaInsets.top > 0, let l = screen.auxiliaryTopLeftArea, let r = screen.auxiliaryTopRightArea {
         leftWidth = l.width - 20
-        rightWidth = max(0, r.width - gap - 20)
+        rightWidth = max(0, r.width - gap - BarView.trailingRoom - 8)
       }
 
       let f = screen.frame
