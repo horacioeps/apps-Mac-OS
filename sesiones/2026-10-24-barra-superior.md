@@ -228,4 +228,30 @@ Built and signed with your Apple Development identity. Now simulating a click on
 
 The click works: macOS is now asking whether Barra Superior may use the camera. That choice is yours, so I've left the prompt open for you. Saving the code meanwhile.
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 790ab2c6-5d6f-488a-9c1d-9ac028b5e0de -->
+## Agente (Claude Code)
+
+El botón ya está en la barra (v1.8.0, instalada), pero todavía no he podido comprobar que haga la foto. Simulé un clic y macOS abrió su aviso: «"Barra Superior" would like to access the Camera». Ese permiso te toca darlo a ti, así que lo he dejado abierto.
+
+**Qué hace:**
+- **Dónde está:** es un icono de cámara en el extremo izquierdo, antes de los timers y separado por `|`.
+- **Al hacer clic:** hace la foto sin abrir ventanas ni vista previa. Espera 1,2 s para que se ajuste la luz y la guarda en `~/Pictures/Barra Superior/2026-10-24 12.27.xx.jpg`.
+- **Cámara que usa:** la del Mac, no las virtuales (Camo, OBS, Elgato). Si la tapa está cerrada, usa la que haya.
+- **Respuesta:** el icono cambia un segundo y medio a ✓ si la guardó, o a ✕ si falló, por ejemplo por no tener permiso.
+- **Carpeta de fotos:** el clic derecho tiene una nueva opción, «Abrir carpeta de fotos».
+- **Luz verde:** se enciende ese segundo y no se puede evitar, porque el propio Mac la enciende siempre que se usa la cámara.
+
+**Permiso:** la app se firma ahora con tu certificado «Apple Development». Así macOS recuerda el permiso de cámara cuando actualizo la barra. Con la firma de antes lo habría vuelto a pedir en cada versión. Puede que veas otra vez el aviso de «Login Item Added»: es normal por el cambio de firma.
+
+**Lo que falta:**
+1. Pulsa **Allow** en el aviso. La foto de mi clic de prueba debería hacerse sola justo después.
+2. Mira si en `~/Pictures/Barra Superior/` hay un `.jpg`. Si no hay ninguno, haz clic una vez en la cámara de la barra.
+
+Si el icono se queda en ✕, dímelo y lo miro.
+
+Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+funciona espectacular
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 428348b9-23e9-4355-9378-24267a50cfa8 -->
