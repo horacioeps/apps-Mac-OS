@@ -11,6 +11,7 @@
 // the main-menu level. While hidden it sits off screen (y = -30) and drops out of the on-screen
 // window list; when it slides in it comes back with y going -27 → -8 → 0. Polled at ~12 Hz, which
 // costs about 1 ms a call.
+import AVFoundation
 import AppKit
 import ServiceManagement
 import SwiftUI
@@ -75,6 +76,19 @@ final class Model: ObservableObject {
   @Published var timers: [ActiveTimer]?        // nil: Timers Paralelos PRO is not running
   @Published var tablero: TableroSnapshot?     // nil: Tablero IA closed or silent for 30 s
   @Published var memory: (used: Double, total: Double)?
+  @Published var snap = SnapState.idle
+  private let snapper = Snapper()
+
+  enum SnapState { case idle, busy, ok, failed }
+
+  func takePhoto() {
+    guard snap != .busy else { return }
+    snap = .busy
+    snapper.snap { [weak self] url in
+      self?.snap = url == nil ? .failed : .ok
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { self?.snap = .idle }
+    }
+  }
 
   func refresh() {
     now = Date()
@@ -82,6 +96,72 @@ final class Model: ObservableObject {
     if let s: TimersSnapshot = load(timersFile), alive(s.pid) { timers = s.timers } else { timers = nil }
     if let s: TableroSnapshot = load(tableroFile), alive(s.pid),
        now.timeIntervalSince1970 - s.at / 1000 < 30 { tablero = s } else { tablero = nil }
+  }
+}
+
+// MARK: - Webcam
+
+// One quiet photo per click: no window, no preview, straight to ~/Pictures/Barra Superior/. The
+// camera's green light still comes on for the second it is open; macOS does that in hardware.
+final class Snapper: NSObject, AVCapturePhotoCaptureDelegate {
+  static let folder = home.appendingPathComponent("Pictures/Barra Superior")
+  private var session: AVCaptureSession?
+  private var done: ((URL?) -> Void)?
+
+  func snap(_ done: @escaping (URL?) -> Void) {
+    guard session == nil else { return }
+    switch AVCaptureDevice.authorizationStatus(for: .video) {
+    case .authorized: start(done)
+    case .notDetermined:
+      AVCaptureDevice.requestAccess(for: .video) { ok in DispatchQueue.main.async { ok ? self.start(done) : done(nil) } }
+    default: done(nil)
+    }
+  }
+
+  // The Mac's own camera, not Camo / OBS / Elgato virtual ones; any camera if there is no built-in
+  // one (lid closed on an external display).
+  private func camera() -> AVCaptureDevice? {
+    AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .unspecified)
+      .devices.first ?? AVCaptureDevice.default(for: .video)
+  }
+
+  private func start(_ done: @escaping (URL?) -> Void) {
+    let output = AVCapturePhotoOutput()   // an output belongs to one session, so a fresh one each time
+    guard let cam = camera(), let input = try? AVCaptureDeviceInput(device: cam) else { done(nil); return }
+    let s = AVCaptureSession()
+    s.sessionPreset = .photo
+    guard s.canAddInput(input), s.canAddOutput(output) else { done(nil); return }
+    s.addInput(input)
+    s.addOutput(output)
+    session = s
+    self.done = done
+    DispatchQueue.global(qos: .userInitiated).async {
+      s.startRunning()
+      // The first frames come out dark while auto-exposure settles.
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+        let settings = output.availablePhotoCodecTypes.contains(.jpeg)
+          ? AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg]) : AVCapturePhotoSettings()
+        output.capturePhoto(with: settings, delegate: self)
+      }
+    }
+  }
+
+  func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+    var saved: URL?
+    if error == nil, let data = photo.fileDataRepresentation() {
+      try? FileManager.default.createDirectory(at: Self.folder, withIntermediateDirectories: true)
+      let f = DateFormatter()
+      f.dateFormat = "yyyy-MM-dd HH.mm.ss"
+      let url = Self.folder.appendingPathComponent(f.string(from: Date()) + ".jpg")
+      if (try? data.write(to: url)) != nil { saved = url }
+    }
+    let s = session
+    DispatchQueue.global().async { s?.stopRunning() }
+    DispatchQueue.main.async {
+      self.session = nil
+      self.done?(saved)
+      self.done = nil
+    }
   }
 }
 
@@ -171,8 +251,12 @@ struct BarView: View {
 
   var body: some View {
     HStack(spacing: 0) {
-      timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
-        .frame(width: leftWidth, alignment: .leading).clipped()
+      HStack(spacing: 10) {
+        camera
+        Sep()
+        timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
+      }
+      .frame(width: leftWidth, alignment: .leading).clipped()
       Spacer(minLength: 16)
       // Order on the right, blocks split by a pipe: Tablero IA (its memory last) | the Mac's RAM | the
       // clock. When it gets tight (a notched screen with the notification corner left free): drop the
@@ -201,6 +285,23 @@ struct BarView: View {
     .padding(.trailing, BarView.trailingRoom)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .environment(\.locale, Locale(identifier: "es_ES"))
+  }
+
+  // Click: one webcam photo, saved quietly. The icon answers for a moment: ✓ saved, ✕ failed.
+  var camera: some View {
+    let icon = switch model.snap {
+      case .idle: "camera"
+      case .busy: "camera.fill"
+      case .ok: "checkmark"
+      case .failed: "xmark"
+    }
+    return Image(systemName: icon)
+      .font(.system(size: 13, weight: .semibold))
+      .frame(width: 18)
+      .opacity(model.snap == .busy ? 0.6 : 1)
+      .contentShape(Rectangle())
+      .onTapGesture { model.takePhoto() }
+      .help("Foto con la webcam → Imágenes/Barra Superior")
   }
 
   @ViewBuilder var timers: some View {
@@ -420,6 +521,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     _ = item("Abrir Timers Paralelos PRO", #selector(openTimers))
     _ = item("Abrir Tablero IA", #selector(openTablero))
+    _ = item("Abrir carpeta de fotos", #selector(openPhotos))
     menu.addItem(.separator())
     item("Dejar libre la esquina de avisos", #selector(toggleNotificationCorner)).state = leaveNotificationsFree ? .on : .off
     item("Abrir al iniciar sesión", #selector(toggleLogin)).state = SMAppService.mainApp.status == .enabled ? .on : .off
@@ -429,6 +531,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
   @objc func openTimers() { open(timersApp) }
   @objc func openTablero() { open(tableroApp) }
+  @objc func openPhotos() {
+    try? FileManager.default.createDirectory(at: Snapper.folder, withIntermediateDirectories: true)
+    NSWorkspace.shared.open(Snapper.folder)
+  }
   @objc func toggleLogin() {
     if SMAppService.mainApp.status == .enabled { try? SMAppService.mainApp.unregister() }
     else { try? SMAppService.mainApp.register() }
