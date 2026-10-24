@@ -129,7 +129,10 @@ struct Count: View {
 
 struct BarView: View {
   @ObservedObject var model: Model
-  let notch: CGFloat   // width of the camera housing on screens that have one; content stays clear of it
+  // On screens with a notch: the room left of it, and right of it up to the bar's end. Content is held
+  // to those widths so nothing slides under the camera housing.
+  let leftWidth: CGFloat?
+  let rightWidth: CGFloat?
   static let maxTimers = 8
 
   // Running first, the one finishing soonest leading; then paused, then queued.
@@ -143,11 +146,18 @@ struct BarView: View {
   var body: some View {
     HStack(spacing: 0) {
       timers.contentShape(Rectangle()).onTapGesture { open(timersApp) }
-      Spacer(minLength: notch + 16)
-      HStack(spacing: 16) {
-        tablero.contentShape(Rectangle()).onTapGesture { open(tableroApp) }
-        Text(model.now, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
+        .frame(width: leftWidth, alignment: .leading).clipped()
+      Spacer(minLength: 16)
+      // With the notification corner left free the right side can get tight: drop the date, then the clock.
+      ViewThatFits(in: .horizontal) {
+        HStack(spacing: 16) {
+          iaPart
+          Text(model.now, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
+        }
+        HStack(spacing: 16) { iaPart; Text(model.now, format: .dateTime.hour().minute()) }
+        iaPart
       }
+      .frame(width: rightWidth, alignment: .trailing)
     }
     .font(.system(size: 13, weight: .medium))
     .lineLimit(1)
@@ -170,6 +180,8 @@ struct BarView: View {
       Label("Timers cerrado", systemImage: "timer").foregroundStyle(.tertiary)
     }
   }
+
+  var iaPart: some View { tablero.contentShape(Rectangle()).onTapGesture { open(tableroApp) } }
 
   @ViewBuilder var tablero: some View {
     if let t = model.tablero {
@@ -234,6 +246,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   static var shared: AppDelegate!
   let model = Model()
   var bars: [CGDirectDisplayID: Bar] = [:]
+  // `defaults write net.horacio.barrasuperior anchoAvisos -int 420` to widen the free corner.
+  var notificationCorner: CGFloat {
+    let w = UserDefaults.standard.integer(forKey: "anchoAvisos")
+    return CGFloat(w > 0 ? w : 380)
+  }
+  var leaveNotificationsFree: Bool {
+    UserDefaults.standard.object(forKey: "dejarLibreAvisos") as? Bool ?? true
+  }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
     model.refresh()
@@ -261,13 +281,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       guard let id = screen.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID else { continue }
       let display = CGDisplayBounds(id)
       let height = all.first { abs($0.minX - display.minX) < 1 && abs($0.width - display.width) < 1 }?.height ?? 30
-      var notch: CGFloat = 0
+      // Notification banners drop in at the top right; the bar stops short of that corner so it
+      // never paints over them. 380 pt = a banner (~345) plus its margin.
+      let gap: CGFloat = leaveNotificationsFree ? notificationCorner : 0
+      var leftWidth: CGFloat?, rightWidth: CGFloat?
       if screen.safeAreaInsets.top > 0, let l = screen.auxiliaryTopLeftArea, let r = screen.auxiliaryTopRightArea {
-        notch = screen.frame.width - l.width - r.width
+        leftWidth = l.width - 20
+        rightWidth = max(0, r.width - gap - 20)
       }
 
       let f = screen.frame
-      let panel = BarPanel(contentRect: NSRect(x: f.minX, y: f.maxY - height, width: f.width, height: height),
+      let panel = BarPanel(contentRect: NSRect(x: f.minX, y: f.maxY - height, width: f.width - gap, height: height),
                            styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
       // One level under the real menu bar: when it slides in it covers us even before we fade.
       panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow)) - 1)
@@ -284,7 +308,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       panel.isReleasedWhenClosed = false
       panel.alphaValue = 0
 
-      panel.contentView = BarHost(rootView: BarView(model: model, notch: notch))
+      panel.contentView = BarHost(rootView: BarView(model: model, leftWidth: leftWidth, rightWidth: rightWidth))
 
       bars[id] = Bar(panel: panel, display: display, height: height)
     }
@@ -322,6 +346,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     _ = item("Abrir Timers Paralelos PRO", #selector(openTimers))
     _ = item("Abrir Tablero IA", #selector(openTablero))
     menu.addItem(.separator())
+    item("Dejar libre la esquina de avisos", #selector(toggleNotificationCorner)).state = leaveNotificationsFree ? .on : .off
     item("Abrir al iniciar sesión", #selector(toggleLogin)).state = SMAppService.mainApp.status == .enabled ? .on : .off
     menu.addItem(.separator())
     _ = item("Salir de Barra Superior", #selector(quit))
@@ -332,6 +357,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   @objc func toggleLogin() {
     if SMAppService.mainApp.status == .enabled { try? SMAppService.mainApp.unregister() }
     else { try? SMAppService.mainApp.register() }
+  }
+  @objc func toggleNotificationCorner() {
+    UserDefaults.standard.set(!leaveNotificationsFree, forKey: "dejarLibreAvisos")
+    rebuild()
   }
   @objc func quit() { NSApp.terminate(nil) }
 }
