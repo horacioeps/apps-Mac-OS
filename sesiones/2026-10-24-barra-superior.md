@@ -196,4 +196,16 @@ Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y
 
 corre un poco  a la izquiera para que no solape con el punto naranaja
 
-<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta abe88b9b-44f4-4e14-acbd-a8a44cc09b3c -->
+## Agente (Claude Code)
+
+He corrido todo el contenido de la barra hacia la izquierda y ya no pisa el punto naranja (v1.7.1, instalada). En la captura ahora se ve `… 6,8 GB | 13,22 / 16 GB | Sáb, 24 oct, 11:31 ●`, con la hora completa y el punto aparte.
+
+Ese punto lo pone macOS cuando una app está usando el micrófono, seguramente la Grabadora continua. Si es la cámara, sale verde. Siempre aparece en esa esquina, por encima de todo. El margen derecho es ahora de 40 pt y es fijo, así que se mantiene aunque el punto no esté. Si lo quieres más justo o más holgado, es el número `trailingRoom` en [Sources/main.swift](apps/barra/Sources/main.swift).
+
+Está subido a `main`, con el volcado de la sesión, la fila en `HISTORICO.md` y el [README](apps/barra/README.md) al día.
+
+## Usuario
+
+y aqui que salgan los onmbres completos sin tener que cortarlos
+
+<!-- claude-session bce119cc-8c6d-4a27-a9aa-5208520dbac1 hasta 0aaf6df5-9bf3-4da5-ab97-5db8b7e7a7c3 -->

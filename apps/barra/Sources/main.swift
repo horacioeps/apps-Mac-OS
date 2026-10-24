@@ -98,7 +98,6 @@ func countdown(_ s: Double) -> String {
   let t = Int(s.rounded(.up)), h = t / 3600, m = t % 3600 / 60, sec = t % 60
   return h > 0 ? String(format: "%d:%02d:%02d", h, m, sec) : String(format: "%02d:%02d", m, sec)
 }
-func short(_ s: String, _ n: Int = 22) -> String { s.count > n ? String(s.prefix(n - 1)) + "…" : s }
 func gigas(_ mb: Int) -> String {
   let f = NumberFormatter()
   f.locale = Locale(identifier: "es_ES"); f.minimumFractionDigits = 1; f.maximumFractionDigits = 1
@@ -121,7 +120,7 @@ struct TimerChip: View {
   var body: some View {
     HStack(spacing: 5) {
       Circle().fill(Color(hex: t.color)).frame(width: 8, height: 8)
-      Text(short(t.label.isEmpty ? "Timer" : t.label))
+      Text(t.label.isEmpty ? "Timer" : t.label)  // whole name; only cut if the bar runs out of room
       if t.state == "waiting" {
         Text("en cola").foregroundStyle(.secondary)
       } else {

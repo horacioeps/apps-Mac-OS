@@ -4,7 +4,7 @@ App de macOS (Swift + AppKit/SwiftUI, sin proyecto de Xcode). Pone una barra pro
 
 Qué muestra:
 
-- **Izquierda**: solo los timers en marcha de *Timers Paralelos PRO* (color, nombre, cuenta atrás), el que antes termina delante; los pausados y los que esperan en cola no salen (v1.6.0). Rojo en el último minuto. Si no corre ninguno: «Ningún timer en marcha».
+- **Izquierda**: solo los timers en marcha de *Timers Paralelos PRO* (color, nombre completo, cuenta atrás), el que antes termina delante; el nombre solo se corta si no queda sitio en la barra; los pausados y los que esperan en cola no salen (v1.6.0). Rojo en el último minuto. Si no corre ninguno: «Ningún timer en marcha».
 - **Derecha**, bloques separados por `|`: *Tablero IA* (`IA ! permiso ▶ trabajando ⏸ te esperan` y la memoria de Claude Code + Cursor) | RAM del Mac usada / física | fecha y hora (la barra de menús oculta se lleva el reloj). Si falta sitio, quita la fecha, luego la etiqueta «IA» y un decimal, luego las unidades GB y por último la hora.
 - Los timers también van separados por `|`.
 
